@@ -4,7 +4,11 @@
     <p>Ingresa los datos</p>
   </div>
   <div>
-    <form>
+    <form
+      autocomplete="on"
+      [formGroup]="formRegistroUsuarios"
+      (ngSubmit)="registroUsuarios()"
+    >
       <div class="flex -mx-3">
         <div class="w-1/2 px-3 mb-5">
           <label for="" class="text-xs font-semibold px-1">First name</label>
@@ -22,7 +26,7 @@
           </div>
         </div>
         <div class="w-1/2 px-3 mb-5">
-          <label for="" class="text-xs font-semibold px-1">Last name</label>
+          <label for="" class="text-xs font-semibold px-1">Rol</label>
           <div class="flex">
             <div
               class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"

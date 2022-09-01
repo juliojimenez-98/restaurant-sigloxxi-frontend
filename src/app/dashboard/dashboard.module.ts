@@ -7,7 +7,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { TablaUsuariosComponent } from './components/tabla-usuarios/tabla-usuarios.component';
 import { RegistroUsuariosComponent } from './components/registro-usuarios/registro-usuarios.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,11 +15,13 @@ import { RegistroUsuariosComponent } from './components/registro-usuarios/regist
     DashboardComponent,
     UsuariosComponent,
     TablaUsuariosComponent,
-    RegistroUsuariosComponent
+    RegistroUsuariosComponent,
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
-  ]
+    DashboardRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
-export class DashboardModule { }
+export class DashboardModule {}
