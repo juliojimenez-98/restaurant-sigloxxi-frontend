@@ -13,7 +13,7 @@
               <th class="py-3 px-6 text-left">Nombre</th>
               <th class="py-3 px-6 text-left">Email</th>
               <th class="py-3 px-6 text-center">Estado</th>
-              <th class="py-3 px-6 text-center">Roles</th>
+              <th class="py-3 px-6 text-center">Rol(es)</th>
               <th class="py-3 px-6 text-center">Aciones</th>
             </tr>
           </thead>
@@ -37,16 +37,18 @@
               <td class="py-3 px-6 text-center">
                 <div class="flex items-center justify-center">
                   <span
-                    [ngClass]="{ 'bg-green-600': usuario.estado === 1 }"
-                    [ngClass]="{ 'bg-red-600': usuario.estado === 0 }"
+                    [ngClass]="{
+                      'bg-green-600': usuario.estado === 1
+                    }"
+                    [ngClass]="{ 'bg-red-600': !usuario.estado }"
                     [ngClass]="{ 'bg-yellow-500': usuario.estado === 2 }"
-                    class="text-white py-1 px-3 rounded-full text-xs"
+                    class="py-1 px-3 rounded-full text-xs"
                     >{{
                       usuario.estado === 2
                         ? "En espera de aprobacion"
-                        : "" || usuario.estado === 1
+                        : "" || usuario.estado
                         ? "Activo"
-                        : "" || usuario.estado === 0
+                        : "" || !usuario.estado
                         ? "Bloqueado"
                         : ""
                     }}</span

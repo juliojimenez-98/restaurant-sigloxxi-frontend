@@ -9,6 +9,7 @@ import { UsuariosService } from '../../services/usuarios.service';
 })
 export class ListaUsuariosComponent implements OnInit {
   usuarios: Usuario[] = [];
+
   constructor(private servicio: UsuariosService) {}
 
   ngOnInit(): void {
