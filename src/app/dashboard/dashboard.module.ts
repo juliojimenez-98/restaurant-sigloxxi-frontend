@@ -8,6 +8,7 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { TablaUsuariosComponent } from './components/tabla-usuarios/tabla-usuarios.component';
 import { RegistroUsuariosComponent } from './components/registro-usuarios/registro-usuarios.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UsuariosComponent,
     TablaUsuariosComponent,
     RegistroUsuariosComponent,
+    ListaUsuariosComponent,
   ],
   imports: [
     CommonModule,
