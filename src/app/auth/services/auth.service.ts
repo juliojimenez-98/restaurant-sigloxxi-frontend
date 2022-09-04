@@ -7,10 +7,10 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  login(rut: string, password: string) {
+  login(email: string, password: string) {
     const urlLogin = 'http://localhost:8080/api/login';
 
-    const body = { rut, password };
+    const body = { email, password };
 
     return this.http.post(urlLogin, body);
   }

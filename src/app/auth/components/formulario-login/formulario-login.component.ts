@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -9,16 +11,38 @@ import { AuthService } from '../../services/auth.service';
 })
 export class FormularioLoginComponent {
   formLogin: FormGroup = this.fb.group({
-    rut: ['', [Validators.required]],
+    email: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(2)]],
   });
 
-  constructor(private authService: AuthService, private fb: FormBuilder) {}
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   login() {
-    const { rut, password } = this.formLogin.value;
-    this.authService.login(rut, password).subscribe((ok) => {
+    Swal.fire({
+      allowOutsideClick: false,
+      icon: 'info',
+      text: 'Iniciando sesión...',
+      showConfirmButton: false,
+    });
+    const { email, password } = this.formLogin.value;
+    console.log(this.formLogin.value);
+    this.authService.login(email, password).subscribe((ok) => {
       console.log(ok);
+      if (ok) {
+        Swal.close();
+        this.router.navigateByUrl('admin/usuarios/registrar-usuarios');
+      } else {
+        Swal.close();
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: ok,
+        });
+      }
     });
   }
 }
