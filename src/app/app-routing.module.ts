@@ -8,8 +8,15 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+    loadChildren: () =>
+      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./home-page/home-page.module').then((m) => m.HomePageModule),
+  },
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({
