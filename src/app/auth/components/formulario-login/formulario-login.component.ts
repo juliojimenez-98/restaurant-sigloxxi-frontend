@@ -30,19 +30,29 @@ export class FormularioLoginComponent {
     });
     const { email, password } = this.formLogin.value;
     console.log(this.formLogin.value);
-    this.authService.login(email, password).subscribe((ok) => {
-      console.log(ok);
-      if (ok) {
-        Swal.close();
-        this.router.navigateByUrl('admin/usuarios/registrar-usuarios');
-      } else {
-        Swal.close();
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: ok,
-        });
+    this.authService.login(email, password).subscribe(
+      (res: any) => {
+        console.log(res);
+        if (res.usuario) {
+          Swal.close();
+          this.router.navigateByUrl('admin/usuarios/registrar-usuarios');
+        } else {
+          Swal.close();
+          Swal.fire('Error al iniciar sesion', 'error');
+        }
+      },
+      (error) => {
+        if (error.error.errors) {
+          Swal.close();
+          Swal.fire(
+            'Error al iniciar sesion',
+            `${error.error.errors[0].msg} `,
+            'error'
+          );
+        } else {
+          Swal.fire('Error al iniciar sesion', `${error.error.msg} `, 'error');
+        }
       }
-    });
+    );
   }
 }

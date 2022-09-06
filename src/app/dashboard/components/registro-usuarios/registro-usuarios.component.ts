@@ -56,7 +56,7 @@ export class RegistroUsuariosComponent implements OnInit {
         Swal.close();
         if (error.error.errors) {
           Swal.fire(
-            'Usuario registrado',
+            'Error al registrar usuario',
             `${error.error.errors[0].msg} `,
             'error'
           );
