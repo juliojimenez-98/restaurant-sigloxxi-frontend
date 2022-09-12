@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
@@ -12,11 +12,15 @@ const routes: Routes = [
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
   {
-    path: '',
+    path: 'home',
     loadChildren: () =>
       import('./home-page/home-page.module').then((m) => m.HomePageModule),
   },
-  { path: '**', redirectTo: 'home' },
+  {
+    path: '',
+    redirectTo: '/home/inicio',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
