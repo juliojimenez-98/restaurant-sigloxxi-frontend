@@ -35,6 +35,9 @@ export class FormularioLoginComponent {
         console.log(res);
         if (res.usuario) {
           Swal.close();
+          localStorage.setItem('usuario', JSON.stringify(res.usuario));
+          localStorage.setItem('token', res.token);
+          console.log(res);
           this.router.navigateByUrl('admin/usuarios/registrar-usuarios');
         } else {
           Swal.close();

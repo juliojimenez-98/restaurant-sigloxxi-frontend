@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DashboardPageComponent } from './components/dashboard-page/dashboard-page.component';
 import { ListMesasComponent } from './components/list-mesas/list-mesas.component';
 import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
 import { RegistroMesasComponent } from './components/registro-mesas/registro-mesas.component';
 import { RegistroUsuariosComponent } from './components/registro-usuarios/registro-usuarios.component';
+import { RolesUsuariosComponent } from './components/roles-usuarios/roles-usuarios.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MesasPageComponent } from './pages/mesas-page/mesas-page.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
@@ -16,6 +18,8 @@ const routes: Routes = [
         path: '',
         component: DashboardComponent,
         children: [
+          { path: 'dashboard', component: DashboardPageComponent },
+
           {
             path: 'usuarios',
             component: UsuariosComponent,
@@ -27,6 +31,10 @@ const routes: Routes = [
               {
                 path: 'lista-usuarios',
                 component: ListaUsuariosComponent,
+              },
+              {
+                path: 'roles',
+                component: RolesUsuariosComponent,
               },
             ],
           },
