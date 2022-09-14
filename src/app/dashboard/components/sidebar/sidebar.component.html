@@ -10,13 +10,61 @@
       />
     </div>
 
-    <ul class="space-y-2 tracking-wide mt-8">
-      <ng-container>
+    <ul class="space-y-2 tracking-wide mt-1">
+      <ng-container *ngIf="esAdmin">
         <li *ngFor="let item of menuAdmin">
           <a
             [routerLink]="item.ruta"
             routerLinkActive="bg-gradient-to-r bg-paleta4"
-            class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 group"
+            class="hover:bg-paleta4 px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 group"
+          >
+            <span class="group-hover:text-gray-100">{{ item.nombre }}</span>
+          </a>
+        </li>
+      </ng-container>
+
+      <ng-container *ngIf="esMesero">
+        <li *ngFor="let item of menuMesero">
+          <a
+            [routerLink]="item.ruta"
+            routerLinkActive="bg-gradient-to-r bg-paleta4"
+            class="hover:bg-paleta4 px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 group"
+          >
+            <span class="group-hover:text-gray-100">{{ item.nombre }}</span>
+          </a>
+        </li>
+      </ng-container>
+
+      <ng-container *ngIf="esCocinero">
+        <li *ngFor="let item of menuCocinero">
+          <a
+            [routerLink]="item.ruta"
+            routerLinkActive="bg-gradient-to-r bg-paleta4"
+            class="hover:bg-paleta4 px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 group"
+          >
+            <span class="group-hover:text-gray-100">{{ item.nombre }}</span>
+          </a>
+        </li>
+      </ng-container>
+
+      <ng-container *ngIf="esFinanzas">
+        <li *ngFor="let item of menuFinanzas">
+          <a
+            [routerLink]="item.ruta"
+            routerLinkActive="bg-gradient-to-r bg-paleta4"
+            class="hover:bg-paleta4 px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 group"
+          >
+            <span class="group-hover:text-gray-100">{{ item.nombre }}</span>
+          </a>
+        </li>
+      </ng-container>
+
+      <ng-container *ngIf="esBodeguero">
+        <li *ngFor="let item of menuBodeguero">
+          <a
+            [routerLink]="item.ruta"
+            routerLinkActive="bg-gradient-to-r bg-paleta4"
+            class="hover:bg-paleta4 px-4 py-3 flex items-center space-x-4 rounded-md text-gray-100 group"
           >
             <span class="group-hover:text-gray-100">{{ item.nombre }}</span>
           </a>

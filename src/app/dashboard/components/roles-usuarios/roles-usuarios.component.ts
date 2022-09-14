@@ -81,13 +81,14 @@ export class RolesUsuariosComponent implements OnInit {
   clickButton(id: number) {
     if (this.rolesDelUsuario.indexOf(id) === -1) {
       Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Estás seguro?',
+        text: 'Quieres cambiar el rol del usuario?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!',
+        confirmButtonText: 'Cambiar rol',
+        cancelButtonText: 'Cancelar',
       }).then((result) => {
         if (this.rolesDelUsuario.indexOf(id) === -1) {
           this.rolesDelUsuario.push(id);

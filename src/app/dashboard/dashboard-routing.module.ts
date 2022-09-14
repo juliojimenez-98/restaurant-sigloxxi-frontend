@@ -29,6 +29,10 @@ const routes: Routes = [
                 component: RegistroUsuariosComponent,
               },
               {
+                path: 'registrar-usuarios/:id',
+                component: RegistroUsuariosComponent,
+              },
+              {
                 path: 'lista-usuarios',
                 component: ListaUsuariosComponent,
               },

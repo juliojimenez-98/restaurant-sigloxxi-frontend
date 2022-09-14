@@ -27,8 +27,8 @@ export class RegistroMesasComponent {
           Swal.close();
 
           Swal.fire(
-            'Usuario registrado',
-            `La mesa ${res.mesa.id_mesa} fue exitosamente registrada`,
+            'Mesa registrada',
+            `La mesa fue exitosamente registrada`,
             'success'
           );
         }

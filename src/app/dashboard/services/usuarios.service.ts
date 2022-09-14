@@ -26,6 +26,12 @@ export class UsuariosService {
     return this.http.put<UsuarioRoles>(urlRegistroUsuarios, userRoles);
   }
 
+  actualizarUsuarios(usuario: Usuario, id: number): Observable<UsuarioRoles> {
+    const urlRegistroUsuarios = `http://localhost:8080/api/usuarios/usuario/${id}`;
+
+    return this.http.put<UsuarioRoles>(urlRegistroUsuarios, usuario);
+  }
+
   obtenerRolesUsuarios(): Observable<any> {
     const urlGetUsuarios = 'http://localhost:8080/api/usuarios/roles';
     return this.http
@@ -43,5 +49,10 @@ export class UsuariosService {
   obtenerUsuariosPorId(id: number): Observable<any> {
     const urlGetUsuarios = `http://localhost:8080/api/usuarios/usuario/${id}`;
     return this.http.get<any>(urlGetUsuarios);
+  }
+
+  eliminarUsuario(id: number): Observable<any> {
+    const urlGetUsuarios = `http://localhost:8080/api/usuarios/usuario/${id}`;
+    return this.http.delete<any>(urlGetUsuarios);
   }
 }

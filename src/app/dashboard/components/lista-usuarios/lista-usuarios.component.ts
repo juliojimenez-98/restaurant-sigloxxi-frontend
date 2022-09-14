@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 import { Usuario } from '../../interfaces/usuario.interface';
 import { UsuariosService } from '../../services/usuarios.service';
 
@@ -31,6 +32,30 @@ export class ListaUsuariosComponent implements OnInit {
           console.log(this.rolesUsuarios);
         });
       });
+    });
+  }
+
+  eliminarUsuario(id: any) {
+    Swal.fire({
+      title: 'Seguro quieres eliminar al usuario?',
+      text: 'Eliminarás el usuario',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Borrarlo',
+      cancelButtonText: 'No, Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.servicio.eliminarUsuario(id).subscribe((res) => {
+          this.obtenerUsuarios();
+        });
+        Swal.fire(
+          'Borrado',
+          'El usuario ha sido eliminado de la base de datos con éxito',
+          'success'
+        );
+      }
     });
   }
 }

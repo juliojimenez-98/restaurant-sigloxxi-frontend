@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +15,7 @@ export class DashboardComponent implements OnInit {
 
   user: any = localStorage.getItem('usuario');
   usuario = JSON.parse(this.user);
-  constructor() {
+  constructor(private router: Router) {
     if (localStorage.getItem('token')) {
       if (this.usuario.rolArray.find((e: any) => e === 1)) {
         this.esAdmin = true;
@@ -34,7 +35,12 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    console.log(this.esAdmin, this.esMesero);
+  ngOnInit(): void {}
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
+    this.router.navigateByUrl('/home/inicio');
+    console.log('cerrar sesion');
   }
 }

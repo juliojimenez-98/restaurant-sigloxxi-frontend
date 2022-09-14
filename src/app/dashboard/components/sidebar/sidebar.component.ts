@@ -5,6 +5,26 @@ interface MenuAdmin {
   nombre: string;
 }
 
+interface MenuMesero {
+  ruta: string;
+  nombre: string;
+}
+
+interface MenuCocinero {
+  ruta: string;
+  nombre: string;
+}
+
+interface MenuFinanzas {
+  ruta: string;
+  nombre: string;
+}
+
+interface MenuBodeguero {
+  ruta: string;
+  nombre: string;
+}
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -33,6 +53,78 @@ export class SidebarComponent implements OnInit {
       nombre: 'Registrar mesas',
     },
   ];
+
+  menuMesero: MenuMesero[] = [
+    {
+      ruta: 'dashboard',
+      nombre: 'Inicio',
+    },
+    {
+      ruta: 'mesas/lista-mesas',
+      nombre: 'Mesas',
+    },
+    {
+      ruta: 'mesas/lista-mesa',
+      nombre: 'Atenciones de hoy',
+    },
+    {
+      ruta: 'mesas/lista-mess',
+      nombre: 'Propinas',
+    },
+  ];
+  menuCocinero: MenuCocinero[] = [
+    {
+      ruta: 'dashboard',
+      nombre: 'Inicio',
+    },
+    {
+      ruta: 'mesas/lista-mesas',
+      nombre: 'Pedidos',
+    },
+    {
+      ruta: 'mesas/lista-mesa',
+      nombre: 'Inventarios',
+    },
+    {
+      ruta: 'mesas/lista-mess',
+      nombre: 'Recetas',
+    },
+  ];
+
+  menuFinanzas: MenuFinanzas[] = [
+    {
+      ruta: 'dashboard',
+      nombre: 'Inicio',
+    },
+    {
+      ruta: 'mesas/lista-mesas',
+      nombre: 'Ingresos',
+    },
+    {
+      ruta: 'mesas/lista-mesa',
+      nombre: 'Boletas',
+    },
+  ];
+
+  menuBodeguero: MenuBodeguero[] = [
+    {
+      ruta: 'dashboard',
+      nombre: 'Inicio',
+    },
+    {
+      ruta: 'mesas/lista-mesas',
+      nombre: 'Bodegas',
+    },
+    {
+      ruta: 'mesas/lista-mesa',
+      nombre: 'Inventario',
+    },
+    {
+      ruta: 'mesas/lista-mesa',
+      nombre: 'Recepción proveedores',
+    },
+  ];
+
   esAdmin: boolean = false;
   esMesero: boolean = false;
   esCocinero: boolean = false;
