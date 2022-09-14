@@ -9,6 +9,12 @@ import { UsuariosService } from '../../services/usuarios.service';
 })
 export class ListaUsuariosComponent implements OnInit {
   usuarios: Usuario[] = [];
+  rolesUsuarios: any[] = [];
+  esAdmin: boolean = false;
+  esMesero: boolean = false;
+  esCocinero: boolean = false;
+  esFinanzas: boolean = false;
+  esBodeguero: boolean = false;
 
   constructor(private servicio: UsuariosService) {}
 
@@ -19,7 +25,12 @@ export class ListaUsuariosComponent implements OnInit {
   obtenerUsuarios() {
     this.servicio.obtenerUsuarios().subscribe((users) => {
       this.usuarios = users;
-      console.log(users);
+      this.usuarios.map((e) => {
+        e.rolArray.map((r: any) => {
+          this.rolesUsuarios = r;
+          console.log(this.rolesUsuarios);
+        });
+      });
     });
   }
 }

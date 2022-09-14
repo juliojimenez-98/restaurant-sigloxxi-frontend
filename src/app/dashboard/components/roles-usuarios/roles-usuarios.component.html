@@ -1,5 +1,85 @@
-<button *ngIf="!esAdmin">Rol Admin</button>
-<button *ngIf="!esBodeguero">Rol Bodega</button>
-<button *ngIf="!esMesero">Rol Mesero</button>
-<button *ngIf="!esFinanzas">Rol finanzas</button>
-<button *ngIf="!esCocinero">Rol Cocinero</button>
+<!-- This is an example component -->
+<div class="flex items-center justify-center mt-32">
+  <div class="rounded-xl border p-5 shadow-md w-9/12 bg-white">
+    <h1 class="text-3xl pl-5 pt-5">Roles que tiene:</h1>
+    <h1 class="text-xl pl-5 pt-5 pb-5">
+      <strong>Usuario: </strong>{{ usuarioPorId.nombre }}
+      {{ usuarioPorId.appa }}
+    </h1>
+
+    <div class="flex pl-5 pt-5 pb-2">
+      <div class="w-6 h-6 bg-green-600 text-green-600 border-2 border-black">
+        .
+      </div>
+      <div class="text-black ml-2">Tiene rol</div>
+    </div>
+    <div class="flex pl-5 pt-1 pb-5">
+      <div class="w-6 h-6 bg-red-600 text-red-600 border-2 border-black">.</div>
+      <div class="text-black ml-2">No tiene rol</div>
+    </div>
+
+    <div class="flex">
+      <div class="mx-auto">
+        <button
+          class="tracking-wider text-white px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold"
+          (click)="clickButton(1)"
+          [ngClass]="{
+            'bg-red-600 hover:bg-red-800': !esAdmin,
+            'bg-green-600 hover:bg-green-800': esAdmin
+          }"
+        >
+          Rol Admin
+        </button>
+        <button
+          (click)="clickButton(2)"
+          [ngClass]="{
+            'bg-red-600 hover:bg-red-800': !esMesero,
+            'bg-green-600 hover:bg-green-800': esMesero
+          }"
+          class="tracking-wider text-white px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold"
+        >
+          Rol Mesero
+        </button>
+        <button
+          (click)="clickButton(3)"
+          [ngClass]="{
+            'bg-red-600 hover:bg-red-800': !esCocinero,
+            'bg-green-600 hover:bg-green-800': esCocinero
+          }"
+          class="tracking-wider text-white px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold"
+        >
+          Rol Cocinero
+        </button>
+        <button
+          (click)="clickButton(4)"
+          [ngClass]="{
+            'bg-red-600 hover:bg-red-800': !esFinanzas,
+            'bg-green-600 hover:bg-green-800': esFinanzas
+          }"
+          class="tracking-wider text-white px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold"
+        >
+          Rol finanzas
+        </button>
+        <button
+          (click)="clickButton(5)"
+          [ngClass]="{
+            'bg-red-600 hover:bg-red-800': !esBodeguero,
+            'bg-green-600 hover:bg-green-800': esBodeguero
+          }"
+          class="tracking-wider text-white px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold"
+        >
+          Rol Bodega
+        </button>
+      </div>
+    </div>
+
+    <div class="flex">
+      <button
+        routerLink="/admin/usuarios/lista-usuarios"
+        class="mx-auto mt-7 w-2/6 tracking-wider bg-paleta4 hover:bg-paleta5 text-white px-4 py-1 text-sm rounded leading-loose font-semibold"
+      >
+        Volver
+      </button>
+    </div>
+  </div>
+</div>

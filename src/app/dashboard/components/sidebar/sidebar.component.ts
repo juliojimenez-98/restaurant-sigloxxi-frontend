@@ -32,10 +32,6 @@ export class SidebarComponent implements OnInit {
       ruta: 'mesas/registrar-mesa',
       nombre: 'Registrar mesas',
     },
-    {
-      ruta: 'usuarios/roles',
-      nombre: 'Roles de usuarios',
-    },
   ];
   esAdmin: boolean = false;
   esMesero: boolean = false;

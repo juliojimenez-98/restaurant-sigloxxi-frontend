@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Rol } from '../interfaces/rol.interface';
 import { Usuario } from '../interfaces/usuario.interface';
+import { UsuarioRoles } from '../interfaces/usuarioRoles.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,15 @@ export class UsuariosService {
     const urlRegistroUsuarios = 'http://localhost:8080/api/usuarios/usuario';
 
     return this.http.post<Usuario>(urlRegistroUsuarios, user);
+  }
+
+  actualizarRolesUsuarios(
+    userRoles: UsuarioRoles,
+    id: number
+  ): Observable<UsuarioRoles> {
+    const urlRegistroUsuarios = `http://localhost:8080/api/usuarios/usuario/${id}`;
+
+    return this.http.put<UsuarioRoles>(urlRegistroUsuarios, userRoles);
   }
 
   obtenerRolesUsuarios(): Observable<any> {
@@ -28,5 +38,10 @@ export class UsuariosService {
     return this.http
       .get(urlGetUsuarios)
       .pipe(map((res: any) => res.usuarios as Usuario[]));
+  }
+
+  obtenerUsuariosPorId(id: number): Observable<any> {
+    const urlGetUsuarios = `http://localhost:8080/api/usuarios/usuario/${id}`;
+    return this.http.get<any>(urlGetUsuarios);
   }
 }
