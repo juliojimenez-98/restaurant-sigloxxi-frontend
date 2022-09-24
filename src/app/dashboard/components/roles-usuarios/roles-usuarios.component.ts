@@ -112,13 +112,13 @@ export class RolesUsuariosComponent implements OnInit {
       });
     } else {
       Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Estás Seguro?',
+        text: "Estás eliminando un rol del usuario.",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!',
+        confirmButtonText: 'Borrar Rol',
       }).then((result) => {
         if (this.rolesDelUsuario.indexOf(id) > -1) {
           this.arrayEliminar = this.rolesDelUsuario.filter(
