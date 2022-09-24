@@ -14,4 +14,12 @@ export class AuthService {
 
     return this.http.post(urlLogin, body);
   }
+
+  estaAutenticado(): boolean {
+    if (localStorage.getItem('token') === null) {
+      console.log('No Esta autenticado');
+      return false;
+    }
+    return true;
+  }
 }

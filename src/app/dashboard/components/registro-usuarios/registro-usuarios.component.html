@@ -4,11 +4,7 @@
     <p>Ingresa los datos</p>
   </div>
   <div>
-    <form
-      autocomplete="on"
-      [formGroup]="formRegistroUsuarios"
-      (ngSubmit)="registroUsuarios()"
-    >
+    <form autocomplete="on" [formGroup]="formRegistroUsuarios">
       <div class="flex mx-3">
         <div class="w-full px-3 mb-5">
           <label for="" class="text-xs font-semibold px-1">Nombre</label>
@@ -91,11 +87,22 @@
       <div class="flex">
         <div class="w-full px-3 mb-5">
           <button
+            (click)="registroUsuarios()"
+            *ngIf="!formRegistroUsuarios.value.id_user; else elseBLock"
             type="submit"
             class="block w-full max-w-xs mx-auto bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
           >
             REGISTRAR
           </button>
+          <ng-template #elseBLock>
+            <button
+              (click)="actualizarUsuario()"
+              type="submit"
+              class="block w-full max-w-xs mx-auto bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
+            >
+              ACTUALIZAR
+            </button>
+          </ng-template>
         </div>
       </div>
     </form>

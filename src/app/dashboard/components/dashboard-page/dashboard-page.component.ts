@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  selector: 'app-dashboard-page',
+  templateUrl: './dashboard-page.component.html',
+  styleUrls: ['./dashboard-page.component.css'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardPageComponent implements OnInit {
   esAdmin: boolean = false;
   esMesero: boolean = false;
   esCocinero: boolean = false;
@@ -15,7 +14,8 @@ export class DashboardComponent implements OnInit {
 
   user: any = localStorage.getItem('usuario');
   usuario = JSON.parse(this.user);
-  constructor(private router: Router) {
+
+  constructor() {
     if (localStorage.getItem('token')) {
       if (this.usuario.rolArray.find((e: any) => e === 1)) {
         this.esAdmin = true;
@@ -36,11 +36,4 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('usuario');
-    this.router.navigateByUrl('/home/inicio');
-    console.log('cerrar sesion');
-  }
 }
