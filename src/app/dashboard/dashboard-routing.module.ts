@@ -9,6 +9,8 @@ import { RolesUsuariosComponent } from './components/roles-usuarios/roles-usuari
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MesasPageComponent } from './pages/mesas-page/mesas-page.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { IngredientesPageComponent } from './pages/ingredientes-page/ingredientes-page.component';
+import { RegistroIngredienteComponent } from './components/registro-ingrediente/registro-ingrediente.component';
 
 const routes: Routes = [
   {
@@ -27,6 +29,28 @@ const routes: Routes = [
               {
                 path: 'registrar-usuarios',
                 component: RegistroUsuariosComponent,
+              },
+              {
+                path: 'registrar-usuarios/:id',
+                component: RegistroUsuariosComponent,
+              },
+              {
+                path: 'lista-usuarios',
+                component: ListaUsuariosComponent,
+              },
+              {
+                path: 'roles/:id',
+                component: RolesUsuariosComponent,
+              },
+            ],
+          },
+          {
+            path: 'ingredientes',
+            component: IngredientesPageComponent,
+            children: [
+              {
+                path: 'registro-ingredientes',
+                component: RegistroIngredienteComponent,
               },
               {
                 path: 'registrar-usuarios/:id',
