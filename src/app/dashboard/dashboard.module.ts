@@ -13,6 +13,9 @@ import { ListMesasComponent } from './components/list-mesas/list-mesas.component
 import { RegistroMesasComponent } from './components/registro-mesas/registro-mesas.component';
 import { DashboardPageComponent } from './components/dashboard-page/dashboard-page.component';
 import { RolesUsuariosComponent } from './components/roles-usuarios/roles-usuarios.component';
+import { IngredientesPageComponent } from './pages/ingredientes-page/ingredientes-page.component';
+import { RegistroIngredienteComponent } from './components/registro-ingrediente/registro-ingrediente.component';
+import { ListaIngredientesComponent } from './components/lista-ingredientes/lista-ingredientes.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { RolesUsuariosComponent } from './components/roles-usuarios/roles-usuari
     RegistroMesasComponent,
     DashboardPageComponent,
     RolesUsuariosComponent,
+    IngredientesPageComponent,
+    RegistroIngredienteComponent,
+    ListaIngredientesComponent,
   ],
   imports: [
     CommonModule,
