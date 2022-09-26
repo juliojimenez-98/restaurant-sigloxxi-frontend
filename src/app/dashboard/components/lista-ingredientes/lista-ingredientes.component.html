@@ -37,7 +37,12 @@
             </td>
             <td class="px-4 py-3 text-xs border">
               <div class="flex item-center justify-center">
+                <!-- Sofía -->
                 <div
+                  [routerLink]="[
+                    '/api/ingredientes/ingredientes',
+                    ing.id_ing
+                  ]"
                   class="w-4 mr-2 transform text-black hover:text-yellow-500 hover:scale-110"
                 >
                   <svg

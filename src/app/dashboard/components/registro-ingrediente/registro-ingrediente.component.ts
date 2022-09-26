@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { IngredientesService } from '../../services/ingredientes.service';
+import { ActivatedRoute } from '@angular/router';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-registro-ingrediente',
@@ -20,10 +22,14 @@ export class RegistroIngredienteComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private servicioIng: IngredientesService
+    private servicioIng: IngredientesService,
+    // Sofia
+    private activatedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.obtenerIngredientesPorId();
+  }
 
   registrarIngrediente() {
     Swal.fire({
@@ -64,5 +70,27 @@ export class RegistroIngredienteComponent implements OnInit {
           }
         }
       );
+  }
+
+  // Sofía
+
+  obtenerIngredientesPorId() {
+    this.activatedRoute.params.subscribe((params) => {
+      let id = params['id'];
+      let id_ing = parseInt(id);
+      if (id_ing) {
+        this.servicioIng.obtenerIngredientesPorId(id_ing).subscribe((res: any) => { 
+          this.formRegistroIngrediente.patchValue({
+            id_ing: res.findIng.id_ing,
+            nombre: res.findIng.nombre,
+            stock: res.findIng.stock,
+            stock_cri: res.findIng.stock_cri,
+            fecha_vencimiento: res.finIg.fecha_vencimiento
+          });
+          console.log(res);
+          console.log(this.formRegistroIngrediente.value.id_ing);
+        });
+      }
+    });
   }
 }
