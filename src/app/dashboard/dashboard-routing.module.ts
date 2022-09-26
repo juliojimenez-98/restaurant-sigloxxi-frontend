@@ -11,6 +11,7 @@ import { MesasPageComponent } from './pages/mesas-page/mesas-page.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { IngredientesPageComponent } from './pages/ingredientes-page/ingredientes-page.component';
 import { RegistroIngredienteComponent } from './components/registro-ingrediente/registro-ingrediente.component';
+import { ListaIngredientesComponent } from './components/lista-ingredientes/lista-ingredientes.component';
 
 const routes: Routes = [
   {
@@ -53,12 +54,12 @@ const routes: Routes = [
                 component: RegistroIngredienteComponent,
               },
               {
-                path: 'registrar-usuarios/:id',
-                component: RegistroUsuariosComponent,
+                path: 'registro-ingredientes/:id',
+                component: RegistroIngredienteComponent,
               },
               {
-                path: 'lista-usuarios',
-                component: ListaUsuariosComponent,
+                path: 'lista-ingredientes',
+                component: ListaIngredientesComponent,
               },
               {
                 path: 'roles/:id',

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Ingrediente } from '../interfaces/ingrediente.interface';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,5 +14,13 @@ export class IngredientesService {
       'http://localhost:8080/api/ingredientes/ingrediente';
 
     return this.http.post<Ingrediente>(urlRegistroIngredientes, ingredientes);
+  }
+
+  obtenerIngrediente(): Observable<any> {
+    const urlGetIngredientes =
+      'http://localhost:8080/api/ingredientes/ingredientes';
+    return this.http
+      .get(urlGetIngredientes)
+      .pipe(map((res: any) => res.ingrediente as Ingrediente[]));
   }
 }
