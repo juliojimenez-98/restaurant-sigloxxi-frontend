@@ -16,6 +16,9 @@ import { RolesUsuariosComponent } from './components/roles-usuarios/roles-usuari
 import { IngredientesPageComponent } from './pages/ingredientes-page/ingredientes-page.component';
 import { RegistroIngredienteComponent } from './components/registro-ingrediente/registro-ingrediente.component';
 import { ListaIngredientesComponent } from './components/lista-ingredientes/lista-ingredientes.component';
+import { RecetasPageComponent } from './pages/recetas-page/recetas-page.component';
+import { RegistroRecetasComponent } from './components/registro-recetas/registro-recetas.component';
+import { ListaRecetaComponent } from './components/lista-receta/lista-receta.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { ListaIngredientesComponent } from './components/lista-ingredientes/list
     IngredientesPageComponent,
     RegistroIngredienteComponent,
     ListaIngredientesComponent,
+    RecetasPageComponent,
+    RegistroRecetasComponent,
+    ListaRecetaComponent,
   ],
   imports: [
     CommonModule,
