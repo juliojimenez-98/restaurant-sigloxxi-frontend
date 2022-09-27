@@ -40,7 +40,7 @@
                 <!-- Sofía -->
                 <div
                   [routerLink]="[
-                    '/api/ingredientes/ingredientes',
+                    '/admin/ingredientes/registro-ingredientes',
                     ing.id_ing
                   ]"
                   class="w-4 mr-2 transform text-black hover:text-yellow-500 hover:scale-110"
@@ -60,6 +60,7 @@
                   </svg>
                 </div>
                 <div
+                  (click)="eliminarIngrediente(ing.id_ing)"
                   class="w-4 mr-2 transform text-black hover:text-red-600 hover:scale-110"
                 >
                   <svg
