@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { IngredientesService } from '../../services/ingredientes.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpParams } from '@angular/common/http';
 
 @Component({
@@ -23,12 +23,12 @@ export class RegistroIngredienteComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private servicioIng: IngredientesService,
-    // Sofia
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.obtenerIngredientesPorId();
+    this.obtenerIngredientePorId();
   }
 
   registrarIngrediente() {
@@ -72,25 +72,45 @@ export class RegistroIngredienteComponent implements OnInit {
       );
   }
 
-  // Sofía
-
-  obtenerIngredientesPorId() {
+  obtenerIngredientePorId() {
     this.activatedRoute.params.subscribe((params) => {
       let id = params['id'];
       let id_ing = parseInt(id);
       if (id_ing) {
-        this.servicioIng.obtenerIngredientesPorId(id_ing).subscribe((res: any) => { 
+        this.servicioIng.obtenerIngredientePorId(id_ing).subscribe((res: any) => { 
+          console.log(res);
+          
           this.formRegistroIngrediente.patchValue({
-            id_ing: res.findIng.id_ing,
-            nombre: res.findIng.nombre,
-            stock: res.findIng.stock,
-            stock_cri: res.findIng.stock_cri,
-            fecha_vencimiento: res.finIg.fecha_vencimiento
+            id_ing: res.findIngrediente.id_ing,
+            nombre: res.findIngrediente.nombre,
+            stock: res.findIngrediente.stock,
+            stock_cri: res.findIngrediente.stock_cri,
+            unidad: res.findIngrediente.unidad,
+            fecha_vencimiento: res.findIngrediente.fecha_vencimiento
           });
           console.log(res);
           console.log(this.formRegistroIngrediente.value.id_ing);
         });
       }
     });
+  }
+
+  actualizarIngrediente(){
+    this.activatedRoute.params.subscribe((params) => {
+      let id = params['id'];
+      let id_ing = parseInt(id);
+      this.servicioIng
+        .actualizarIngrediente(this.formRegistroIngrediente.value, id_ing)
+        .subscribe((res) => {
+          console.log('respuesta', res);
+          Swal.fire(
+            'Ingrediente actualizado',
+            `Ingrediente actualizado con exito`,
+            'success'
+          );
+          this.router.navigateByUrl('/admin/ingredientes/lista-ingredientes');
+        });
+    });
+    
   }
 }

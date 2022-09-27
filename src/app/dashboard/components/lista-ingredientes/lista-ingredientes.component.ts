@@ -24,6 +24,26 @@ export class ListaIngredientesComponent implements OnInit {
   }
 
   eliminarIngrediente(id: any) {
-    console.log('ELIMINAR INGREDIENTE');
+    Swal.fire({
+      title: 'Seguro quieres eliminar el Ingrediente?',
+      text: 'Eliminarás el Ingrediente',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Borrarlo',
+      cancelButtonText: 'No, Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.servicio.eliminarIngrediente(id).subscribe((res) => {
+          this.obtenerIngredientes();
+        });
+        Swal.fire(
+          'Borrado',
+          'El ingrediente ha sido eliminado de la base de datos con éxito',
+          'success'
+        );
+      }
+    });
   }
 }
