@@ -119,20 +119,21 @@
         <div class="w-full px-3 mb-5">
           <button
             (click)="registrarIngrediente()"
+            *ngIf="!formRegistroIngrediente.value.id_ing; else elseBLock"
             type="submit"
             class="block w-full max-w-xs mx-auto bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
           >
             REGISTRAR
           </button>
-          <!-- <ng-template #elseBLock>
+          <ng-template #elseBLock>
             <button
-              (click)="actualizarUsuario()"
+              (click)="actualizarIngrediente()"
               type="submit"
               class="block w-full max-w-xs mx-auto bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
             >
               ACTUALIZAR
             </button>
-          </ng-template> -->
+          </ng-template> 
         </div>
       </div>
     </form>

@@ -7,10 +7,7 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root',
 })
 export class IngredientesService {
-  eliminarIngrediente(id: any) {
-    throw new Error('Method not implemented.');
-  }
-  obtenerIngredientesPorId: any;
+  
   constructor(private http: HttpClient) {}
 
   registroIngrediente(ingredientes: Ingrediente): Observable<Ingrediente> {
@@ -26,5 +23,21 @@ export class IngredientesService {
     return this.http
       .get(urlGetIngredientes)
       .pipe(map((res: any) => res.ingrediente as Ingrediente[]));
+  }
+
+  actualizarIngrediente(ingrediente: Ingrediente, id: number): Observable<Ingrediente> {
+    const urlActualizarIngrediente = `http://localhost:8080/api/ingredientes/ingrediente/${id}`;
+
+    return this.http.put<Ingrediente>(urlActualizarIngrediente, ingrediente);
+  }
+
+  obtenerIngredientePorId(id: number): Observable<any> {
+    const urlGetIngrediente = `http://localhost:8080/api/ingredientes/ingrediente/${id}`;
+    return this.http.get<any>(urlGetIngrediente);
+  }
+
+  eliminarIngrediente(id: number): Observable<any> {
+    const urlBorrarIngrediente = `http://localhost:8080/api/ingredientes/ingrediente/${id}`;
+    return this.http.delete<any>(urlBorrarIngrediente);
   }
 }
