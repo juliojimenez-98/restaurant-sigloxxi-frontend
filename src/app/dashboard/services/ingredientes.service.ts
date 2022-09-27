@@ -7,6 +7,10 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root',
 })
 export class IngredientesService {
+  eliminarIngrediente(id: any) {
+    throw new Error('Method not implemented.');
+  }
+  obtenerIngredientesPorId: any;
   constructor(private http: HttpClient) {}
 
   registroIngrediente(ingredientes: Ingrediente): Observable<Ingrediente> {
