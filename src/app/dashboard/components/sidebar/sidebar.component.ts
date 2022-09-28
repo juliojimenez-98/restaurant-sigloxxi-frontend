@@ -52,6 +52,14 @@ export class SidebarComponent implements OnInit {
       ruta: 'mesas/registrar-mesa',
       nombre: 'Registrar mesas',
     },
+    {
+      ruta: 'ingredientes/registro-ingredientes',
+      nombre: 'Registrar Ingrediente',
+    },
+    {
+      ruta: 'ingredientes/lista-ingredientes',
+      nombre: 'Lista Ingrediente',
+    },
   ];
 
   menuMesero: MenuMesero[] = [

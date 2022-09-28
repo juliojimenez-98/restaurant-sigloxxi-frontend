@@ -16,7 +16,10 @@ export class AuthService {
   }
 
   estaAutenticado(): boolean {
-    if (localStorage.getItem('token') === null) {
+    if (
+      localStorage.getItem('token') === null ||
+      !localStorage.getItem('token')
+    ) {
       console.log('No Esta autenticado');
       return false;
     }

@@ -9,6 +9,12 @@ import { RolesUsuariosComponent } from './components/roles-usuarios/roles-usuari
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MesasPageComponent } from './pages/mesas-page/mesas-page.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { IngredientesPageComponent } from './pages/ingredientes-page/ingredientes-page.component';
+import { RegistroIngredienteComponent } from './components/registro-ingrediente/registro-ingrediente.component';
+import { ListaIngredientesComponent } from './components/lista-ingredientes/lista-ingredientes.component';
+import { RecetasPageComponent } from './pages/recetas-page/recetas-page.component';
+import { ListaRecetaComponent } from './components/lista-receta/lista-receta.component';
+import { RegistroRecetasComponent } from './components/registro-recetas/registro-recetas.component';
 
 const routes: Routes = [
   {
@@ -43,11 +49,42 @@ const routes: Routes = [
             ],
           },
           {
+            path: 'ingredientes',
+            component: IngredientesPageComponent,
+            children: [
+              {
+                path: 'registro-ingredientes',
+                component: RegistroIngredienteComponent,
+              },
+              {
+                path: 'registro-ingredientes/:id',
+                component: RegistroIngredienteComponent,
+              },
+              {
+                path: 'lista-ingredientes',
+                component: ListaIngredientesComponent,
+              },
+              {
+                path: 'roles/:id',
+                component: RolesUsuariosComponent,
+              },
+            ],
+          },
+          {
             path: 'mesas',
             component: MesasPageComponent,
             children: [
               { path: 'lista-mesas', component: ListMesasComponent },
               { path: 'registrar-mesa', component: RegistroMesasComponent },
+            ],
+          },
+
+          {
+            path: 'recetas',
+            component: RecetasPageComponent,
+            children: [
+              { path: 'lista-recetas', component: ListaRecetaComponent },
+              { path: 'registrar-receta', component: RegistroRecetasComponent },
             ],
           },
         ],
