@@ -37,8 +37,13 @@ export class FormularioLoginComponent {
           Swal.close();
           localStorage.setItem('usuario', JSON.stringify(res.usuario));
           localStorage.setItem('token', res.token);
-          console.log(res);
-          this.router.navigateByUrl('admin/dashboard');
+          console.log(res.usuario.estado);
+          if (res.usuario.estado === 1 || res.usuario.estado) {
+            this.router.navigateByUrl('admin/dashboard');
+          }
+          if (res.usuario.estado === 2) {
+            this.router.navigateByUrl('changepass');
+          }
         } else {
           Swal.close();
           Swal.fire('Error al iniciar sesion', 'error');
