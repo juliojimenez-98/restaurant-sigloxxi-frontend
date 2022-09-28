@@ -25,12 +25,7 @@ interface MenuBodeguero {
   nombre: string;
 }
 
-interface MenuUsuario {
-  ruta: string;
-  nombre: string;
-}
-
-interface MenuIngredientes {
+interface MenuSide {
   ruta: string;
   nombre: string;
 }
@@ -43,7 +38,8 @@ interface MenuIngredientes {
 export class SidebarComponent implements OnInit {
   openUsuarios: Boolean = false;
   openIng: Boolean = false;
-  menuUsuario: MenuUsuario[] = [
+  openMesas: Boolean = false;
+  menuUsuario: MenuSide[] = [
     {
       ruta: 'usuarios/registrar-usuarios',
       nombre: 'Registrar Usuarios',
@@ -54,7 +50,7 @@ export class SidebarComponent implements OnInit {
     },
   ];
 
-  menuIngredientes: MenuIngredientes[] = [
+  menuIngredientes: MenuSide[] = [
     {
       ruta: 'ingredientes/registro-ingredientes',
       nombre: 'Registrar Ingrediente',
@@ -62,6 +58,16 @@ export class SidebarComponent implements OnInit {
     {
       ruta: 'ingredientes/lista-ingredientes',
       nombre: 'Lista Ingrediente',
+    },
+  ];
+  menuMesas: MenuSide[] = [
+    {
+      ruta: 'mesas/registrar-mesa',
+      nombre: 'Registrar mesas',
+    },
+    {
+      ruta: 'mesas/lista-mesas',
+      nombre: 'Lista mesas',
     },
   ];
   menuAdmin: MenuAdmin[] = [
