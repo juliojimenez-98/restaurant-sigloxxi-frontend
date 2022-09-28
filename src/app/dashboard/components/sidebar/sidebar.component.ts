@@ -25,12 +25,45 @@ interface MenuBodeguero {
   nombre: string;
 }
 
+interface MenuUsuario {
+  ruta: string;
+  nombre: string;
+}
+
+interface MenuIngredientes {
+  ruta: string;
+  nombre: string;
+}
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent implements OnInit {
+  openUsuarios: Boolean = false;
+  openIng: Boolean = false;
+  menuUsuario: MenuUsuario[] = [
+    {
+      ruta: 'usuarios/registrar-usuarios',
+      nombre: 'Registrar Usuarios',
+    },
+    {
+      ruta: 'usuarios/lista-usuarios',
+      nombre: 'Lista de Usuarios',
+    },
+  ];
+
+  menuIngredientes: MenuIngredientes[] = [
+    {
+      ruta: 'ingredientes/registro-ingredientes',
+      nombre: 'Registrar Ingrediente',
+    },
+    {
+      ruta: 'ingredientes/lista-ingredientes',
+      nombre: 'Lista Ingrediente',
+    },
+  ];
   menuAdmin: MenuAdmin[] = [
     {
       ruta: 'dashboard',
