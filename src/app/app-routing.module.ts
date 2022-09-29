@@ -1,8 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ChangePasswordComponent } from './auth/pages/change-password/change-password.component';
 import { ValidarTokenGuard } from './guard/validar-token.guard';
 
 const routes: Routes = [
+  {
+    path: 'changepass',
+    component: ChangePasswordComponent,
+  },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),

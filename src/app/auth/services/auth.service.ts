@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -24,5 +25,11 @@ export class AuthService {
       return false;
     }
     return true;
+  }
+
+  cambiarPassword(password: string, id: number): Observable<any> {
+    const urlRegistroUsuarios = `http://localhost:8080/api/usuarios/changepass/${id}`;
+
+    return this.http.put<any>(urlRegistroUsuarios, password);
   }
 }
