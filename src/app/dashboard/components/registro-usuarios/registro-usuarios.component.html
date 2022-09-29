@@ -1,4 +1,4 @@
-<div class="w-full lg:w-full min-h-screen md:w-1/2 py-10 px-5 md:px-10">
+<!-- <div class="w-full lg:w-full min-h-screen md:w-1/2 py-10 px-5 md:px-10">
   <div class="text-center mb-10">
     <h1 class="font-bold text-3xl text-gray-900">Registrar un usuario</h1>
     <p>Ingresa los datos</p>
@@ -104,6 +104,106 @@
             </button>
           </ng-template>
         </div>
+      </div>
+    </form>
+  </div>
+</div> -->
+
+<div class="mt-4">
+  <h1 class="font-bold text-3xl text-gray-900 text-center">Registrar Usuarios</h1>
+  <p class="text-center">Ingresa los datos</p>
+</div>
+
+<div class="flex items-center justify-center p-6">
+
+  <div class="mx-auto w-full max-w-[550px]">
+
+    <form autocomplete="on" [formGroup]="formRegistroUsuarios">
+      <div class="mb-4">
+        <label
+          for="nombre"
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Nombre 
+        </label>
+        <input
+          type="text"
+          name="nombre"
+          formControlName="nombre"
+          id="nombre"
+          placeholder="Nombre del Usuario"
+          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+      </div>
+      <div class="mb-4">
+        <label
+          for="stock"
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Apellido
+        </label>
+        <input
+          type="text"
+          name="appa"
+          formControlName="appa"
+          id="appa"
+          placeholder="Ingresa el Apellido del Usuario"
+          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+      </div>
+      <div class="mb-4">
+        <label
+          for="appa"
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Correo 
+        </label>
+        <input
+          type="text"
+          name="email"
+          formControlName="email"
+          id="email"
+          placeholder="Ingresa el Correo del Usuario"
+          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+      </div>
+        <div class="mb-4">
+          <label
+          for="id_rol"
+          class="w-full mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Seleccionar Rol 
+        </label>
+          <select
+          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            name="id_rol"
+            formControlName="id_rol"
+          >
+            <option value="">Selecciona un rol</option>
+            <option *ngFor="let rol of roles" [value]="rol.id_rol">
+              {{ rol.nom_rol }}
+            </option>
+          </select>
+        </div>
+
+      <div>
+        <button
+          (click)="registroUsuarios()"
+          *ngIf="!formRegistroUsuarios.value.id_user; else elseBLock"
+          type="submit"
+          class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
+        >
+          Registrar
+        </button>
+        <ng-template #elseBLock>
+          <button
+          (click)="actualizarUsuario()"
+          type="submit"
+          class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
+        >
+          ACTUALIZAR
+        </button>
+        </ng-template>
       </div>
     </form>
   </div>
