@@ -13,8 +13,9 @@ import { IngredientesPageComponent } from './pages/ingredientes-page/ingrediente
 import { RegistroIngredienteComponent } from './components/registro-ingrediente/registro-ingrediente.component';
 import { ListaIngredientesComponent } from './components/lista-ingredientes/lista-ingredientes.component';
 import { RecetasPageComponent } from './pages/recetas-page/recetas-page.component';
-import { ListaRecetaComponent } from './components/lista-receta/lista-receta.component';
-import { RegistroRecetasComponent } from './components/registro-recetas/registro-recetas.component';
+import { ListaRecetaComponent } from './components/recetas/lista-receta/lista-receta.component';
+import { RegistroRecetasComponent } from './components/recetas/registro-recetas/registro-recetas.component';
+import { ModalMesaComponent } from './components/modal-mesa/modal-mesa.component';
 
 const routes: Routes = [
   {
@@ -76,6 +77,7 @@ const routes: Routes = [
             children: [
               { path: 'lista-mesas', component: ListMesasComponent },
               { path: 'registrar-mesa', component: RegistroMesasComponent },
+              { path: 'ruta-scarlett', component: ModalMesaComponent },
             ],
           },
 

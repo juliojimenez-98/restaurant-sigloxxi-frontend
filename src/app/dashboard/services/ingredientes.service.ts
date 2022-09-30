@@ -7,7 +7,6 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root',
 })
 export class IngredientesService {
-  
   constructor(private http: HttpClient) {}
 
   registroIngrediente(ingredientes: Ingrediente): Observable<Ingrediente> {
@@ -25,13 +24,16 @@ export class IngredientesService {
       .pipe(map((res: any) => res.ingrediente as Ingrediente[]));
   }
 
-  actualizarIngrediente(ingrediente: Ingrediente, id: number): Observable<Ingrediente> {
+  actualizarIngrediente(
+    ingrediente: Ingrediente,
+    id: number
+  ): Observable<Ingrediente> {
     const urlActualizarIngrediente = `http://localhost:8080/api/ingredientes/ingrediente/${id}`;
 
     return this.http.put<Ingrediente>(urlActualizarIngrediente, ingrediente);
   }
 
-  obtenerIngredientePorId(id: number): Observable<any> {
+  obtenerIngredientePorId(id: any): Observable<any> {
     const urlGetIngrediente = `http://localhost:8080/api/ingredientes/ingrediente/${id}`;
     return this.http.get<any>(urlGetIngrediente);
   }
