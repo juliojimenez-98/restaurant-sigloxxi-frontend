@@ -1,0 +1,65 @@
+<div class="mt-8">
+  <h1 class="font-bold text-3xl text-gray-900 text-center">Registrar Receta</h1>
+  <p class="text-center">Ingresa los datos</p>
+</div>
+
+<div class="flex items-center justify-center p-6">
+  <div class="mx-auto w-full max-w-[550px]">
+    <form>
+      <div class="mb-4">
+        <label
+          for="name"
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Nombre Receta
+        </label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Nombre de la Receta"
+          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+      </div>
+      <div class="mb-4">
+        <label
+          for="email"
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Tiempo Preparación
+        </label>
+        <input
+          type="number"
+          min="0"
+          name="email"
+          id="email"
+          placeholder="Tiempo de preparación en Minutos"
+          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+      </div>
+
+      <div class="mb-8">
+        <label
+          for="message"
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Preparación
+        </label>
+        <textarea
+          rows="4"
+          name="message"
+          id="message"
+          placeholder="Ingresa aquí la preparación de la receta."
+          class="w-full resize-none rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        ></textarea>
+      </div>
+      <div>
+        <button
+          class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
+        >
+          Registrar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
