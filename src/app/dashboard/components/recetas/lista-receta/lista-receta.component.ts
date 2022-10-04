@@ -10,13 +10,8 @@ import { IngredientesService } from '../../../services/ingredientes.service';
 })
 export class ListaRecetaComponent implements OnInit {
   recetas: Receta[] = [];
-  ingRecetas: any = [];
-  ingsDentro: any[] = [[]];
 
-  constructor(
-    private servicio: RecetasService,
-    private servicioIng: IngredientesService
-  ) {}
+  constructor(private servicio: RecetasService) {}
 
   ngOnInit(): void {
     this.obtenerRecetas();
@@ -25,23 +20,6 @@ export class ListaRecetaComponent implements OnInit {
   obtenerRecetas() {
     this.servicio.obtenerRecetas().subscribe((res: any) => {
       this.recetas = res;
-      res.map((e: any) => {
-        this.ingRecetas = JSON.parse(e.ingredientes);
-        // console.log(this.ingRecetas);
-        for (const key in this.ingRecetas) {
-          if (Object.prototype.hasOwnProperty.call(this.ingRecetas, key)) {
-            const element = this.ingRecetas[key];
-            console.log(element);
-          }
-        }
-        this.servicioIng
-          .obtenerIngredientePorId(this.ingRecetas[0])
-          .subscribe((res: any) => {
-            // console.log(res);
-            this.ingsDentro.push(res);
-            // console.log(this.ingsDentro);
-          });
-      });
     });
   }
 }
