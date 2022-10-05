@@ -80,7 +80,6 @@ const routes: Routes = [
               { path: 'ruta-scarlett', component: ModalMesaComponent },
             ],
           },
-
           {
             path: 'recetas',
             component: RecetasPageComponent,
