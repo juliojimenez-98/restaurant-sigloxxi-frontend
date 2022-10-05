@@ -6,5 +6,6 @@ export interface Receta {
   prep: string;
   tiempo_prep: number;
   id_ing?: number;
+  tipo: number;
   ingredientes: Ingrediente[];
 }

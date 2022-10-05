@@ -10,6 +10,7 @@ import { IngredientesService } from '../../../services/ingredientes.service';
 })
 export class ListaRecetaComponent implements OnInit {
   recetas: Receta[] = [];
+item: any;
 
   constructor(private servicio: RecetasService) {}
 
@@ -20,6 +21,10 @@ export class ListaRecetaComponent implements OnInit {
   obtenerRecetas() {
     this.servicio.obtenerRecetas().subscribe((res: any) => {
       this.recetas = res;
+
+      console.log(res);
+      
     });
   }
+
 }
