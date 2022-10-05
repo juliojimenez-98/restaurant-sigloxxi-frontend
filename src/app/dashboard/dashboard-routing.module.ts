@@ -16,6 +16,9 @@ import { RecetasPageComponent } from './pages/recetas-page/recetas-page.componen
 import { ListaRecetaComponent } from './components/recetas/lista-receta/lista-receta.component';
 import { RegistroRecetasComponent } from './components/recetas/registro-recetas/registro-recetas.component';
 import { ModalMesaComponent } from './components/modal-mesa/modal-mesa.component';
+import { PlatosPageComponent } from './pages/platos-page/platos-page.component';
+import { ListaPlatosComponent } from './components/platos/lista-platos/lista-platos.component';
+import { RegistroPlatoComponent } from './components/platos/registro-plato/registro-plato.component';
 
 const routes: Routes = [
   {
@@ -86,6 +89,18 @@ const routes: Routes = [
             children: [
               { path: 'lista-recetas', component: ListaRecetaComponent },
               { path: 'registrar-receta', component: RegistroRecetasComponent },
+            ],
+          },
+          {
+            path: 'platos',
+            component: PlatosPageComponent,
+            children: [
+              { path: 'lista-platos', component: ListaPlatosComponent },
+              { path: 'registrar-plato', component: RegistroPlatoComponent },
+              {
+                path: 'registrar-plato/:id',
+                component: RegistroPlatoComponent,
+              },
             ],
           },
         ],
