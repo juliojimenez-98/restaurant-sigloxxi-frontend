@@ -15,6 +15,7 @@ export class SidebarComponent implements OnInit {
   openIng: Boolean = false;
   openMesas: Boolean = false;
   openRecetas: Boolean = false;
+  openPlatos: Boolean = false;
   menuUsuario: MenuSide[] = [
     {
       ruta: 'usuarios/registrar-usuarios',
@@ -54,6 +55,16 @@ export class SidebarComponent implements OnInit {
     {
       ruta: 'recetas/lista-recetas',
       nombre: 'Listar recetas',
+    },
+  ];
+  menuPlatos: MenuSide[] = [
+    {
+      ruta: 'platos/registrar-plato',
+      nombre: 'Registrar platos',
+    },
+    {
+      ruta: 'platos/lista-platos',
+      nombre: 'Listar platos',
     },
   ];
 
