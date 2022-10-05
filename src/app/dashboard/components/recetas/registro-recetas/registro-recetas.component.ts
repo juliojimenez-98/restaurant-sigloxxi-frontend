@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistroRecetasComponent implements OnInit {
 
+  tipos: any[] = [
+    {id:1, nombre:"Plato de Fondo"},
+    {id:2, nombre:"Tragos"},
+  ]
+
   constructor() { }
 
   ngOnInit(): void {
