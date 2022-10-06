@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Receta } from 'src/app/dashboard/interfaces/receta.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro-plato',
@@ -19,21 +20,22 @@ export class RegistroPlatoComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    // private servicio: PlatosService
 
   ) {}
 
   ngOnInit(): void {
   }
 
-  // registroUsuarios() {
+  // registroPlatos() {
   //   Swal.fire({
   //     allowOutsideClick: false,
   //     icon: 'info',
   //     text: 'Registrando usuario',
   //     showConfirmButton: false,
   //   });
-  //   this.arrayRoles.push(parseInt(this.formRegistroUsuarios.value.id_rol));
-  //   this.formRegistroUsuarios.value.rolArray = this.arrayRoles;
+  //   // this.arrayRoles.push(parseInt(this.formRegistroUsuarios.value.id_rol));
+  //   // this.formRegistroPlatos.value.rolArray = this.arrayRoles;
   //   this.servicio.registroUsuarios(this.formRegistroUsuarios.value).subscribe(
   //     (res: any) => {
   //       if (res.msg) {
