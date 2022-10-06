@@ -1,1 +1,83 @@
-<p>registro-plato works!</p>
+<div class="mt-4">
+    <h1 class="font-bold text-3xl text-gray-900 text-center">
+      Registrar Platos
+    </h1>
+    <p class="text-center">Ingresa los datos</p>
+  </div>
+  
+  <div class="flex items-center justify-center p-6">
+    <div class="mx-auto w-full max-w-[550px]">
+      <form autocomplete="on" [formGroup]="formRegistroPlatos">
+        <div class="mb-4">
+          <label
+            for="nombre"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Descuento
+          </label>
+          <input
+            type="text"
+            name="desc"
+            formControlName="desc"
+            id="desc"
+            placeholder="Descuento del Plato"
+            class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="mb-4">
+          <label
+            for="stock"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Precio
+          </label>
+          <input
+            type="text"
+            name="precio"
+            formControlName="precio"
+            id="precio"
+            placeholder="Ingresa el Precio del Plato"
+            class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="mb-4">
+          <label
+            for="id_rol"
+            class="w-full mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Seleccionar Estado del Plato
+          </label>
+          <select
+            class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            name="estado"
+            formControlName="estado"
+          >
+            <option value="">Selecciona el Estado</option>
+            <option *ngFor="let receta of receta" [value]="receta.id_receta">
+              {{ receta.id_receta }}
+            </option>
+          </select>
+        </div>
+  
+        <!-- <div>
+          <button
+            (click)="registroUsuarios()"
+            *ngIf="!formRegistroUsuarios.value.id_user; else elseBLock"
+            type="submit"
+            class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
+          >
+            Registrar
+          </button>
+          <ng-template #elseBLock>
+            <button
+              (click)="actualizarUsuario()"
+              type="submit"
+              class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
+            >
+              ACTUALIZAR
+            </button>
+          </ng-template> 
+        </div> -->
+      </form>
+    </div>
+  </div>
