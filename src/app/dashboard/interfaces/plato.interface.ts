@@ -6,4 +6,5 @@ export interface Plato {
   estado: number;
   id_receta: number;
   receta: Receta;
+  recetum?: any;
 }
