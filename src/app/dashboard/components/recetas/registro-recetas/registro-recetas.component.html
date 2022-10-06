@@ -71,6 +71,32 @@
           class="w-full resize-none rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         ></textarea>
       </div>
+      <button
+        (click)="toggleModal()"
+        type="button"
+        class="text-white bg-[#25D366] hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-2xl text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2"
+      >
+        <span
+          class="px-2 py-2 text-2xl text-gray-100 border-l-2 border-gray-100"
+        >
+        </span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+
+        <div class="text-md font-bold pt-0.5">Agregar Ingredientes</div>
+      </button>
       <div>
         <button
           class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
@@ -81,3 +107,76 @@
     </form>
   </div>
 </div>
+
+<div
+  *ngIf="showModal"
+  class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex"
+>
+  <div class="relative w-full my-6 mx-auto max-w-3xl">
+    <!--content-->
+    <div
+      class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"
+    >
+      <!--header-->
+      <div
+        class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t"
+      >
+        <h3 class="text-3xl font-semibold">Lista de ingredientes</h3>
+        <button
+          class="p-1 ml-auto border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+          (click)="toggleModal()"
+        >
+          <span
+            class="text-black h-6 w-6 text-2xl block outline-none focus:outline-none"
+          >
+            ×
+          </span>
+        </button>
+      </div>
+      <!--body-->
+      <div class="w-full justify-center items-center">
+        <div class="grid grid-cols-4 w-full gap-3 pt-3 pb-2 px-2 relative">
+          <div
+            *ngFor="let item of ingredientes"
+            [formGroup]="formRegistroReceta"
+            class="relative w-full h-8"
+          >
+            <input
+              type="checkbox"
+              [id]="item.id_ing"
+              [value]="item.id_ing"
+              formControlName="ingredientes"
+              class="appearance-none rounded-lg bg-gray-100 cursor-pointer h-full w-full checked:bg-teal-400 transition-all duration-200 checked:hover:bg-teal-400 hover:bg-gray-200 peer"
+            />
+            <label
+              [for]="item.id_ing"
+              class="absolute top-[50%] left-3 text-gray-400 -translate-y-[50%] peer-checked:text-gray-100 transition-all duration-200 select-none"
+              >{{ item.nombre }}</label
+            >
+          </div>
+        </div>
+      </div>
+
+      <!--footer-->
+      <div
+        class="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b"
+      >
+        <button
+          class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          type="button"
+          (click)="toggleModal()"
+        >
+          Cancelar
+        </button>
+        <button
+          class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          type="button"
+          (click)="ingredientesArray()"
+        >
+          Guardar ingredientes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
