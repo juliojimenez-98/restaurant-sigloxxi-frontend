@@ -22,4 +22,20 @@ export class PlatosService {
       .get(urlGetPlatos)
       .pipe(map((res: any) => res.platos as Plato[]));
   }
+
+  actualizarPlato(plato: Plato, id: number): Observable<Plato> {
+    const urlActualizarPlato = `http://localhost:8080/api/platos/plato/${id}`;
+
+    return this.http.put<Plato>(urlActualizarPlato, plato);
+  }
+
+  obtenerPlatoPorId(id: any): Observable<any> {
+    const urlGetPlato = `http://localhost:8080/api/platos/plato/${id}`;
+    return this.http.get<any>(urlGetPlato);
+  }
+
+  eliminarPlato(id: number): Observable<any> {
+    const urlBorrarPlato = `http://localhost:8080/api/platos/plato/${id}`;
+    return this.http.delete<any>(urlBorrarPlato);
+  }
 }

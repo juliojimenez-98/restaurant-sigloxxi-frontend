@@ -36,10 +36,9 @@
             </td>
             <td class="px-4 py-3 text-xs border">
               <div class="flex item-center justify-center">
-                <!-- Sofía -->
                 <div
                   [routerLink]="[
-                    '/admin/plato/registrar-plato',
+                    '/admin/platos/registrar-plato',
                     plato.id_plato
                   ]"
                   class="w-4 mr-2 transform text-black hover:text-yellow-500 hover:scale-110"
@@ -59,6 +58,7 @@
                   </svg>
                 </div>
                 <div
+                  (click)="eliminarPlato(plato.id_plato)"
                   class="w-4 mr-2 transform text-black hover:text-red-600 hover:scale-110"
                 >
                   <svg

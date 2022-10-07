@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Receta } from 'src/app/dashboard/interfaces/receta.interface';
 import { PlatosService } from 'src/app/dashboard/services/platos.service';
 import Swal from 'sweetalert2';
@@ -25,11 +26,13 @@ export class RegistroPlatoComponent implements OnInit {
     estado: ['', [Validators.required]],
     id_receta: ['', [Validators.required, Validators.minLength(2)]],
   });
+  activatedRoute: any;
 
   constructor(
     private fb: FormBuilder,
     private servicio: PlatosService,
-    private servicioReceta: RecetasService
+    private servicioReceta: RecetasService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -77,5 +80,23 @@ export class RegistroPlatoComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  actualizarPlato() {
+    this.activatedRoute.params.subscribe((params: any) => {
+      let id = params['id'];
+      let id_plato = parseInt(id);
+      this.servicio
+        .actualizarPlato(this.formRegistroPlatos.value, id_plato)
+        .subscribe((res) => {
+          console.log('respuesta', res);
+          Swal.fire(
+            'Plato actualizado',
+            `Plato actualizado con exito`,
+            'success'
+          );
+          this.router.navigateByUrl('/admin/platos/lista-platos');
+        });
+    });
   }
 }
