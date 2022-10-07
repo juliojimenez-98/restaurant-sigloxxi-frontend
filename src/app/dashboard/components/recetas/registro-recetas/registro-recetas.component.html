@@ -5,25 +5,26 @@
 
 <div class="flex items-center justify-center p-6">
   <div class="mx-auto w-full max-w-[550px]">
-    <form>
+    <form autocomplete="on" [formGroup]="formRegistroReceta">
       <div class="mb-4">
         <label
-          for="name"
+          for="nombre_prep"
           class="mb-3 block text-base font-medium text-[#07074D]"
         >
           Nombre Receta
         </label>
         <input
           type="text"
-          name="name"
-          id="name"
+          name="nombre_prep"
+          id="nombre_prep"
+          formControlName="nombre_prep"
           placeholder="Nombre de la Receta"
           class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
       </div>
       <div class="mb-4">
         <label
-          for="email"
+          for="tiempo_prep"
           class="mb-3 block text-base font-medium text-[#07074D]"
         >
           Tiempo Preparación
@@ -31,8 +32,9 @@
         <input
           type="number"
           min="0"
-          name="email"
-          id="email"
+          name="tiempo_prep"
+          formControlName="tiempo_prep"
+          id="tiempo_prep"
           placeholder="Tiempo de preparación en Minutos"
           class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
@@ -48,6 +50,7 @@
         <select
           class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
           name="tipo"
+          formControlName="tipo"
         >
           <option value="">Selecciona Tipo de Receta</option>
           <option *ngFor="let tipo of tipos" [value]="tipo.id">
@@ -58,19 +61,21 @@
 
       <div class="mb-8">
         <label
-          for="message"
+          for="prep"
           class="mb-3 block text-base font-medium text-[#07074D]"
         >
           Preparación
         </label>
         <textarea
           rows="4"
-          name="message"
-          id="message"
+          formControlName="prep"
+          name="prep"
+          id="prep"
           placeholder="Ingresa aquí la preparación de la receta."
           class="w-full resize-none rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         ></textarea>
       </div>
+
       <button
         (click)="toggleModal()"
         type="button"
@@ -97,8 +102,23 @@
 
         <div class="text-md font-bold pt-0.5">Agregar Ingredientes</div>
       </button>
+      <div
+        *ngIf="arrayIngredientes.length"
+        class="flex flex-row bg-paleta5 h-10 w-[300px] rounded-[30px] my-4"
+      >
+        <span
+          class="flex flex-col justify-center text-white font-bold grow-[1] max-w-[80%] text-center"
+          >Ingredientes seleccionados:</span
+        >
+        <div
+          class="text-center text-2xl pt-1 w-[20%] bg-paleta4 rounded-r-2xl shadow-paleta4"
+        >
+          {{ arrayIngredientes.length }}
+        </div>
+      </div>
       <div>
         <button
+          (click)="registrarReceta()"
           class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
         >
           Registrar
@@ -124,7 +144,7 @@
         <h3 class="text-3xl font-semibold">Lista de ingredientes</h3>
         <button
           class="p-1 ml-auto border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-          (click)="toggleModal()"
+          (click)="closeModal()"
         >
           <span
             class="text-black h-6 w-6 text-2xl block outline-none focus:outline-none"
@@ -141,11 +161,12 @@
               type="checkbox"
               [id]="item.id_ing"
               (change)="checkboxChanged($event, item.id_ing)"
-              class="appearance-none rounded-lg bg-gray-100 cursor-pointer h-full w-full checked:bg-teal-400 transition-all duration-200 checked:hover:bg-teal-400 hover:bg-gray-200 peer"
+              [checked]="isChecked(item.id_ing)"
+              class="appearance-none rounded-lg bg-gray-200 cursor-pointer h-full w-full checked:bg-paleta4 transition-all duration-200 checked:hover:bg-paleta4 hover:bg-paleta4 peer"
             />
             <label
               [for]="item.id_ing"
-              class="absolute top-[50%] left-3 text-gray-400 -translate-y-[50%] peer-checked:text-gray-100 transition-all duration-200 select-none"
+              class="absolute top-[50%] left-3 text-gray-400 hover:text-gray-200 -translate-y-[50%] peer-checked:text-gray-100 transition-all duration-200 select-none"
               >{{ item.nombre }}</label
             >
           </div>
@@ -159,11 +180,12 @@
         <button
           class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
           type="button"
-          (click)="toggleModal()"
+          (click)="closeModal()"
         >
           Cancelar
         </button>
         <button
+          (click)="showModal = false"
           class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
           type="button"
         >

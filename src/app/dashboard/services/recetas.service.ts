@@ -20,4 +20,10 @@ export class RecetasService {
     const urlGetReceta = `http://localhost:8080/api/recetas/receta/${id}`;
     return this.http.get<any>(urlGetReceta);
   }
+
+  registroReceta(receta: Receta): Observable<Receta> {
+    const urlRegistroReceta = 'http://localhost:8080/api/recetas/receta';
+
+    return this.http.post<Receta>(urlRegistroReceta, receta);
+  }
 }
