@@ -136,16 +136,11 @@
       <!--body-->
       <div class="w-full justify-center items-center">
         <div class="grid grid-cols-4 w-full gap-3 pt-3 pb-2 px-2 relative">
-          <div
-            *ngFor="let item of ingredientes"
-            [formGroup]="formRegistroReceta"
-            class="relative w-full h-8"
-          >
+          <div *ngFor="let item of ingredientes" class="relative w-full h-8">
             <input
               type="checkbox"
               [id]="item.id_ing"
-              [value]="item.id_ing"
-              formControlName="ingredientes"
+              (change)="checkboxChanged($event, item.id_ing)"
               class="appearance-none rounded-lg bg-gray-100 cursor-pointer h-full w-full checked:bg-teal-400 transition-all duration-200 checked:hover:bg-teal-400 hover:bg-gray-200 peer"
             />
             <label
@@ -171,7 +166,6 @@
         <button
           class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
           type="button"
-          (click)="ingredientesArray()"
         >
           Guardar ingredientes
         </button>

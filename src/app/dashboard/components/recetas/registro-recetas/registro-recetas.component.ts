@@ -10,6 +10,7 @@ import { IngredientesService } from 'src/app/dashboard/services/ingredientes.ser
 })
 export class RegistroRecetasComponent implements OnInit {
   ingredientes: Ingrediente[] = [];
+  arrayIngredientes: any[] = [];
   formRegistroReceta: FormGroup = this.fb.group({
     ingredientes: [],
   });
@@ -26,18 +27,24 @@ export class RegistroRecetasComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerIngredientes();
   }
+
+  obtenerIngredientes() {
+    this.ingService.obtenerIngrediente().subscribe((res) => {
+      this.ingredientes = res;
+    });
+  }
   toggleModal() {
     this.showModal = !this.showModal;
   }
 
-  ingredientesArray() {
-    console.log(this.formRegistroReceta.value);
-  }
+  checkboxChanged(event: any, id: any) {
+    console.log(event.target.checked);
+    if (event.target.checked) this.arrayIngredientes.push(id); //If checked, add to array
+    console.log(this.arrayIngredientes);
 
-  obtenerIngredientes() {
-    this.ingService.obtenerIngrediente().subscribe((res) => {
-      console.log(res);
-      this.ingredientes = res;
-    });
+    if (!event.target.checked && this.arrayIngredientes.indexOf(id) !== -1) {
+      var index = this.arrayIngredientes.indexOf(id);
+      this.arrayIngredientes.splice(index, 1);
+    }
   }
 }
