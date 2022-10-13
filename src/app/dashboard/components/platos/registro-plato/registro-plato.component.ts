@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Receta } from 'src/app/dashboard/interfaces/receta.interface';
 import { PlatosService } from 'src/app/dashboard/services/platos.service';
 import Swal from 'sweetalert2';
@@ -18,6 +18,19 @@ export class RegistroPlatoComponent implements OnInit {
     { id: 1, nombre: 'Activo' },
     { id: 2, nombre: 'Descuento' },
   ];
+  descuentos: any[] = [
+    { valor: 0, nombre: 'Sin Descuento' },
+    { valor: 0.05, nombre: '5%' },
+    { valor: 0.1, nombre: '10%' },
+    { valor: 0.15, nombre: '15%' },
+    { valor: 0.2, nombre: '20%' },
+    { valor: 0.25, nombre: '25%' },
+    { valor: 0.3, nombre: '30%' },
+    { valor: 0.35, nombre: '35%' },
+    { valor: 0.4, nombre: '40%' },
+    { valor: 0.45, nombre: '45%' },
+    { valor: 0.5, nombre: '50%' },
+  ];
 
   formRegistroPlatos: FormGroup = this.fb.group({
     id_plato: [],
@@ -26,17 +39,18 @@ export class RegistroPlatoComponent implements OnInit {
     estado: ['', [Validators.required]],
     id_receta: ['', [Validators.required, Validators.minLength(2)]],
   });
-  activatedRoute: any;
 
   constructor(
     private fb: FormBuilder,
     private servicio: PlatosService,
     private servicioReceta: RecetasService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.obtenerRecetas();
+    this.obtenerPlatoPorId();
   }
 
   obtenerRecetas() {
@@ -82,8 +96,28 @@ export class RegistroPlatoComponent implements OnInit {
     );
   }
 
+  obtenerPlatoPorId() {
+    this.activatedRoute.params.subscribe((params) => {
+      let id = params['id'];
+      let id_plato = parseInt(id);
+      if (id_plato) {
+        this.servicio.obtenerPlatoPorId(id_plato).subscribe((res: any) => {
+          console.log(res);
+
+          this.formRegistroPlatos.patchValue({
+            id_plato: res.platoFind.id_plato,
+            desc: res.platoFind.desc,
+            precio: res.platoFind.precio,
+            estado: res.platoFind.estado,
+            id_receta: res.platoFind.id_receta,
+          });
+        });
+      }
+    });
+  }
+
   actualizarPlato() {
-    this.activatedRoute.params.subscribe((params: any) => {
+    this.activatedRoute.params.subscribe((params) => {
       let id = params['id'];
       let id_plato = parseInt(id);
       this.servicio

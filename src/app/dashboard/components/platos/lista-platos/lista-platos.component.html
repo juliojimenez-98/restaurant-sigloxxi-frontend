@@ -26,13 +26,29 @@
               </div>
             </td>
             <td class="px-4 py-3 text-ms font-semibold border">
-              {{ plato.desc }}
+              {{ plato.desc | percent }}
             </td>
             <td class="px-4 py-3 text-ms font-semibold border">
-              {{ plato.precio }}
+              ${{ plato.precio | number }}
             </td>
             <td class="px-4 py-3 text-sm font-semibold border">
-              {{ plato.estado }}
+              <span
+                [ngClass]="{
+                  'text-paleta3 bg-red-600': !plato.estado,
+                  'bg-green-600 text-white': plato.estado,
+                  'bg-yellow-500 ': plato.estado === 2
+                }"
+                class="py-1 px-3 rounded-full text-white text-xs"
+                >{{
+                  plato.estado === 2
+                    ? "En Descuento"
+                    : "" || plato.estado
+                    ? "Activo"
+                    : "" || !plato.estado
+                    ? "Inactivo"
+                    : ""
+                }}</span
+              >
             </td>
             <td class="px-4 py-3 text-xs border">
               <div class="flex item-center justify-center">
