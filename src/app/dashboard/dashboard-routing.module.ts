@@ -19,6 +19,8 @@ import { ModalMesaComponent } from './components/modal-mesa/modal-mesa.component
 import { PlatosPageComponent } from './pages/platos-page/platos-page.component';
 import { ListaPlatosComponent } from './components/platos/lista-platos/lista-platos.component';
 import { RegistroPlatoComponent } from './components/platos/registro-plato/registro-plato.component';
+import { ListaProveedoresComponent } from './components/proveedores/lista-proveedores/lista-proveedores.component';
+import { RegistroProveedorComponent } from './components/proveedores/registro-proveedor/registro-proveedor.component';
 
 const routes: Routes = [
   {
@@ -100,6 +102,24 @@ const routes: Routes = [
               {
                 path: 'registrar-plato/:id',
                 component: RegistroPlatoComponent,
+              },
+            ],
+          },
+          {
+            path: 'proveedores',
+            component: PlatosPageComponent,
+            children: [
+              {
+                path: 'lista-proveedores',
+                component: ListaProveedoresComponent,
+              },
+              {
+                path: 'registrar-proveedor',
+                component: RegistroProveedorComponent,
+              },
+              {
+                path: 'registrar-proveedor/:id',
+                component: RegistroProveedorComponent,
               },
             ],
           },
