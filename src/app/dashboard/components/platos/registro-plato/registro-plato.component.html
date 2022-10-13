@@ -27,6 +27,27 @@
       <div class="mb-4">
         <label
           for="desc"
+          class="w-full mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Seleccionar Descuento del Plato
+        </label>
+        <select
+          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          name="desc"
+          formControlName="desc"
+        >
+          <option value="">Selecciona el Descuento</option>
+          <option
+            *ngFor="let descuento of descuentos"
+            [value]="descuento.valor"
+          >
+            {{ descuento.nombre }}
+          </option>
+        </select>
+      </div>
+      <!-- <div class="mb-4">
+        <label
+          for="desc"
           class="mb-3 block text-base font-medium text-[#07074D]"
         >
           Descuento
@@ -39,7 +60,7 @@
           placeholder="Descuento del Plato"
           class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
-      </div>
+      </div> -->
       <div class="mb-4">
         <label
           for="stock"
@@ -59,7 +80,7 @@
 
       <div class="mb-4">
         <label
-          for="id_rol"
+          for="estado"
           class="w-full mb-3 block text-base font-medium text-[#07074D]"
         >
           Seleccionar Estado del Plato
