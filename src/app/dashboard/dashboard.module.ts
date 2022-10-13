@@ -23,6 +23,9 @@ import { ModalMesaComponent } from './components/modal-mesa/modal-mesa.component
 import { PlatosPageComponent } from './pages/platos-page/platos-page.component';
 import { ListaPlatosComponent } from './components/platos/lista-platos/lista-platos.component';
 import { RegistroPlatoComponent } from './components/platos/registro-plato/registro-plato.component';
+import { ProveedoresPageComponent } from './pages/proveedores-page/proveedores-page.component';
+import { ListaProveedoresComponent } from './components/proveedores/lista-proveedores/lista-proveedores.component';
+import { RegistroProveedorComponent } from './components/proveedores/registro-proveedor/registro-proveedor.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,9 @@ import { RegistroPlatoComponent } from './components/platos/registro-plato/regis
     PlatosPageComponent,
     ListaPlatosComponent,
     RegistroPlatoComponent,
+    ProveedoresPageComponent,
+    ListaProveedoresComponent,
+    RegistroProveedorComponent,
   ],
   imports: [
     CommonModule,
