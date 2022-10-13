@@ -1,30 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-interface MenuAdmin {
-  ruta: string;
-  nombre: string;
-}
-
-interface MenuMesero {
-  ruta: string;
-  nombre: string;
-}
-
-interface MenuCocinero {
-  ruta: string;
-  nombre: string;
-}
-
-interface MenuFinanzas {
-  ruta: string;
-  nombre: string;
-}
-
-interface MenuBodeguero {
-  ruta: string;
-  nombre: string;
-}
-
 interface MenuSide {
   ruta: string;
   nombre: string;
@@ -39,6 +14,8 @@ export class SidebarComponent implements OnInit {
   openUsuarios: Boolean = false;
   openIng: Boolean = false;
   openMesas: Boolean = false;
+  openRecetas: Boolean = false;
+  openPlatos: Boolean = false;
   menuUsuario: MenuSide[] = [
     {
       ruta: 'usuarios/registrar-usuarios',
@@ -70,105 +47,24 @@ export class SidebarComponent implements OnInit {
       nombre: 'Lista mesas',
     },
   ];
-  menuAdmin: MenuAdmin[] = [
+  menuRecetas: MenuSide[] = [
     {
-      ruta: 'dashboard',
-      nombre: 'Dashboard',
+      ruta: 'recetas/registrar-receta',
+      nombre: 'Registrar recetas',
     },
     {
-      ruta: 'usuarios/registrar-usuarios',
-      nombre: 'Registrar Usuarios',
-    },
-    {
-      ruta: 'usuarios/lista-usuarios',
-      nombre: 'Lista de Usuarios',
-    },
-    {
-      ruta: 'mesas/lista-mesas',
-      nombre: 'Lista mesas',
-    },
-    {
-      ruta: 'mesas/registrar-mesa',
-      nombre: 'Registrar mesas',
-    },
-    {
-      ruta: 'ingredientes/registro-ingredientes',
-      nombre: 'Registrar Ingrediente',
-    },
-    {
-      ruta: 'ingredientes/lista-ingredientes',
-      nombre: 'Lista Ingrediente',
+      ruta: 'recetas/lista-recetas',
+      nombre: 'Listar recetas',
     },
   ];
-
-  menuMesero: MenuMesero[] = [
+  menuPlatos: MenuSide[] = [
     {
-      ruta: 'dashboard',
-      nombre: 'Inicio',
+      ruta: 'platos/registrar-plato',
+      nombre: 'Registrar platos',
     },
     {
-      ruta: 'mesas/lista-mesas',
-      nombre: 'Mesas',
-    },
-    {
-      ruta: 'mesas/lista-mesa',
-      nombre: 'Atenciones de hoy',
-    },
-    {
-      ruta: 'mesas/lista-mess',
-      nombre: 'Propinas',
-    },
-  ];
-  menuCocinero: MenuCocinero[] = [
-    {
-      ruta: 'dashboard',
-      nombre: 'Inicio',
-    },
-    {
-      ruta: 'mesas/lista-mesas',
-      nombre: 'Pedidos',
-    },
-    {
-      ruta: 'mesas/lista-mesa',
-      nombre: 'Inventarios',
-    },
-    {
-      ruta: 'mesas/lista-mess',
-      nombre: 'Recetas',
-    },
-  ];
-
-  menuFinanzas: MenuFinanzas[] = [
-    {
-      ruta: 'dashboard',
-      nombre: 'Inicio',
-    },
-    {
-      ruta: 'mesas/lista-mesas',
-      nombre: 'Ingresos',
-    },
-    {
-      ruta: 'mesas/lista-mesa',
-      nombre: 'Boletas',
-    },
-  ];
-
-  menuBodeguero: MenuBodeguero[] = [
-    {
-      ruta: 'dashboard',
-      nombre: 'Inicio',
-    },
-    {
-      ruta: 'mesas/lista-mesas',
-      nombre: 'Bodegas',
-    },
-    {
-      ruta: 'mesas/lista-mesa',
-      nombre: 'Inventario',
-    },
-    {
-      ruta: 'mesas/lista-mesa',
-      nombre: 'Recepción proveedores',
+      ruta: 'platos/lista-platos',
+      nombre: 'Listar platos',
     },
   ];
 

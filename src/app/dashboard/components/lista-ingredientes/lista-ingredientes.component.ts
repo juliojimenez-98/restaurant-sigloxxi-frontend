@@ -19,6 +19,7 @@ export class ListaIngredientesComponent implements OnInit {
 
   obtenerIngredientes() {
     this.servicio.obtenerIngrediente().subscribe((res) => {
+      console.log(res);
       this.ingredientes = res;
     });
   }

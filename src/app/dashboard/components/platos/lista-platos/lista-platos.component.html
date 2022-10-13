@@ -7,40 +7,55 @@
             class="text-md font-semibold tracking-wide text-left text-gray-100 bg-paleta5 uppercase border-b border-gray-600"
           >
             <th class="px-4 py-3">Nombre</th>
-            <th class="px-4 py-3">Stock</th>
-            <th class="px-4 py-3">Stock Critico</th>
-            <th class="px-4 py-3">Unidad</th>
-            <th class="px-4 py-3">Fecha_Vencimiento</th>
-            <th class="text-center">Acciones</th>
+            <th class="px-4 py-3">Descuento</th>
+            <th class="px-4 py-3">Precio</th>
+            <th class="px-4 py-3">Estado</th>
+            <th class="px-4 py-3">Acciones</th>
           </tr>
         </thead>
         <tbody class="bg-white">
-          <tr *ngFor="let ing of ingredientes" class="text-gray-700">
+          <tr *ngFor="let plato of platos" class="text-gray-700">
             <td class="px-4 py-3 border">
               <div class="flex items-center text-sm">
                 <div>
-                  <p class="font-semibold text-black">{{ ing.nombre }}</p>
+                  <p class="font-semibold text-black">
+                    {{ plato.recetum.nombre_prep }}
+                    {{ plato.estado === 2 ? "(En Descuento)" : " " }}
+                  </p>
                 </div>
               </div>
             </td>
             <td class="px-4 py-3 text-ms font-semibold border">
-              {{ ing.stock }}
+              {{ plato.desc | percent }}
             </td>
             <td class="px-4 py-3 text-ms font-semibold border">
-              {{ ing.stock_cri }}
+              ${{ plato.precio | number }}
             </td>
             <td class="px-4 py-3 text-sm font-semibold border">
-              {{ ing.unidad }}
-            </td>
-            <td class="px-4 py-3 text-sm font-semibold border">
-              {{ ing.fecha_vencimiento }}
+              <span
+                [ngClass]="{
+                  'text-paleta3 bg-red-600': !plato.estado,
+                  'bg-green-600 text-white': plato.estado,
+                  'bg-yellow-500 ': plato.estado === 2
+                }"
+                class="py-1 px-3 rounded-full text-white text-xs"
+                >{{
+                  plato.estado === 2
+                    ? "En Descuento"
+                    : "" || plato.estado
+                    ? "Activo"
+                    : "" || !plato.estado
+                    ? "Inactivo"
+                    : ""
+                }}</span
+              >
             </td>
             <td class="px-4 py-3 text-xs border">
               <div class="flex item-center justify-center">
                 <div
                   [routerLink]="[
-                    '/admin/ingredientes/registro-ingredientes',
-                    ing.id_ing
+                    '/admin/platos/registrar-plato',
+                    plato.id_plato
                   ]"
                   class="w-4 mr-2 transform text-black hover:text-yellow-500 hover:scale-110"
                 >
@@ -59,7 +74,7 @@
                   </svg>
                 </div>
                 <div
-                  (click)="eliminarIngrediente(ing.id_ing)"
+                  (click)="eliminarPlato(plato.id_plato)"
                   class="w-4 mr-2 transform text-black hover:text-red-600 hover:scale-110"
                 >
                   <svg

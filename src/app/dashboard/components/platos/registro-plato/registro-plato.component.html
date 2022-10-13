@@ -1,100 +1,106 @@
 <div class="mt-4">
-  <h1 class="font-bold text-3xl text-gray-900 text-center">
-    Registrar Ingredientes
-  </h1>
+  <h1 class="font-bold text-3xl text-gray-900 text-center">Registrar Platos</h1>
   <p class="text-center">Ingresa los datos</p>
 </div>
 
 <div class="flex items-center justify-center p-6">
   <div class="mx-auto w-full max-w-[550px]">
-    <form autocomplete="on" [formGroup]="formRegistroIngrediente">
+    <form autocomplete="on" [formGroup]="formRegistroPlatos">
       <div class="mb-4">
         <label
-          for="nombre"
+          for="id_receta"
+          class="w-full mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Seleccionar Receta del Plato
+        </label>
+        <select
+          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          name="id_receta"
+          formControlName="id_receta"
+        >
+          <option value="">Selecciona Receta del Plato</option>
+          <option *ngFor="let receta of recetas" [value]="receta.id_receta">
+            {{ receta.nombre_prep }}
+          </option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label
+          for="desc"
+          class="w-full mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Seleccionar Descuento del Plato
+        </label>
+        <select
+          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          name="desc"
+          formControlName="desc"
+        >
+          <option value="">Selecciona el Descuento</option>
+          <option
+            *ngFor="let descuento of descuentos"
+            [value]="descuento.valor"
+          >
+            {{ descuento.nombre }}
+          </option>
+        </select>
+      </div>
+      <!-- <div class="mb-4">
+        <label
+          for="desc"
           class="mb-3 block text-base font-medium text-[#07074D]"
         >
-          Nombre ingrediente
+          Descuento
         </label>
         <input
           type="text"
-          name="nombre"
-          formControlName="nombre"
-          id="nombre"
-          placeholder="Nombre del ingrediente"
+          name="desc"
+          formControlName="desc"
+          id="desc"
+          placeholder="Descuento del Plato"
           class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
-      </div>
+      </div> -->
       <div class="mb-4">
         <label
           for="stock"
           class="mb-3 block text-base font-medium text-[#07074D]"
         >
-          Stock
-        </label>
-        <input
-          type="number"
-          min="0"
-          name="stock"
-          formControlName="stock"
-          id="stock"
-          placeholder="Ingresa el Stock del Ingrediente"
-          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-        />
-      </div>
-      <div class="mb-4">
-        <label
-          for="stock critico"
-          class="mb-3 block text-base font-medium text-[#07074D]"
-        >
-          Stock Crítico
-        </label>
-        <input
-          type="number"
-          min="0"
-          name="stock critico"
-          formControlName="stock_cri"
-          id="stock critico"
-          placeholder="Ingresa el Stock Crítico del Ingrediente"
-          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-        />
-      </div>
-      <div class="mb-4">
-        <label
-          for="email"
-          class="mb-3 block text-base font-medium text-[#07074D]"
-        >
-          Unidad
+          Precio
         </label>
         <input
           type="text"
-          min="0"
-          name="unidad"
-          formControlName="unidad"
-          id="unidad"
-          placeholder="Unidad del Ingrediente"
+          name="precio"
+          formControlName="precio"
+          id="precio"
+          placeholder="Ingresa el Precio del Plato"
           class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
       </div>
-      <div class="mb-8">
+
+      <div class="mb-4">
         <label
-          for="fecha de vencimiento"
-          class="mb-3 block text-base font-medium text-[#07074D]"
+          for="estado"
+          class="w-full mb-3 block text-base font-medium text-[#07074D]"
         >
-          Fecha de Vencimiento
+          Seleccionar Estado del Plato
         </label>
-        <input
-          type="text"
-          name="fecha de vencimiento"
-          formControlName="fecha_vencimiento"
-          id="fecha de vencimiento"
-          placeholder="Fecha de Vencimiento del Ingrediente"
+        <select
           class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-        />
+          name="estado"
+          formControlName="estado"
+        >
+          <option value="">Selecciona el Estado</option>
+          <option *ngFor="let estado of estados" [value]="estado.id">
+            {{ estado.nombre }}
+          </option>
+        </select>
       </div>
+
       <div>
         <button
-          (click)="registrarIngrediente()"
-          *ngIf="!formRegistroIngrediente.value.id_ing; else elseBLock"
+          (click)="registroPlatos()"
+          *ngIf="!formRegistroPlatos.value.id_plato; else elseBLock"
           type="submit"
           class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
         >
@@ -102,7 +108,7 @@
         </button>
         <ng-template #elseBLock>
           <button
-            (click)="actualizarIngrediente()"
+            (click)="actualizarPlato()"
             type="submit"
             class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
           >

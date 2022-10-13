@@ -13,8 +13,12 @@ import { IngredientesPageComponent } from './pages/ingredientes-page/ingrediente
 import { RegistroIngredienteComponent } from './components/registro-ingrediente/registro-ingrediente.component';
 import { ListaIngredientesComponent } from './components/lista-ingredientes/lista-ingredientes.component';
 import { RecetasPageComponent } from './pages/recetas-page/recetas-page.component';
-import { ListaRecetaComponent } from './components/lista-receta/lista-receta.component';
-import { RegistroRecetasComponent } from './components/registro-recetas/registro-recetas.component';
+import { ListaRecetaComponent } from './components/recetas/lista-receta/lista-receta.component';
+import { RegistroRecetasComponent } from './components/recetas/registro-recetas/registro-recetas.component';
+import { ModalMesaComponent } from './components/modal-mesa/modal-mesa.component';
+import { PlatosPageComponent } from './pages/platos-page/platos-page.component';
+import { ListaPlatosComponent } from './components/platos/lista-platos/lista-platos.component';
+import { RegistroPlatoComponent } from './components/platos/registro-plato/registro-plato.component';
 
 const routes: Routes = [
   {
@@ -76,15 +80,27 @@ const routes: Routes = [
             children: [
               { path: 'lista-mesas', component: ListMesasComponent },
               { path: 'registrar-mesa', component: RegistroMesasComponent },
+              { path: 'ruta-scarlett', component: ModalMesaComponent },
             ],
           },
-
           {
             path: 'recetas',
             component: RecetasPageComponent,
             children: [
               { path: 'lista-recetas', component: ListaRecetaComponent },
               { path: 'registrar-receta', component: RegistroRecetasComponent },
+            ],
+          },
+          {
+            path: 'platos',
+            component: PlatosPageComponent,
+            children: [
+              { path: 'lista-platos', component: ListaPlatosComponent },
+              { path: 'registrar-plato', component: RegistroPlatoComponent },
+              {
+                path: 'registrar-plato/:id',
+                component: RegistroPlatoComponent,
+              },
             ],
           },
         ],
