@@ -16,12 +16,12 @@ export class ProveedoresService {
     return this.http.post<Proveedor>(urlRegistroProveedor, proveedor);
   }
 
-  obtenerProveedor(): Observable<any> {
+  obtenerProveedores(): Observable<any> {
     const urlGetProveedores =
       'http://localhost:8080/api/proveedores/proveedores';
     return this.http
       .get(urlGetProveedores)
-      .pipe(map((res: any) => res.proveedor as Proveedor[]));
+      .pipe(map((res: any) => res.proveedores as Proveedor[]));
   }
 
   obtenerProveedorPorId(id: any): Observable<any> {
