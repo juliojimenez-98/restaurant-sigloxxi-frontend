@@ -45,7 +45,7 @@ export class RegistroIngredienteComponent implements OnInit {
           Swal.close();
           if (res.msg === 'ok') {
             Swal.fire(
-              'Ingrediente registrado',
+              'Ingrediente Registrado',
               `El ingrediente ${res.ingrediente.nombre} fue registrado exitosamente`,
               'success'
             );
@@ -77,25 +77,27 @@ export class RegistroIngredienteComponent implements OnInit {
       let id = params['id'];
       let id_ing = parseInt(id);
       if (id_ing) {
-        this.servicioIng.obtenerIngredientePorId(id_ing).subscribe((res: any) => { 
-          console.log(res);
-          
-          this.formRegistroIngrediente.patchValue({
-            id_ing: res.findIngrediente.id_ing,
-            nombre: res.findIngrediente.nombre,
-            stock: res.findIngrediente.stock,
-            stock_cri: res.findIngrediente.stock_cri,
-            unidad: res.findIngrediente.unidad,
-            fecha_vencimiento: res.findIngrediente.fecha_vencimiento
+        this.servicioIng
+          .obtenerIngredientePorId(id_ing)
+          .subscribe((res: any) => {
+            console.log(res);
+
+            this.formRegistroIngrediente.patchValue({
+              id_ing: res.findIngrediente.id_ing,
+              nombre: res.findIngrediente.nombre,
+              stock: res.findIngrediente.stock,
+              stock_cri: res.findIngrediente.stock_cri,
+              unidad: res.findIngrediente.unidad,
+              fecha_vencimiento: res.findIngrediente.fecha_vencimiento,
+            });
+            console.log(res);
+            console.log(this.formRegistroIngrediente.value.id_ing);
           });
-          console.log(res);
-          console.log(this.formRegistroIngrediente.value.id_ing);
-        });
       }
     });
   }
 
-  actualizarIngrediente(){
+  actualizarIngrediente() {
     this.activatedRoute.params.subscribe((params) => {
       let id = params['id'];
       let id_ing = parseInt(id);
@@ -111,6 +113,5 @@ export class RegistroIngredienteComponent implements OnInit {
           this.router.navigateByUrl('/admin/ingredientes/lista-ingredientes');
         });
     });
-    
   }
 }
