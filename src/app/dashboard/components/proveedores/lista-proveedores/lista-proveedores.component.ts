@@ -14,10 +14,10 @@ export class ListaProveedoresComponent implements OnInit {
   constructor(private servicio: ProveedoresService) {}
 
   ngOnInit(): void {
-    this.obtenerProveedor();
+    this.obtenerProveedores();
   }
 
-  obtenerProveedor() {
+  obtenerProveedores() {
     this.servicio.obtenerProveedor().subscribe((res) => {
       console.log(res);
       this.proveedores = res;
@@ -37,7 +37,7 @@ export class ListaProveedoresComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.servicio.eliminarProveedor(id).subscribe((res) => {
-          this.obtenerProveedor();
+          this.obtenerProveedores();
         });
         Swal.fire(
           'Borrado',
