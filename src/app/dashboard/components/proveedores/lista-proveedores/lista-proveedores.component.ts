@@ -18,7 +18,7 @@ export class ListaProveedoresComponent implements OnInit {
   }
 
   obtenerProveedores() {
-    this.servicio.obtenerProveedor().subscribe((res) => {
+    this.servicio.obtenerProveedores().subscribe((res) => {
       console.log(res);
       this.proveedores = res;
     });
