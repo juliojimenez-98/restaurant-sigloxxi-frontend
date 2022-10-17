@@ -26,6 +26,7 @@ import { RegistroPlatoComponent } from './components/platos/registro-plato/regis
 import { ProveedoresPageComponent } from './pages/proveedores-page/proveedores-page.component';
 import { ListaProveedoresComponent } from './components/proveedores/lista-proveedores/lista-proveedores.component';
 import { RegistroProveedorComponent } from './components/proveedores/registro-proveedor/registro-proveedor.component';
+import { ActualizarImagenComponent } from './components/platos/actualizar-imagen/actualizar-imagen.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { RegistroProveedorComponent } from './components/proveedores/registro-pr
     ProveedoresPageComponent,
     ListaProveedoresComponent,
     RegistroProveedorComponent,
+    ActualizarImagenComponent,
   ],
   imports: [
     CommonModule,
