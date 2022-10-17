@@ -36,20 +36,29 @@
               }}</span
             >
           </div>
-          {{ plato.desc | percent }}
-          ${{ plato.precio | number }}
-          <button
-            [routerLink]="['/admin/platos/actualizar-imagen', plato.id_plato]"
-            class="border-2 border-paleta4 rounded-lg px-3 py-1 text-gray-800 hover:bg-paleta4 hover:text-gray-200"
-          >
-            Actualizar imagen
-          </button>
-          <button
-            [routerLink]="['/admin/platos/registrar-plato', plato.id_plato]"
-            class="border-2 border-paleta4 rounded-lg px-3 py-1 text-gray-800 hover:bg-paleta4 hover:text-gray-200"
-          >
-            Editar plato
-          </button>
+          <div class="p-2">
+            <h1 class="title-font text-base font-medium text-gray-600 mb-3">
+              Precio: ${{ plato.precio | number }}
+            </h1>
+            <h1 class="title-font text-base font-medium text-gray-600 mb-3">
+              Descuento: {{ plato.desc | percent }}
+            </h1>
+          </div>
+          <div class="flex w-full">
+            <button
+              [routerLink]="['/admin/platos/actualizar-imagen', plato.id_plato]"
+              class="w-1/2 m-2 border-2 border-paleta4 rounded-lg px-3 py-1 text-gray-800 hover:bg-paleta4 hover:text-gray-200"
+            >
+              Actualizar imagen
+            </button>
+
+            <button
+              [routerLink]="['/admin/platos/registrar-plato', plato.id_plato]"
+              class="w-1/2 m-2 border-2 border-paleta4 rounded-lg px-3 py-1 text-gray-800 hover:bg-paleta4 hover:text-gray-200"
+            >
+              Editar plato
+            </button>
+          </div>
         </div>
       </div>
     </div>
