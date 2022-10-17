@@ -38,4 +38,15 @@ export class PlatosService {
     const urlBorrarPlato = `http://localhost:8080/api/platos/plato/${id}`;
     return this.http.delete<any>(urlBorrarPlato);
   }
+
+  uploadImage(id: any, image: File): Observable<any> {
+    const formData = new FormData();
+
+    formData.append('archivo', image);
+
+    return this.http.put(
+      `http://localhost:8080/api/uploads/plato/${id}`,
+      formData
+    );
+  }
 }
