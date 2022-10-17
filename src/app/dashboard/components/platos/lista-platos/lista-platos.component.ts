@@ -10,11 +10,19 @@ import { PlatosService } from '../../../services/platos.service';
 })
 export class ListaPlatosComponent implements OnInit {
   platos: Plato[] = [];
+  datosPlato: Plato[] = [];
 
   constructor(private servicio: PlatosService) {}
 
   ngOnInit(): void {
     this.obtenerPlatos();
+  }
+  showModal = false;
+  toggleModal(id: any) {
+    this.servicio.obtenerPlatoPorId(id).subscribe((res) => {
+      this.datosPlato = res.platoFind;
+      console.log(this.datosPlato);
+    });
   }
 
   obtenerPlatos() {
