@@ -21,6 +21,7 @@ import { ListaPlatosComponent } from './components/platos/lista-platos/lista-pla
 import { RegistroPlatoComponent } from './components/platos/registro-plato/registro-plato.component';
 import { ListaProveedoresComponent } from './components/proveedores/lista-proveedores/lista-proveedores.component';
 import { RegistroProveedorComponent } from './components/proveedores/registro-proveedor/registro-proveedor.component';
+import { ActualizarImagenComponent } from './components/platos/actualizar-imagen/actualizar-imagen.component';
 
 const routes: Routes = [
   {
@@ -102,6 +103,10 @@ const routes: Routes = [
               {
                 path: 'registrar-plato/:id',
                 component: RegistroPlatoComponent,
+              },
+              {
+                path: 'actualizar-imagen/:id',
+                component: ActualizarImagenComponent,
               },
             ],
           },
