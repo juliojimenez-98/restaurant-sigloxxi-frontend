@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { CartaService } from '../../services/carta.service';
+import { CartaMesaService } from '../../services/carta-mesa.service';
 import { Plato } from '../../../dashboard/interfaces/plato.interface';
 
 @Component({
-  selector: 'app-carta',
-  templateUrl: './carta.component.html',
-  styleUrls: ['./carta.component.css'],
+  selector: 'app-carta-mesa',
+  templateUrl: './carta-mesa.component.html',
+  styleUrls: ['./carta-mesa.component.css'],
 })
-export class CartaComponent implements OnInit {
+export class CartaMesaComponent implements OnInit {
   platos: Plato[] = [];
-  constructor(private servicio: CartaService) {}
+  constructor(private servicio: CartaMesaService) {}
 
   ngOnInit(): void {
     this.obtenerPlatos();
