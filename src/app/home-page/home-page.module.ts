@@ -13,6 +13,8 @@ import { CartaComponent } from './components/carta/carta.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { ReservaNextStepComponent } from './components/reserva-next-step/reserva-next-step.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,10 +27,13 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     ReservarComponent,
     CartaComponent,
     ContactoComponent,
+    ReservaNextStepComponent,
   ],
   imports: [
     CommonModule,
     HomePageRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatDatepickerModule,
     MatMomentDateModule,
   ],
