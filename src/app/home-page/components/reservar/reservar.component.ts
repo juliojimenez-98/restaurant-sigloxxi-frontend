@@ -24,10 +24,11 @@ export class ReservarComponent implements OnInit {
     this.maxDate = new Date(currentYear + 1, 11, 31);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    localStorage.clear();
+  }
 
   registrarCliente() {
-    console.log(this.formRegistroCliente.value);
     this.service
       .registroCliente(this.formRegistroCliente.value)
       .subscribe((res: any) => {

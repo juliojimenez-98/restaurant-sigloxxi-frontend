@@ -15,9 +15,15 @@ export class ReservarService {
 
     return this.http.post<Cliente>(urlRegistroCliente, cliente);
   }
+
   registroReserva(reserva: Reserva): Observable<Reserva> {
-    const urlRegistroReserva = 'http://localhost:8080/api/reservas/reserva';
+    const urlRegistroReserva = 'http://localhost:8080/api/reserva/reserva';
 
     return this.http.post<Reserva>(urlRegistroReserva, reserva);
+  }
+
+  obtenerClienteParaReserva(email: any, cel: any): Observable<any> {
+    const urlGetClienteReserva = `http://localhost:8080/api/clientes/cliente/${email}/${cel}`;
+    return this.http.get<any>(urlGetClienteReserva);
   }
 }
