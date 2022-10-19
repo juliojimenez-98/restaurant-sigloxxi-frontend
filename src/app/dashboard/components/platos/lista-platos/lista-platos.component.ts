@@ -9,13 +9,17 @@ import { PlatosService } from '../../../services/platos.service';
   styleUrls: ['./lista-platos.component.css'],
 })
 export class ListaPlatosComponent implements OnInit {
-  platos: Plato[] = [];
+  tragos: Plato[] = [];
+  fondos: Plato[] = [];
+  entradas: Plato[] = [];
   datosPlato: Plato[] = [];
 
   constructor(private servicio: PlatosService) {}
 
   ngOnInit(): void {
-    this.obtenerPlatos();
+    this.obtenerTragos();
+    this.obtenerEntradas();
+    this.obtenerFondos();
   }
   showModal = false;
   toggleModal(id: any) {
@@ -25,10 +29,24 @@ export class ListaPlatosComponent implements OnInit {
     });
   }
 
-  obtenerPlatos() {
-    this.servicio.obtenerPlatos().subscribe((res) => {
+  obtenerFondos() {
+    this.servicio.obtenerPlatos(1).subscribe((res) => {
       console.log(res);
-      this.platos = res;
+      this.fondos = res;
+    });
+  }
+
+  obtenerTragos() {
+    this.servicio.obtenerPlatos(2).subscribe((res) => {
+      console.log(res);
+      this.tragos = res;
+    });
+  }
+
+  obtenerEntradas() {
+    this.servicio.obtenerPlatos(3).subscribe((res) => {
+      console.log(res);
+      this.entradas = res;
     });
   }
 
@@ -45,7 +63,9 @@ export class ListaPlatosComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.servicio.eliminarPlato(id).subscribe((res) => {
-          this.obtenerPlatos();
+          this.obtenerTragos();
+          this.obtenerEntradas();
+          this.obtenerFondos();
         });
         Swal.fire(
           'Borrado',
