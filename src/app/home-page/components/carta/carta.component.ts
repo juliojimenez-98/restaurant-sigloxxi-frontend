@@ -11,6 +11,8 @@ export class CartaComponent implements OnInit {
   tragos: Plato[] = [];
   fondos: Plato[] = [];
   entradas: Plato[] = [];
+  ensaladas: Plato[] = [];
+  postres: Plato[] = [];
   constructor(private servicio: CartaService) {}
 
   ngOnInit(): void {

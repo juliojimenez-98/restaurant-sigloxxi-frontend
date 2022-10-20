@@ -18,6 +18,13 @@ export class RegistroPlatoComponent implements OnInit {
     { id: 1, nombre: 'Activo' },
     { id: 2, nombre: 'Descuento' },
   ];
+  tipos: any[] = [
+    { id: 1, nombre: 'Plato de Fondo' },
+    { id: 2, nombre: 'Tragos' },
+    { id: 3, nombre: 'Entrada' },
+    { id: 4, nombre: 'Ensalada' },
+    { id: 5, nombre: 'Postre' },
+  ];
   descuentos: any[] = [
     { valor: 0, nombre: 'Sin Descuento' },
     { valor: 0.05, nombre: '5%' },
@@ -37,6 +44,7 @@ export class RegistroPlatoComponent implements OnInit {
     desc: ['', [Validators.required]],
     precio: ['', [Validators.required]],
     estado: ['', [Validators.required]],
+    tipo_plato: ['', [Validators.required]],
     id_receta: ['', [Validators.required, Validators.minLength(2)]],
   });
 
@@ -66,6 +74,7 @@ export class RegistroPlatoComponent implements OnInit {
       text: 'Registrando Plato',
       showConfirmButton: false,
     });
+    console.log(this.formRegistroPlatos.value);
 
     this.servicio.registroPlatos(this.formRegistroPlatos.value).subscribe(
       (res: any) => {
