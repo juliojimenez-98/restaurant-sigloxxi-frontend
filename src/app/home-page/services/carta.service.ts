@@ -9,8 +9,8 @@ import { HttpClient } from '@angular/common/http';
 export class CartaService {
   constructor(private http: HttpClient) {}
 
-  obtenerPlatos(tipo: any): Observable<any> {
-    const urlGetPlatos = `http://localhost:8080/api/platos/platos/${tipo}`;
+  obtenerPlatos(): Observable<any> {
+    const urlGetPlatos = `http://localhost:8080/api/platos/platos`;
     return this.http
       .get(urlGetPlatos)
       .pipe(map((res: any) => res.platos as Plato[]));
