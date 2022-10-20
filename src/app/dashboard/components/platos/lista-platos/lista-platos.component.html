@@ -1,8 +1,149 @@
 <section class="text-gray-600 mt-10 body-font">
+  <h2 class="text-2xl mt-4 text-gray-500 font-bold text-center">Tragos</h2>
   <div class="container px-5 py-5 mx-auto">
     <div class="flex flex-wrap -m-4">
       <!--start here-->
-      <div *ngFor="let plato of platos" class="p-4 md:w-1/3">
+      <div *ngFor="let plato of tragos" class="p-4 md:w-1/3">
+        <div class="h-full border border-gray-400 rounded-lg overflow-hidden">
+          <img
+            class="lg:h-48 md:h-36 w-full object-cover object-center"
+            [src]="plato.img"
+            alt="blog cover"
+          />
+
+          <div class="p-2">
+            <h1 class="title-font text-lg font-medium text-gray-900 mb-3">
+              {{ plato.recetum.nombre_prep }}
+              {{ plato.estado === 2 ? "(En Descuento)" : " " }}
+            </h1>
+          </div>
+
+          <div class="p-1 -mt-6 mr-0">
+            <span
+              [ngClass]="{
+                'text-paleta3 bg-red-600': !plato.estado,
+                'bg-green-600 text-white': plato.estado,
+                'bg-yellow-500 ': plato.estado === 2
+              }"
+              class="py-1 px-3 rounded-full text-white text-xs"
+              >{{
+                plato.estado === 2
+                  ? "En Descuento"
+                  : "" || plato.estado
+                  ? "Activo"
+                  : "" || !plato.estado
+                  ? "Inactivo"
+                  : ""
+              }}</span
+            >
+          </div>
+          <div class="p-2">
+            <h1 class="title-font text-base font-medium text-gray-600 mb-3">
+              Precio: ${{ plato.precio }}
+            </h1>
+            <h1 class="title-font text-base font-medium text-gray-600 mb-3">
+              Descuento: {{ plato.desc }}
+            </h1>
+          </div>
+          <div class="flex w-full">
+            <button
+              [routerLink]="['/admin/platos/actualizar-imagen', plato.id_plato]"
+              class="w-1/2 m-2 border-2 border-paleta4 rounded-lg px-3 py-1 text-gray-800 hover:bg-paleta4 hover:text-gray-200"
+            >
+              Actualizar imagen
+            </button>
+
+            <button
+              [routerLink]="['/admin/platos/registrar-plato', plato.id_plato]"
+              class="w-1/2 m-2 border-2 border-paleta4 rounded-lg px-3 py-1 text-gray-800 hover:bg-paleta4 hover:text-gray-200"
+            >
+              Editar plato
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="text-gray-600 mt-10 body-font">
+  <h2 class="text-2xl mt-4 text-gray-500 font-bold text-center">Entradas</h2>
+
+  <div class="container px-5 py-5 mx-auto">
+    <div class="flex flex-wrap -m-4">
+      <!--start here-->
+      <div *ngFor="let plato of entradas" class="p-4 md:w-1/3">
+        <div class="h-full border border-gray-400 rounded-lg overflow-hidden">
+          <img
+            class="lg:h-48 md:h-36 w-full object-cover object-center"
+            [src]="plato.img"
+            alt="blog cover"
+          />
+
+          <div class="p-2">
+            <h1 class="title-font text-lg font-medium text-gray-900 mb-3">
+              {{ plato.recetum.nombre_prep }}
+              {{ plato.estado === 2 ? "(En Descuento)" : " " }}
+            </h1>
+          </div>
+
+          <div class="p-1 -mt-6 mr-0">
+            <span
+              [ngClass]="{
+                'text-paleta3 bg-red-600': !plato.estado,
+                'bg-green-600 text-white': plato.estado,
+                'bg-yellow-500 ': plato.estado === 2
+              }"
+              class="py-1 px-3 rounded-full text-white text-xs"
+              >{{
+                plato.estado === 2
+                  ? "En Descuento"
+                  : "" || plato.estado
+                  ? "Activo"
+                  : "" || !plato.estado
+                  ? "Inactivo"
+                  : ""
+              }}</span
+            >
+          </div>
+          <div class="p-2">
+            <h1 class="title-font text-base font-medium text-gray-600 mb-3">
+              Precio: ${{ plato.precio }}
+            </h1>
+            <h1 class="title-font text-base font-medium text-gray-600 mb-3">
+              Descuento: {{ plato.desc }}
+            </h1>
+          </div>
+          <div class="flex w-full">
+            <button
+              [routerLink]="['/admin/platos/actualizar-imagen', plato.id_plato]"
+              class="w-1/2 m-2 border-2 border-paleta4 rounded-lg px-3 py-1 text-gray-800 hover:bg-paleta4 hover:text-gray-200"
+            >
+              Actualizar imagen
+            </button>
+
+            <button
+              [routerLink]="['/admin/platos/registrar-plato', plato.id_plato]"
+              class="w-1/2 m-2 border-2 border-paleta4 rounded-lg px-3 py-1 text-gray-800 hover:bg-paleta4 hover:text-gray-200"
+            >
+              Editar plato
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="text-gray-600 mt-10 body-font">
+  <h2 class="text-2xl mt-4 text-gray-500 font-bold text-center">
+    Platos de fondo
+  </h2>
+
+  <div class="container px-5 py-5 mx-auto">
+    <div class="flex flex-wrap -m-4">
+      <!--start here-->
+      <div *ngFor="let plato of fondos" class="p-4 md:w-1/3">
         <div class="h-full border border-gray-400 rounded-lg overflow-hidden">
           <img
             class="lg:h-48 md:h-36 w-full object-cover object-center"

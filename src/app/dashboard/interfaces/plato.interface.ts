@@ -5,6 +5,7 @@ export interface Plato {
   precio: number;
   img?: string;
   estado: number;
+  tipo_plato: number;
   id_receta: number;
   receta: Receta;
   recetum?: any;
