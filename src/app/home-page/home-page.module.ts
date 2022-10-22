@@ -11,7 +11,10 @@ import { UbicanosComponent } from './components/ubicanos/ubicanos.component';
 import { ReservarComponent } from './components/reservar/reservar.component';
 import { CartaComponent } from './components/carta/carta.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { ReservaNextStepComponent } from './components/reserva-next-step/reserva-next-step.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,11 +26,16 @@ import { ContactoComponent } from './components/contacto/contacto.component';
     UbicanosComponent,
     ReservarComponent,
     CartaComponent,
-    ContactoComponent
+    ContactoComponent,
+    ReservaNextStepComponent,
   ],
   imports: [
     CommonModule,
-    HomePageRoutingModule
-  ]
+    HomePageRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+  ],
 })
-export class HomePageModule { }
+export class HomePageModule {}

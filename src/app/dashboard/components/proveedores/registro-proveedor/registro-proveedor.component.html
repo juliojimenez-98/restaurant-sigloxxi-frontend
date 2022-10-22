@@ -1,0 +1,100 @@
+<div class="mt-4">
+  <h1 class="font-bold text-3xl text-gray-900 text-center">
+    Registrar Proveedores
+  </h1>
+  <p class="text-center">Ingresa los datos</p>
+</div>
+
+<div class="flex items-center justify-center p-6">
+  <div class="mx-auto w-full max-w-[550px]">
+    <form autocomplete="on" [formGroup]="formRegistroProveedor">
+      <div class="mb-4">
+        <label
+          for="nombre"
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Nombre
+        </label>
+        <input
+          type="text"
+          name="nombre"
+          formControlName="nombre"
+          id="nombre"
+          placeholder="Ingresa el Nombre del Proveedor"
+          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label
+          for="tel_contacto"
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Teléfono de Contacto
+        </label>
+        <input
+          type="text"
+          name="tel_contacto"
+          formControlName="tel_contacto"
+          id="tel_contacto"
+          placeholder="Ingresa el Teléfono de Contacto"
+          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label
+          for="email"
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Correo
+        </label>
+        <input
+          type="text"
+          name="email"
+          formControlName="email"
+          id="email"
+          placeholder="Ingresa el Correo del Proveedor"
+          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label
+          for="sitio_web"
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Sitio Web
+        </label>
+        <input
+          type="text"
+          name="sitio_web"
+          formControlName="sitio_web"
+          id="sitio_web"
+          placeholder="Ingresa el Sitio Web del Proveedor"
+          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+      </div>
+
+      <div>
+        <button
+          (click)="registrarProveedor()"
+          *ngIf="!formRegistroProveedor.value.id_proveedor; else elseBLock"
+          type="submit"
+          class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
+        >
+          Registrar
+        </button>
+        <ng-template #elseBLock>
+          <button
+            (click)="actualizarProveedor()"
+            type="submit"
+            class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
+          >
+            ACTUALIZAR
+          </button>
+        </ng-template>
+      </div>
+    </form>
+  </div>
+</div>

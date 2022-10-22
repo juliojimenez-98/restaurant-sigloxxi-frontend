@@ -1,0 +1,99 @@
+<main class="flex mt-8 flex-col justify-center bg-white p-16">
+  <h1 class="text-3xl mx-auto mt-14 font-bold text-gray-800">
+    Reserva una mesa con nosotros
+  </h1>
+  <p class="mb-8 mx-auto font-semibold text-gray-800">
+    Ingresa los datos de la reserva
+  </p>
+
+  <div class="flex items-center justify-center p-6">
+    <div class="mx-auto w-full max-w-[550px]">
+      <form [formGroup]="formRegistroReserva">
+        <div class="mb-4">
+          <label
+            for="desc"
+            class="w-full mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Selecciona la cantidad de personas
+          </label>
+          <select
+            class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            name="desc"
+            formControlName="cant_personas"
+          >
+            <option value="">Selecciona la cantidad de personas</option>
+            <option
+              *ngFor="let cantidad of cantidadPersonas"
+              [value]="cantidad.valor"
+            >
+              {{ cantidad.nombre }}
+            </option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <label
+            for="appa"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Hora de la reserva
+          </label>
+          <input
+            type="time"
+            formControlName="hora_reserva"
+            name="appa"
+            id="appa"
+            min="13:00:00"
+            max="23:00:00"
+            placeholder="Ingresa tu apellido"
+            class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+
+        <div class="mb-4">
+          <label
+            for="fecha"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+            >Fecha reserva</label
+          >
+          <div class="flex">
+            <input
+              (dateInput)="OnDateChange($event.value._i)"
+              class="w-5/12 rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+              matInput
+              [matDatepicker]="picker"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker
+              ><mat-datepicker-actions>
+                <button
+                  class="bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-1 font-semibold"
+                  matDatepickerCancel
+                >
+                  Cancelar
+                </button>
+                <button
+                  class="bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-1 font-semibold"
+                  matDatepickerApply
+                >
+                  Aplicar
+                </button>
+              </mat-datepicker-actions></mat-datepicker
+            >
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <button
+            (click)="registroReserva()"
+            class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
+          >
+            Reservar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

@@ -25,6 +25,9 @@ export class RegistroRecetasComponent implements OnInit {
   tipos: any[] = [
     { id: 1, nombre: 'Plato de Fondo' },
     { id: 2, nombre: 'Tragos' },
+    { id: 3, nombre: 'Entrada' },
+    { id: 4, nombre: 'Ensalada' },
+    { id: 5, nombre: 'Postre' },
   ];
   showModal = false;
   constructor(
@@ -84,7 +87,7 @@ export class RegistroRecetasComponent implements OnInit {
 
           Swal.fire(
             'Receta registrada',
-            `La receta ${res.nombre_prep} fue registrada con exito`,
+            `La receta fue registrada con exito`,
             'success'
           );
         }

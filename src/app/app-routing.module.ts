@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChangePasswordComponent } from './auth/pages/change-password/change-password.component';
 import { ValidarTokenGuard } from './guard/validar-token.guard';
+import { AppMesaPageComponent } from './app-mesa/pages/app-mesa-page/app-mesa-page.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,11 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () =>
       import('./home-page/home-page.module').then((m) => m.HomePageModule),
+  },
+  {
+    path: 'app-mesa',
+    loadChildren: () =>
+      import('./app-mesa/app-mesa.module').then((m) => m.AppMesaModule),
   },
   {
     path: '',

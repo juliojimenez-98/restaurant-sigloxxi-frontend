@@ -45,22 +45,7 @@
           </option>
         </select>
       </div>
-      <!-- <div class="mb-4">
-        <label
-          for="desc"
-          class="mb-3 block text-base font-medium text-[#07074D]"
-        >
-          Descuento
-        </label>
-        <input
-          type="text"
-          name="desc"
-          formControlName="desc"
-          id="desc"
-          placeholder="Descuento del Plato"
-          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-        />
-      </div> -->
+
       <div class="mb-4">
         <label
           for="stock"
@@ -93,6 +78,24 @@
           <option value="">Selecciona el Estado</option>
           <option *ngFor="let estado of estados" [value]="estado.id">
             {{ estado.nombre }}
+          </option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label
+          for="tipo_plato"
+          class="w-full mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Seleccionar Tipo de Plato
+        </label>
+        <select
+          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          name="tipo_plato"
+          formControlName="tipo_plato"
+        >
+          <option value="">Selecciona el Tipo de plato</option>
+          <option *ngFor="let tipo of tipos" [value]="tipo.id">
+            {{ tipo.nombre }}
           </option>
         </select>
       </div>

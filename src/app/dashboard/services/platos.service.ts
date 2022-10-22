@@ -16,8 +16,8 @@ export class PlatosService {
     return this.http.post<Plato>(urlRegistroPlatos, plato);
   }
 
-  obtenerPlatos(): Observable<any> {
-    const urlGetPlatos = 'http://localhost:8080/api/platos/platos';
+  obtenerPlatos(tipo: any): Observable<any> {
+    const urlGetPlatos = `http://localhost:8080/api/platos/platos/${tipo}`;
     return this.http
       .get(urlGetPlatos)
       .pipe(map((res: any) => res.platos as Plato[]));
@@ -37,5 +37,16 @@ export class PlatosService {
   eliminarPlato(id: number): Observable<any> {
     const urlBorrarPlato = `http://localhost:8080/api/platos/plato/${id}`;
     return this.http.delete<any>(urlBorrarPlato);
+  }
+
+  uploadImage(id: any, image: File): Observable<any> {
+    const formData = new FormData();
+
+    formData.append('archivo', image);
+
+    return this.http.put(
+      `http://localhost:8080/api/uploads/plato/${id}`,
+      formData
+    );
   }
 }

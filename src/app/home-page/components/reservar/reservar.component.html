@@ -1,72 +1,93 @@
-<main class="flex min-h-screen flex-col justify-center bg-white p-16">
-  <h1 class="text-3xl font-bold text-gray-800">
-    Reserva una mesa con nosotros
-  </h1>
-  <p class="mb-8 font-semibold text-gray-800">Ingresa tus datos</p>
-  <div
-    class="w-full rounded-xl bg-white p-4 shadow-2xl shadow-white/40 border border-paleta4"
-  >
-    <div class="mb-4 grid grid-cols-2 gap-4">
-      <div class="flex flex-col">
-        <label for="text" class="mb-2 font-semibold">Nombre</label>
-        <input
-          type="text"
-          id="text"
-          class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-paleta4"
-        />
-      </div>
-      <div class="flex flex-col">
-        <label for="text" class="mb-2 font-semibold">Apellido</label>
-        <input
-          type="text"
-          id="text"
-          class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"
-        />
-      </div>
-    </div>
+<ng-container *ngIf="!nextStep">
+  <main class="flex mt-8 flex-col justify-center bg-white p-16">
+    <h1 class="text-3xl mx-auto mt-14 font-bold text-gray-800">
+      Reserva una mesa con nosotros
+    </h1>
+    <p class="mb-8 mx-auto font-semibold text-gray-800">Ingresa tus datos</p>
 
-    <div class="mb-4 flex flex-col">
-      <label for="email" class="mb-2 font-semibold">Correo</label>
-      <div class="relative">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="absolute left-2 top-2 h-5 w-5 text-slate-400"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M14.243 5.757a6 6 0 10-.986 9.284 1 1 0 111.087 1.678A8 8 0 1118 10a3 3 0 01-4.8 2.401A4 4 0 1114 10a1 1 0 102 0c0-1.537-.586-3.07-1.757-4.243zM12 10a2 2 0 10-4 0 2 2 0 004 0z"
-            clip-rule="evenodd"
-          />
-        </svg>
-        <input
-          type="email"
-          id="text"
-          class="w-full rounded-lg border border-slate-200 px-2 py-1 pl-8 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"
-        />
+    <div class="flex items-center justify-center p-6">
+      <div class="mx-auto w-full max-w-[550px]">
+        <form [formGroup]="formRegistroCliente">
+          <div class="mb-4">
+            <label
+              for="nombre"
+              class="mb-3 block text-base font-medium text-[#07074D]"
+            >
+              Nombre
+            </label>
+            <input
+              type="text"
+              name="nombre"
+              formControlName="nombre"
+              id="nombre"
+              placeholder="Ingresa tu nombre"
+              class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
+          </div>
+          <div class="mb-4">
+            <label
+              for="appa"
+              class="mb-3 block text-base font-medium text-[#07074D]"
+            >
+              Apellido
+            </label>
+            <input
+              type="text"
+              formControlName="appa"
+              name="appa"
+              id="appa"
+              placeholder="Ingresa tu apellido"
+              class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
+          </div>
+
+          <div class="mb-4">
+            <label
+              for="email"
+              class="mb-3 block text-base font-medium text-[#07074D]"
+              >Correo</label
+            >
+            <input
+              formControlName="email"
+              type="email"
+              name="email"
+              id="email"
+              placeholder="example@example.com"
+              class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
+          </div>
+
+          <div class="mb-4">
+            <label
+              for="email"
+              class="mb-3 block text-base font-medium text-[#07074D]"
+              >Telefono</label
+            >
+            <input
+              type="number"
+              min="0"
+              formControlName="cel"
+              name="cel"
+              id="email"
+              placeholder="41896214"
+              class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
+          </div>
+
+          <div class="mt-4">
+            <button
+              (click)="registrarCliente()"
+              class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
+            >
+              Siguiente
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-    <div class="mb-4 flex flex-col">
-      <label for="age" class="mb-2 font-semibold"
-        >Número de teléfono/celular</label
-      >
-      <input
-        type="number"
-        min="0"
-        id="age"
-        class="w-full max-w-[200px] rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"
-      />
-    </div>
-    <div class="flex">
-      <div class="w-full px-3 mb-5">
-        <button
-          type="submit"
-          class="block w-full max-w-xs mx-auto bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
-        >
-          RESERVAR
-        </button>
-      </div>
-    </div>
-  </div>
-</main>
+  </main>
+</ng-container>
+
+<ng-container class="min-h-screen" *ngIf="nextStep">
+  <app-reserva-next-step></app-reserva-next-step>
+</ng-container>
