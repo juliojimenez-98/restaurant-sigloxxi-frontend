@@ -8,36 +8,17 @@ import { Plato } from '../../../dashboard/interfaces/plato.interface';
   styleUrls: ['./carta.component.css'],
 })
 export class CartaComponent implements OnInit {
+  platos: Plato[] = [];
   tragos: Plato[] = [];
-  fondos: Plato[] = [];
-  entradas: Plato[] = [];
-  ensaladas: Plato[] = [];
-  postres: Plato[] = [];
   constructor(private servicio: CartaService) {}
 
   ngOnInit(): void {
-    this.obtenerTragos();
-    this.obtenerEntradas();
-    this.obtenerFondos();
+    this.obtenerPlatos();
   }
-  obtenerFondos() {
-    this.servicio.obtenerPlatos(1).subscribe((res) => {
+  obtenerPlatos() {
+    this.servicio.obtenerPlatos().subscribe((res) => {
       console.log(res);
-      this.fondos = res;
-    });
-  }
-
-  obtenerTragos() {
-    this.servicio.obtenerPlatos(2).subscribe((res) => {
-      console.log(res);
-      this.tragos = res;
-    });
-  }
-
-  obtenerEntradas() {
-    this.servicio.obtenerPlatos(3).subscribe((res) => {
-      console.log(res);
-      this.entradas = res;
+      this.platos = res;
     });
   }
 }
