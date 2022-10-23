@@ -84,6 +84,10 @@ const routes: Routes = [
               { path: 'lista-mesas', component: ListMesasComponent },
               { path: 'registrar-mesa', component: RegistroMesasComponent },
               { path: 'ruta-scarlett', component: ModalMesaComponent },
+              {
+                path: 'mesas/:id',
+                component: ModalMesaComponent,
+              },
             ],
           },
           {
