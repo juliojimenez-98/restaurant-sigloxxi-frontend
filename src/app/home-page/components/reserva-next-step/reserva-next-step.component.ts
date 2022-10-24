@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { ReservarService } from '../../services/reservar.service';
 
 @Component({
@@ -27,9 +29,12 @@ export class ReservaNextStepComponent implements OnInit {
     { valor: 10, nombre: '10 Personas' },
     { valor: 12, nombre: '12 Personas' },
   ];
-  constructor(private fb: FormBuilder, private service: ReservarService) {
+  constructor(
+    private fb: FormBuilder,
+    private service: ReservarService,
+    private router: Router
+  ) {
     this.email = localStorage.getItem('email');
-    this.cel = localStorage.getItem('cel');
   }
 
   ngOnInit(): void {
@@ -37,12 +42,10 @@ export class ReservaNextStepComponent implements OnInit {
   }
 
   obtenerClienteParaReserva() {
-    this.service
-      .obtenerClienteParaReserva(this.email, parseInt(this.cel))
-      .subscribe((res: any) => {
-        this.idCliente = res.findCliente.id_cliente;
-        console.log(this.idCliente);
-      });
+    this.service.obtenerClienteParaReserva(this.email).subscribe((res: any) => {
+      this.idCliente = res.findCliente.id_cliente;
+      console.log(this.idCliente);
+    });
   }
 
   OnDateChange(event: any) {
@@ -58,7 +61,14 @@ export class ReservaNextStepComponent implements OnInit {
     this.service
       .registroReserva(this.formRegistroReserva.value)
       .subscribe((res: any) => {
-        console.log(res);
+        if (res.msg === 'ok') {
+          Swal.fire(
+            'Registro de reserva exitosa',
+            'La reserva se ha registrado con éxito, recibirás un correo con la información de la reserva',
+            'success'
+          );
+          this.router.navigateByUrl('/home/inicio');
+        }
       });
   }
 }
