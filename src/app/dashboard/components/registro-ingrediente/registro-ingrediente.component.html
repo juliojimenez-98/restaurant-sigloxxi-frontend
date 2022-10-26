@@ -60,20 +60,21 @@
       </div>
       <div class="mb-4">
         <label
-          for="email"
-          class="mb-3 block text-base font-medium text-[#07074D]"
+          for="unidad"
+          class="w-full mb-3 block text-base font-medium text-[#07074D]"
         >
-          Unidad
+          Seleccionar Unidad
         </label>
-        <input
-          type="text"
-          min="0"
+        <select
+          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
           name="unidad"
           formControlName="unidad"
-          id="unidad"
-          placeholder="Unidad del Ingrediente"
-          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-        />
+        >
+          <option value="">Selecciona Unidad</option>
+          <option *ngFor="let unidad of unidades" [value]="unidad.id">
+            {{ unidad.nombre }}
+          </option>
+        </select>
       </div>
       <div class="mb-8">
         <label
