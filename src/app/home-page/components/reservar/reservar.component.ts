@@ -33,8 +33,7 @@ export class ReservarComponent implements OnInit {
       .registroCliente(this.formRegistroCliente.value)
       .subscribe((res: any) => {
         if (res.msg === 'ok') {
-          localStorage.setItem('cel', res.cliente.cel);
-          localStorage.setItem('email', res.cliente.email);
+          localStorage.setItem('email', res.email);
           this.nextStep = true;
         }
       });
