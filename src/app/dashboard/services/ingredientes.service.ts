@@ -24,6 +24,13 @@ export class IngredientesService {
       .pipe(map((res: any) => res.ingrediente as Ingrediente[]));
   }
 
+  obtenerIngredientePaginado(limite: number, desde: number): Observable<any> {
+    const urlGetIngredientes = `http://localhost:8080/api/ingredientes/ingredientes/${limite}/${desde}`;
+    return this.http
+      .get(urlGetIngredientes)
+      .pipe(map((res: any) => res.ingrediente as Ingrediente[]));
+  }
+
   actualizarIngrediente(
     ingrediente: Ingrediente,
     id: number
