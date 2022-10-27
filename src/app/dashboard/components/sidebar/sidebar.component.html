@@ -10,6 +10,16 @@
       />
     </div>
 
+    <div class="relative">
+      <button
+        routerLink="/admin/dashboard"
+        routerLinkActive="bg-paleta4"
+        class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg md:block hover:text-gray-900 focus:text-gray-900 hover:bg-paleta4 focus:bg-paleta4 focus:outline-none focus:shadow-outline"
+      >
+        <span class="text-white text-lg">Inicio</span>
+      </button>
+    </div>
+
     <ul class="space-y-2 tracking-wide mt-1">
       <!-- USUARIOS MENU DROPDOWN -->
       <ng-container *ngIf="esAdmin">
