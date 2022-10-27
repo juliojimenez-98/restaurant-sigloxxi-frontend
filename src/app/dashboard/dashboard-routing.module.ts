@@ -22,6 +22,7 @@ import { RegistroPlatoComponent } from './components/platos/registro-plato/regis
 import { ListaProveedoresComponent } from './components/proveedores/lista-proveedores/lista-proveedores.component';
 import { RegistroProveedorComponent } from './components/proveedores/registro-proveedor/registro-proveedor.component';
 import { ActualizarImagenComponent } from './components/platos/actualizar-imagen/actualizar-imagen.component';
+import { DetalleModalMesaComponent } from './components/detalle-modal-mesa/detalle-modal-mesa.component';
 
 const routes: Routes = [
   {
@@ -83,7 +84,12 @@ const routes: Routes = [
             children: [
               { path: 'lista-mesas', component: ListMesasComponent },
               { path: 'registrar-mesa', component: RegistroMesasComponent },
-              { path: 'ruta-scarlett', component: ModalMesaComponent },
+              { path: 'vista-mesero', component: ModalMesaComponent },
+              {
+                path: 'mesas/:id',
+                component: ModalMesaComponent,
+              },
+              {path: 'detalle-mesa', component: DetalleModalMesaComponent},
             ],
           },
           {
