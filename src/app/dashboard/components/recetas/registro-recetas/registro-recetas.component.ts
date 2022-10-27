@@ -4,6 +4,7 @@ import { Ingrediente } from 'src/app/dashboard/interfaces/ingrediente.interface'
 import { IngredientesService } from 'src/app/dashboard/services/ingredientes.service';
 import { RecetasService } from '../../../services/recetas.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro-recetas',
@@ -33,7 +34,8 @@ export class RegistroRecetasComponent implements OnInit {
   constructor(
     private service: RecetasService,
     private ingService: IngredientesService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -84,6 +86,7 @@ export class RegistroRecetasComponent implements OnInit {
         console.log(res);
         if (res.msg) {
           Swal.close();
+          this.router.navigateByUrl('/admin/proveedores/lista-proveedores');
 
           Swal.fire(
             'Receta registrada',
