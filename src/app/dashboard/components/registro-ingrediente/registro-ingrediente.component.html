@@ -71,7 +71,7 @@
           formControlName="unidad"
         >
           <option value="">Selecciona Unidad</option>
-          <option *ngFor="let unidad of unidades" [value]="unidad.id">
+          <option *ngFor="let unidad of unidades" [value]="unidad.nombre">
             {{ unidad.nombre }}
           </option>
         </select>
