@@ -67,7 +67,7 @@
         </div>
       </ng-container>
       <!-- MENU INGREDIENTES -->
-      <ng-container *ngIf="esAdmin">
+      <ng-container *ngIf="esAdmin || esCocinero">
         <div class="relative" x-data="{ open: false }">
           <button
             (click)="!openIng ? (openIng = true) : (openIng = false)"
