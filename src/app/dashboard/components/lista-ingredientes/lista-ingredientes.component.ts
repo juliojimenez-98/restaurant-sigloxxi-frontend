@@ -10,18 +10,42 @@ import Swal from 'sweetalert2';
 })
 export class ListaIngredientesComponent implements OnInit {
   ingredientes: Ingrediente[] = [];
+  limite: number = 0;
+  desde: number = 10;
+  btnActivo: boolean = false;
 
   constructor(private servicio: IngredientesService) {}
 
   ngOnInit(): void {
-    this.obtenerIngredientes();
+    this.obtenerIngredientesPaginado();
   }
 
-  obtenerIngredientes() {
-    this.servicio.obtenerIngrediente().subscribe((res) => {
-      console.log(res);
-      this.ingredientes = res;
-    });
+  obtenerIngredientesPaginado() {
+    this.servicio
+      .obtenerIngredientePaginado(this.limite, this.desde)
+      .subscribe((res) => {
+        this.ingredientes = res;
+        if (this.ingredientes.length === 0) {
+          this.btnActivo = false;
+        }
+      });
+  }
+
+  btnSiguiente(valor: number) {
+    this.limite = this.limite + valor;
+    this.obtenerIngredientesPaginado();
+    console.log(this.limite);
+  }
+  btnAnterior(valor: number) {
+    this.limite = this.limite - valor;
+    this.obtenerIngredientesPaginado();
+    console.log(this.limite);
+    if (this.limite === 0) {
+      this.btnActivo = false;
+    }
+    if (this.limite > 0) {
+      this.btnActivo = true;
+    }
   }
 
   eliminarIngrediente(id: any) {
@@ -37,7 +61,7 @@ export class ListaIngredientesComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.servicio.eliminarIngrediente(id).subscribe((res) => {
-          this.obtenerIngredientes();
+          this.obtenerIngredientesPaginado();
         });
         Swal.fire(
           'Borrado',

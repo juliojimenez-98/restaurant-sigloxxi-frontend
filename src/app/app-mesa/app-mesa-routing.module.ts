@@ -10,7 +10,7 @@ const routes: Routes = [
       {
         path: '',
         component: AppMesaPageComponent,
-        children: [{ path: 'carta', component: CartaMesaComponent }],
+        children: [{ path: 'carta/:id_mesa', component: CartaMesaComponent }],
       },
     ],
   },
