@@ -16,8 +16,8 @@ export class PlatosService {
     return this.http.post<Plato>(urlRegistroPlatos, plato);
   }
 
-  obtenerPlatos(tipo: any): Observable<any> {
-    const urlGetPlatos = `http://localhost:8080/api/platos/platos/${tipo}`;
+  obtenerPlatos(): Observable<any> {
+    const urlGetPlatos = `http://localhost:8080/api/platos/platos`;
     return this.http
       .get(urlGetPlatos)
       .pipe(map((res: any) => res.platos as Plato[]));
