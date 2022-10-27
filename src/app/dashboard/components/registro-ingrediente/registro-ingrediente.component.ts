@@ -19,7 +19,13 @@ export class RegistroIngredienteComponent implements OnInit {
     unidad: ['', [Validators.required, Validators.minLength(2)]],
     fecha_vencimiento: ['', Validators.required],
   });
-
+  unidades: any[] = [
+    { nombre: 'Unidad' },
+    { nombre: 'Kilogramo' },
+    { nombre: 'Litros' },
+    { nombre: 'Botella 1L' },
+    { nombre: 'Botella 5L' },
+  ];
   constructor(
     private fb: FormBuilder,
     private servicioIng: IngredientesService,
