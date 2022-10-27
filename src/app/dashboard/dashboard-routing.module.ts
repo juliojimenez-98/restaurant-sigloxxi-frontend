@@ -23,6 +23,8 @@ import { ListaProveedoresComponent } from './components/proveedores/lista-provee
 import { RegistroProveedorComponent } from './components/proveedores/registro-proveedor/registro-proveedor.component';
 import { ActualizarImagenComponent } from './components/platos/actualizar-imagen/actualizar-imagen.component';
 import { DetalleModalMesaComponent } from './components/detalle-modal-mesa/detalle-modal-mesa.component';
+import { ListaPedidosIngredientesComponent } from './components/lista-pedidos-ingredientes/lista-pedidos-ingredientes.component';
+import { RegistrarPedidosIngredientesComponent } from './components/registrar-pedidos-ingredientes/registrar-pedidos-ingredientes.component';
 
 const routes: Routes = [
   {
@@ -89,7 +91,7 @@ const routes: Routes = [
                 path: 'mesas/:id',
                 component: ModalMesaComponent,
               },
-              {path: 'detalle-mesa', component: DetalleModalMesaComponent},
+              { path: 'detalle-mesa', component: DetalleModalMesaComponent },
             ],
           },
           {
@@ -131,6 +133,24 @@ const routes: Routes = [
               {
                 path: 'registrar-proveedor/:id',
                 component: RegistroProveedorComponent,
+              },
+            ],
+          },
+          {
+            path: 'pedidos-ingredientes',
+            component: PlatosPageComponent,
+            children: [
+              {
+                path: 'lista',
+                component: ListaPedidosIngredientesComponent,
+              },
+              {
+                path: 'registro',
+                component: RegistrarPedidosIngredientesComponent,
+              },
+              {
+                path: 'registro',
+                component: RegistrarPedidosIngredientesComponent,
               },
             ],
           },
