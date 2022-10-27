@@ -84,7 +84,7 @@ const routes: Routes = [
             children: [
               { path: 'lista-mesas', component: ListMesasComponent },
               { path: 'registrar-mesa', component: RegistroMesasComponent },
-              { path: 'vista-garzon', component: ModalMesaComponent },
+              { path: 'vista-mesero', component: ModalMesaComponent },
               {
                 path: 'mesas/:id',
                 component: ModalMesaComponent,
