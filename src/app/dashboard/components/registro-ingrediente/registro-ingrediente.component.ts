@@ -55,6 +55,7 @@ export class RegistroIngredienteComponent implements OnInit {
               `El ingrediente ${res.ingrediente.nombre} fue registrado exitosamente`,
               'success'
             );
+            this.router.navigateByUrl('/admin/ingredientes/lista-ingredientes');
             console.log(res);
           }
         },

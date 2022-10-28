@@ -87,6 +87,7 @@ export class RegistroPlatoComponent implements OnInit {
             `El Plato fue exitosamente registrado`,
             'success'
           );
+          this.router.navigateByUrl('/admin/platos/lista-platos');
         }
       },
       (error) => {

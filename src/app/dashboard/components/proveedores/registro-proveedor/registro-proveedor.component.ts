@@ -48,6 +48,7 @@ export class RegistroProveedorComponent implements OnInit {
               `El Proveedor ${res.proveedor.nombre} fue registrado exitosamente`,
               'success'
             );
+            this.router.navigateByUrl('/admin/proveedores/lista-proveedores');
             console.log(res);
           }
         },
