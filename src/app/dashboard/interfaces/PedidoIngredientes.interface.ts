@@ -3,6 +3,7 @@ export interface PedidoIngrediente {
   fecha_despacho: string;
   cantidad: number;
   precio: number;
+  estado: number;
   id_proveedor: number;
   id_ing: number;
 }
