@@ -64,13 +64,13 @@ export class RegistroIngredienteComponent implements OnInit {
           console.log(error);
           if (error.error.errors) {
             Swal.fire(
-              'Error al registrar usuario',
+              'Error al registrar Ingrediente',
               `${error.error.errors[0].msg} `,
               'error'
             );
           } else {
             Swal.fire(
-              'Error al registrar usuario',
+              'Error al registrar Ingrediente',
               `${error.error.msg} `,
               'error'
             );
