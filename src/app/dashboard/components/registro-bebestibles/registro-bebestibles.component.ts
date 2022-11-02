@@ -10,14 +10,7 @@ import { Bebestible } from '../../interfaces/bebestible.interface';
   styleUrls: ['./registro-bebestibles.component.css']
 })
 export class RegistroBebestiblesComponent implements OnInit {
-  formRegistroBebestible: FormGroup = this.fb.group({
-    id_ing: [],
-    nombre: ['', [Validators.required]],
-    stock: ['', [Validators.required]],
-    stock_cri: ['', [Validators.required]],
-    unidad: ['', [Validators.required, Validators.minLength(2)]],
-    fecha_vencimiento: ['', Validators.required],
-  });
+;
   unidades: any[] = [
     { nombre: 'Unidad' },
     { nombre: 'Kilogramo' },
