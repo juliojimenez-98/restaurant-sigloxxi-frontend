@@ -26,6 +26,23 @@
         </div>
         <div class="mb-4">
           <label
+            for="precio"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Precio
+          </label>
+          <input
+            type="number"
+            min="0"
+            name="precio"
+            formControlName="precio"
+            id="precio"
+            placeholder="Ingresa el Precio del Bebestible"
+            class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="mb-4">
+          <label
             for="stock"
             class="mb-3 block text-base font-medium text-[#07074D]"
           >
@@ -95,12 +112,12 @@
         <div>
  <button
             (click)="registrarBebestible()"
-            *ngIf="!formRegistroBebestible.value.id_beb; else elseBLock"
+            *ngIf="!formRegistroBebestible.value.id_bebida; else elseBLock"
             type="submit"
             class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
           >
             Registrar
-          </button>-->   
+          </button> 
           <ng-template #elseBLock>
             <button
               (click)="actualizarBebestible()"

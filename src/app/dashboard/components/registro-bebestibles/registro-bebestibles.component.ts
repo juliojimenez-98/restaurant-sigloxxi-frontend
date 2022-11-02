@@ -14,8 +14,9 @@ import { HttpParams } from '@angular/common/http';
 })
 export class RegistroBebestiblesComponent implements OnInit {
   formRegistroBebestible: FormGroup = this.fb.group({
-    id_beb: [],
+    id_bebida: [],
     nombre: ['', [Validators.required]],
+    precio: ['', [Validators.required]],
     stock: ['', [Validators.required]],
     stock_cri: ['', [Validators.required]],
     unidad: ['', [Validators.required, Validators.minLength(2)]],
@@ -23,11 +24,14 @@ export class RegistroBebestiblesComponent implements OnInit {
   })
 ;
   unidades: any[] = [
-    { nombre: 'Unidad' },
-    { nombre: 'Kilogramo' },
+    { nombre: 'Onza' },
+    { nombre: 'Mililitro' },
+    { nombre: '1 Lata' },
+    { nombre: 'pack Lata(6)' },
+    { nombre: 'botella express' },
     { nombre: 'Litros' },
     { nombre: 'Botella 1L' },
-    { nombre: 'Botella 5L' },
+    { nombre: 'Botella 2L' },
   ];
   constructor( 
     private fb: FormBuilder,
@@ -84,23 +88,24 @@ export class RegistroBebestiblesComponent implements OnInit {
 obtenerBebestiblePorId() {
   this.activatedRoute.params.subscribe((params) => {
     let id = params['id'];
-    let id_beb = parseInt(id);
-    if (id_beb) {
+    let id_bebida = parseInt(id);
+    if (id_bebida) {
       this.servicioBeb
-        .obtenerBebestiblePorId(id_beb)
+        .obtenerBebestiblePorId(id_bebida)
         .subscribe((res: any) => {
           console.log(res);
 
           this.formRegistroBebestible.patchValue({
-            id_beb: res.findBebestible.id_beb,
+            id_bebida: res.findBebestible.id_bebida,
             nombre: res.findBebestible.nombre,
+            precio: res.findBebestible.precio,
             stock: res.findBebestible.stock,
             stock_cri: res.findBebestible.stock_cri,
             unidad: res.findBebestible.unidad,
             fecha_vencimiento: res.findBebestible.fecha_vencimiento,
           });
           console.log(res);
-          console.log(this.formRegistroBebestible.value.id_beb);
+          console.log(this.formRegistroBebestible.value.id_bebida);
         });
     }
   });
@@ -108,9 +113,9 @@ obtenerBebestiblePorId() {
 actualizarBebestible() {
   this.activatedRoute.params.subscribe((params) => {
     let id = params['id'];
-    let id_beb = parseInt(id);
+    let id_bebida = parseInt(id);
     this.servicioBeb
-      .actualizarBebestible(this.formRegistroBebestible.value, id_beb)
+      .actualizarBebestible(this.formRegistroBebestible.value, id_bebida)
       .subscribe((res) => {
         console.log('respuesta', res);
         Swal.fire(
