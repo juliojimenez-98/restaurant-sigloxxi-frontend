@@ -345,7 +345,7 @@
         <button
           class="bg-lime-700 border-lime-700 text-white active:bg-lime-800 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
           type="button"
-          (click)="toggleModal()"
+          (click)="registrarPedidoCliente()"
         >
           Realizar Pedido
         </button>
@@ -354,3 +354,51 @@
   </div>
 </div>
 <div *ngIf="showModalCart" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+
+<div
+  *ngIf="showModalPedido"
+  class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex"
+>
+  <div class="relative w-auto my-6 mx-auto max-w-6xl">
+    <!--content-->
+    <div
+      class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"
+    >
+      <!--header-->
+      <div
+        class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t"
+      >
+        <h3 class="text-3xl font-semibold">Resumen del pedido</h3>
+      </div>
+      <!--body-->
+      <div class="relative p-1 flex-auto">
+        <section class="antialiased text-gray-600 px-2" x-data="app">
+          <div class="flex flex-col justify-center h-full">
+            <!-- Table -->
+            <div class="w-full max-w-2xl mx-auto bg-white">
+              <div class="overflow-x-auto p-3">
+                <app-pedido-mesa
+                  [platosPedidos]="platosArrayInfo"
+                  (showModalPedido)="showModalPedido = $event"
+                ></app-pedido-mesa>
+              </div>
+
+              <div class="flex justify-end">
+                <!-- send this data to backend (note: use class 'hidden' to hide this input) -->
+                <input
+                  type="hidden"
+                  class="border border-black bg-gray-50"
+                  x-model="selected"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  *ngIf="showModalPedido"
+  class="opacity-25 fixed inset-0 z-40 bg-black"
+></div>

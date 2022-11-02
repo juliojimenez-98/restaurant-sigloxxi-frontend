@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Mesa } from '../../interfaces/mesa.interface';
+import { MesasService } from '../../services/mesas.service';
 
 @Component({
   selector: 'app-modal-mesa',
@@ -8,12 +9,21 @@ import { Mesa } from '../../interfaces/mesa.interface';
   styleUrls: ['./modal-mesa.component.css'],
 })
 export class ModalMesaComponent implements OnInit {
-  mesa: Mesa[] = [];
+  mesas: Mesa[] = [];
+  disponibilidad: Mesa[] = [];
 
-  constructor() {}
+  constructor(private service: MesasService) {}
 
-  ngOnInit(): void {}
-  detalleMesa() {
+  ngOnInit(): void {
+    this.obtenerMesas();
+  }
+  obtenerMesas() {
+    this.service.obtenerMesas().subscribe((res: any) => {
+      this.mesas = res;
+    });
+  }
+
+  detalleMesa(id: number) {
     Swal.fire({
       allowOutsideClick: false,
       icon: 'info',

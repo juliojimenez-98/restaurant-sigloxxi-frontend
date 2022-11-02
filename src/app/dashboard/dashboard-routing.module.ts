@@ -25,6 +25,9 @@ import { ActualizarImagenComponent } from './components/platos/actualizar-imagen
 import { DetalleModalMesaComponent } from './components/detalle-modal-mesa/detalle-modal-mesa.component';
 import { ListaPedidosIngredientesComponent } from './components/lista-pedidos-ingredientes/lista-pedidos-ingredientes.component';
 import { RegistrarPedidosIngredientesComponent } from './components/registrar-pedidos-ingredientes/registrar-pedidos-ingredientes.component';
+import { BebestiblesPageComponent } from './pages/bebestibles-page/bebestibles-page.component';
+import { ListaBebestiblesComponent } from './components/lista-bebestibles/lista-bebestibles.component';
+import { PedidosIngredientesComponent } from './pages/pedidos-ingredientes/pedidos-ingredientes.component';
 
 const routes: Routes = [
   {
@@ -88,10 +91,10 @@ const routes: Routes = [
               { path: 'registrar-mesa', component: RegistroMesasComponent },
               { path: 'vista-mesero', component: ModalMesaComponent },
               {
-                path: 'mesas/:id',
-                component: ModalMesaComponent,
+                path: 'detalle-mesas/:id',
+                component: DetalleModalMesaComponent,
               },
-              { path: 'detalle-mesa', component: DetalleModalMesaComponent },
+              { path: 'detalle-mesas', component: DetalleModalMesaComponent },
             ],
           },
           {
@@ -138,7 +141,7 @@ const routes: Routes = [
           },
           {
             path: 'pedidos-ingredientes',
-            component: PlatosPageComponent,
+            component: PedidosIngredientesComponent,
             children: [
               {
                 path: 'lista',
@@ -149,7 +152,25 @@ const routes: Routes = [
                 component: RegistrarPedidosIngredientesComponent,
               },
               {
+                path: 'registro/:id',
+                component: RegistrarPedidosIngredientesComponent,
+              },
+            ],
+          },
+          {
+            path: 'bebestibles',
+            component: BebestiblesPageComponent,
+            children: [
+              {
+                path: 'lista',
+                component: ListaBebestiblesComponent,
+              },
+              {
                 path: 'registro',
+                component: RegistrarPedidosIngredientesComponent,
+              },
+              {
+                path: 'registro/:id',
                 component: RegistrarPedidosIngredientesComponent,
               },
             ],

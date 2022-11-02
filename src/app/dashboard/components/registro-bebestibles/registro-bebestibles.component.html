@@ -1,0 +1,117 @@
+<div class="mt-4">
+    <h1 class="font-bold text-3xl text-gray-900 text-center">
+      Registrar Bebestibles
+    </h1>
+    <p class="text-center">Ingresa los datos</p>
+  </div>
+
+  <div class="flex items-center justify-center p-6">
+    <div class="mx-auto w-full max-w-[550px]">
+    <!-- <form autocomplete="on" [formGroup]="formRegistroBebestible">-->
+        <div class="mb-4">
+          <label
+            for="nombre"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Nombre Bebestible
+          </label>
+          <input
+            type="text"
+            name="nombre"
+            formControlName="nombre"
+            id="nombre"
+            placeholder="Nombre del Bebestible"
+            class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="mb-4">
+          <label
+            for="stock"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Stock
+          </label>
+          <input
+            type="number"
+            min="0"
+            name="stock"
+            formControlName="stock"
+            id="stock"
+            placeholder="Ingresa el Stock del Bebestible"
+            class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="mb-4">
+          <label
+            for="stock critico"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Stock Crítico
+          </label>
+          <input
+            type="number"
+            min="0"
+            name="stock critico"
+            formControlName="stock_cri"
+            id="stock critico"
+            placeholder="Ingresa el Stock Crítico del Bebestible"
+            class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="mb-4">
+          <label
+            for="unidad"
+            class="w-full mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Seleccionar Unidad
+          </label>
+          <select
+            class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            name="unidad"
+            formControlName="unidad"
+          >
+            <option value="">Selecciona Unidad</option>
+            <option *ngFor="let unidad of unidades" [value]="unidad.nombre">
+              {{ unidad.nombre }}
+            </option>
+          </select>
+        </div>
+        <div class="mb-8">
+          <label
+            for="fecha de vencimiento"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Fecha de Vencimiento
+          </label>
+          <input
+            type="text"
+            name="fecha de vencimiento"
+            formControlName="fecha_vencimiento"
+            id="fecha de vencimiento"
+            placeholder="Fecha de Vencimiento del Bebestible"
+            class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div>
+    <!--   <button
+            (click)="registrarBebestible()"
+            *ngIf="!formRegistroBebestible.value.id_beb; else elseBLock"
+            type="submit"
+            class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
+          >
+            Registrar
+          </button>-->   
+          <ng-template #elseBLock>
+            <button
+              (click)="actualizarBebestible()"
+              type="submit"
+              class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
+            >
+              ACTUALIZAR
+            </button>
+          </ng-template>
+        </div>
+     <!--</form>--> 
+    </div>
+  </div>
+  
