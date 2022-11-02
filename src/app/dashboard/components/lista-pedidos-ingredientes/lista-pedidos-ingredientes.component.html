@@ -1,1 +1,68 @@
-<p>lista-pedidos-ingredientes works!</p>
+<section class="container mx-auto p-6 font-mono">
+  <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+    <div class="w-full overflow-x-auto">
+      <table class="w-full">
+        <thead>
+          <tr
+            class="text-md font-semibold tracking-wide text-left text-gray-100 bg-paleta5 uppercase border-b border-gray-600"
+          >
+            <th class="px-4 py-3">Fecha Despacho</th>
+            <th class="px-4 py-3">Cantidad</th>
+            <th class="px-4 py-3">Precio</th>
+            <th class="px-4 py-3">Estado</th>
+            <th class="px-4 py-3">Ingrediente</th>
+            <th class="px-4 py-3">Proveedor</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr
+            *ngFor="let pedidoing of pedidoingredientes"
+            class="text-gray-700"
+          >
+            <td class="px-4 py-3 border">
+              <div class="flex items-center text-sm">
+                <div>
+                  <p class="font-semibold text-black">
+                    {{ pedidoing.fecha_despacho }}
+                  </p>
+                </div>
+              </div>
+            </td>
+            <td class="px-4 py-3 text-ms font-semibold border">
+              {{ pedidoing.cantidad }}
+            </td>
+            <td class="px-4 py-3 text-ms font-semibold border">
+              {{ pedidoing.precio }}
+            </td>
+            <td class="px-4 py-3 text-sm font-semibold border">
+              {{ pedidoing.estado }}
+            </td>
+            <td class="px-4 py-3 text-sm font-semibold border">
+              {{ pedidoing.ingrediente!.nombre }}
+            </td>
+            <td class="px-4 py-3 text-sm font-semibold border">
+              {{ pedidoing.proveedor!.nombre }}
+            </td>
+          </tr>
+          <!-- <div class="inline-flex mt-2 xs:mt-0">
+            <div class="mx-auto">
+              <button
+                *ngIf="btnActivo"
+                (click)="btnAnterior(10)"
+                class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-l"
+              >
+                Prev
+              </button>
+              <button
+                (click)="btnSiguiente(10)"
+                class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-r"
+              >
+                Next
+              </button>
+            </div>
+          </div> -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
