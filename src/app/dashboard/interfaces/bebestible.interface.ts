@@ -1,5 +1,5 @@
 export interface Bebestible {
-  id_bebida: number;
+  id_bebida?: number;
   nombre: string;
   precio: number;
   stock: number;
