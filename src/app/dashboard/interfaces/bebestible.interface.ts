@@ -3,7 +3,8 @@ export interface Bebestible {
   nombre: string;
   precio: number;
   stock: number;
-  stock_cri: number;
-  fecha_vencimiento: string;
+  stock_cri: number; 
   unidad: string;
+  fecha_vencimiento: string;
+
 }
