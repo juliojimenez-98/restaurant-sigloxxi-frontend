@@ -31,6 +31,8 @@ import { DetalleModalMesaComponent } from './components/detalle-modal-mesa/detal
 import { PedidosIngredientesComponent } from './pages/pedidos-ingredientes/pedidos-ingredientes.component';
 import { RegistrarPedidosIngredientesComponent } from './components/registrar-pedidos-ingredientes/registrar-pedidos-ingredientes.component';
 import { ListaPedidosIngredientesComponent } from './components/lista-pedidos-ingredientes/lista-pedidos-ingredientes.component';
+import { ListaBebestiblesComponent } from './components/lista-bebestibles/lista-bebestibles.component';
+import { RegistroBebestiblesComponent } from './components/registro-bebestibles/registro-bebestibles.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { ListaPedidosIngredientesComponent } from './components/lista-pedidos-in
     PedidosIngredientesComponent,
     RegistrarPedidosIngredientesComponent,
     ListaPedidosIngredientesComponent,
+    ListaBebestiblesComponent,
+    RegistroBebestiblesComponent,
   ],
   imports: [
     CommonModule,
