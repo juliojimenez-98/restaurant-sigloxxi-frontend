@@ -9,11 +9,13 @@ import { Mesa } from '../../interfaces/mesa.interface';
 })
 export class ModalMesaComponent implements OnInit {
   mesa: Mesa[] = [];
+  disponibilidad: Mesa[] = [];
+
 
   constructor() {}
 
   ngOnInit(): void {}
-  detalleMesa() {
+  detalleMesa(id: number) {
     Swal.fire({
       allowOutsideClick: false,
       icon: 'info',

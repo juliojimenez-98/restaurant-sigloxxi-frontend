@@ -26,6 +26,7 @@ import { DetalleModalMesaComponent } from './components/detalle-modal-mesa/detal
 import { ListaPedidosIngredientesComponent } from './components/lista-pedidos-ingredientes/lista-pedidos-ingredientes.component';
 import { RegistrarPedidosIngredientesComponent } from './components/registrar-pedidos-ingredientes/registrar-pedidos-ingredientes.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -87,11 +88,10 @@ const routes: Routes = [
               { path: 'lista-mesas', component: ListMesasComponent },
               { path: 'registrar-mesa', component: RegistroMesasComponent },
               { path: 'vista-mesero', component: ModalMesaComponent },
-              {
-                path: 'mesas/:id',
-                component: ModalMesaComponent,
-              },
-              { path: 'detalle-mesa', component: DetalleModalMesaComponent },
+              {path: 'detalle-mesas/:id',
+                component:DetalleModalMesaComponent },
+              {path: 'detalle-mesas',
+                component:DetalleModalMesaComponent },
             ],
           },
           {
