@@ -93,14 +93,14 @@
           />
         </div>
         <div>
-          <button
+    <!--   <button
             (click)="registrarBebestible()"
-            *ngIf="!formRegistroIngrediente.value.id_ing; else elseBLock"
+            *ngIf="!formRegistroBebestible.value.id_beb; else elseBLock"
             type="submit"
             class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
           >
             Registrar
-          </button>
+          </button>-->   
           <ng-template #elseBLock>
             <button
               (click)="actualizarBebestible()"
