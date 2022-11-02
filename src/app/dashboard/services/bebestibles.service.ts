@@ -11,7 +11,7 @@ export class BebestiblesService {
 
   registroBebestible(bebestibles: Bebestible): Observable<Bebestible> {
     const urlRegistroBebestibles =
-      'http://localhost:8080/api/bebestibles/bebestibles';
+      'http://localhost:8080/api/bebestibles/bebestible';
 
     return this.http.post<Bebestible>(urlRegistroBebestibles, bebestibles);
   }

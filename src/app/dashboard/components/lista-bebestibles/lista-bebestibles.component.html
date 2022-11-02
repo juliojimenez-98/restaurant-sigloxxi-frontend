@@ -7,6 +7,7 @@
               class="text-md font-semibold tracking-wide text-left text-gray-100 bg-paleta5 uppercase border-b border-gray-600"
             >
               <th class="px-4 py-3">Nombre</th>
+              <th class="px-4 py-3">Precio</th>
               <th class="px-4 py-3">Stock</th>
               <th class="px-4 py-3">Stock Critico</th>
               <th class="px-4 py-3">Unidad</th>
@@ -15,32 +16,35 @@
             </tr>
           </thead>
           <tbody class="bg-white">
-            <tr *ngFor="let beb of bebestibles" class="text-gray-700">
+            <tr *ngFor="let bebida of bebestibles" class="text-gray-700">
               <td class="px-4 py-3 border">
                 <div class="flex items-center text-sm">
                   <div>
-                    <p class="font-semibold text-black">{{ beb.nombre }}</p>
+                    <p class="font-semibold text-black">{{ bebida.nombre }}</p>
                   </div>
                 </div>
               </td>
               <td class="px-4 py-3 text-ms font-semibold border">
-                {{ beb.stock }}
+                {{ bebida.precio }}
               </td>
               <td class="px-4 py-3 text-ms font-semibold border">
-                {{ beb.stock_cri }}
+                {{ bebida.stock }}
+              </td>
+              <td class="px-4 py-3 text-ms font-semibold border">
+                {{ bebida.stock_cri }}
               </td>
               <td class="px-4 py-3 text-sm font-semibold border">
-                {{ beb.unidad }}
+                {{ bebida.unidad }}
               </td>
               <td class="px-4 py-3 text-sm font-semibold border">
-                {{ beb.fecha_vencimiento }}
+                {{ bebida.fecha_vencimiento }}
               </td>
               <td class="px-4 py-3 text-xs border">
                 <div class="flex item-center justify-center">
                   <div
                     [routerLink]="[
                       '/admin/bebestibles/registro-bebestibles',
-                      beb.id_bebestible
+                      bebida.id_bebida
                     ]"
                     class="w-4 mr-2 transform text-black hover:text-yellow-500 hover:scale-110"
                   >
@@ -59,7 +63,7 @@
                     </svg>
                   </div>
                   <div
-                    (click)="eliminarBebestible(beb.id_bebestible)"
+                    (click)="eliminarBebestible(bebida.id_bebida)"
                     class="w-4 mr-2 transform text-black hover:text-red-600 hover:scale-110"
                   >
                     <svg
