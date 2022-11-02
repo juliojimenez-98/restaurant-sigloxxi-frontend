@@ -86,7 +86,7 @@ export class RegistroRecetasComponent implements OnInit {
         console.log(res);
         if (res.msg) {
           Swal.close();
-          this.router.navigateByUrl('/admin/proveedores/lista-proveedores');
+          this.router.navigateByUrl('/admin/recetas/lista-recetas');
 
           Swal.fire(
             'Receta registrada',
