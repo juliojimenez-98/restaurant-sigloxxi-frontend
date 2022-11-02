@@ -19,6 +19,7 @@ export class SidebarComponent implements OnInit {
   openProveedores: Boolean = false;
   openBebestibles: Boolean = false;
   openDetalleMesas: Boolean = false;
+  openPedidoIngredientes: Boolean = false;
   menuUsuario: MenuSide[] = [
     {
       ruta: 'usuarios/registrar-usuarios',
@@ -97,6 +98,17 @@ export class SidebarComponent implements OnInit {
     {
       ruta: 'mesas/vista-mesero',
       nombre: 'Vista Mesero',
+    },
+  ];
+
+  menuPedidoIng: MenuSide[] = [
+    {
+      ruta: 'pedidos-ingredientes/registro',
+      nombre: 'Pedir ingredientes',
+    },
+    {
+      ruta: 'pedidos-ingredientes/lista',
+      nombre: 'Ver pedidos Ing.',
     },
   ];
 
