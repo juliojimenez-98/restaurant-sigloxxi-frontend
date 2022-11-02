@@ -2,7 +2,7 @@
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
       <div class="w-full overflow-x-auto">
         <table class="w-full">
- <!--          <thead>
+         <thead>
             <tr
               class="text-md font-semibold tracking-wide text-left text-gray-100 bg-paleta5 uppercase border-b border-gray-600"
             >
@@ -40,7 +40,7 @@
                   <div
                     [routerLink]="[
                       '/admin/bebestibles/registro-bebestibles',
-                      beb.id_beb
+                      beb.id_bebestible
                     ]"
                     class="w-4 mr-2 transform text-black hover:text-yellow-500 hover:scale-110"
                   >
@@ -59,7 +59,7 @@
                     </svg>
                   </div>
                   <div
-                    (click)="eliminarBebestible(beb.id_beb)"
+                    (click)="eliminarBebestible(beb.id_bebestible)"
                     class="w-4 mr-2 transform text-black hover:text-red-600 hover:scale-110"
                   >
                     <svg
@@ -101,4 +101,4 @@
       </div>
     </div>
   </section>
--->
+
