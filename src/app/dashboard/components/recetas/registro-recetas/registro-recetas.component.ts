@@ -78,7 +78,7 @@ export class RegistroRecetasComponent implements OnInit {
     Swal.fire({
       allowOutsideClick: false,
       icon: 'info',
-      text: 'Registrando Plato',
+      text: 'Registrando Receta',
       showConfirmButton: false,
     });
     this.service.registroReceta(this.formRegistroReceta.value).subscribe(
@@ -86,10 +86,10 @@ export class RegistroRecetasComponent implements OnInit {
         console.log(res);
         if (res.msg) {
           Swal.close();
-          this.router.navigateByUrl('/admin/proveedores/lista-proveedores');
+          this.router.navigateByUrl('/admin/recetas/lista-recetas');
 
           Swal.fire(
-            'Receta registrada',
+            'Receta Registrada',
             `La receta fue registrada con exito`,
             'success'
           );
