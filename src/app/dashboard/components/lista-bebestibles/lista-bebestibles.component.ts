@@ -17,34 +17,15 @@ export class ListaBebestiblesComponent implements OnInit {
   constructor(private servicio: BebestiblesService) { }
 
   ngOnInit(): void {
-    this.obtenerBebestiblesPaginado();
+    this.obtenerBebestibles()
   }
 
-  obtenerBebestiblesPaginado() {
-    this.servicio
-      .obtenerBebestiblePaginado(this.limite, this.desde)
+  obtenerBebestibles() {
+    this.servicio.obtenerBebestible()
       .subscribe((res) => {
+        console.log(res)
         this.bebestibles = res;
-        if (this.bebestibles.length === 0) {
-          this.btnActivo = false;
-        }
       });
-  }
-  btnSiguiente(valor: number) {
-    this.limite = this.limite + valor;
-    this.obtenerBebestiblesPaginado();
-    console.log(this.limite);
-  }
-  btnAnterior(valor: number) {
-    this.limite = this.limite - valor;
-    this.obtenerBebestiblesPaginado();
-    console.log(this.limite);
-    if (this.limite === 0) {
-      this.btnActivo = false;
-    }
-    if (this.limite > 0) {
-      this.btnActivo = true;
-    }
   }
 
   eliminarBebestible(id: any) {
@@ -60,7 +41,7 @@ export class ListaBebestiblesComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.servicio.eliminarBebestible(id).subscribe((res) => {
-          this.obtenerBebestiblesPaginado();
+          this.obtenerBebestibles();
         });
         Swal.fire(
           'Borrado',

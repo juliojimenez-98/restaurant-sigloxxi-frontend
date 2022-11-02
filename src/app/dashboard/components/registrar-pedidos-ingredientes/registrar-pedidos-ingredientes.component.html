@@ -13,7 +13,7 @@
           for="nombre"
           class="mb-3 block text-base font-medium text-[#07074D]"
         >
-          fecha_despacho
+          Fecha Despacho
         </label>
         <input
           type="text"
@@ -24,25 +24,101 @@
           class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
       </div>
-      <!-- <div>
-          <button
-            (click)="registrarIngrediente()"
-            *ngIf="!formRegistroIngrediente.value.id_ing; else elseBLock"
-            type="submit"
-            class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
+      <div class="mb-4">
+        <label
+          for="cantidad"
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Cantidad
+        </label>
+        <input
+          type="number"
+          min="0"
+          name="cantidad"
+          formControlName="cantidad"
+          id="cantidad"
+          placeholder="Ingresa la Cantidad del Pedido"
+          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+      </div>
+      <div class="mb-4">
+        <label
+          for="precio"
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Precio
+        </label>
+        <input
+          type="number"
+          min="0"
+          name="precio"
+          formControlName="precio"
+          id="precio"
+          placeholder="Ingresa el Precio del Pedido"
+          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+      </div>
+      <div class="mb-4">
+        <label
+          for="id_ing"
+          class="w-full mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Seleccionar Ingrediente
+        </label>
+        <select
+          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          name="id_ing"
+          formControlName="id_ing"
+        >
+          <option value="">Selecciona Ingrediente</option>
+          <option
+            *ngFor="let ingrediente of ingredientes"
+            [value]="ingrediente.id_ing"
           >
-            Registrar
-          </button>
-          <ng-template #elseBLock>
-            <button
+            {{ ingrediente.nombre }}
+          </option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label
+          for="id_proveedor"
+          class="w-full mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Seleccionar Proveedor
+        </label>
+        <select
+          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          name="id_proveedor"
+          formControlName="id_proveedor"
+        >
+          <option value="">Selecciona Proveedor</option>
+          <option
+            *ngFor="let proveedor of proveedores"
+            [value]="proveedor.id_proveedor"
+          >
+            {{ proveedor.nombre }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <button
+          (click)="registrarPedidoIng()"
+          *ngIf="!formRegistroPedidoIng.value.id_pedido; else elseBLock"
+          type="submit"
+          class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
+        >
+          Registrar
+        </button>
+        <ng-template #elseBLock>
+          <!-- <button
               (click)="actualizarIngrediente()"
               type="submit"
               class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
             >
               ACTUALIZAR
-            </button>
-          </ng-template>
-        </div> -->
+            </button> -->
+        </ng-template>
+      </div>
     </form>
   </div>
 </div>

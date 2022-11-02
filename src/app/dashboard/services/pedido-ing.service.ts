@@ -12,15 +12,16 @@ export class PedidoIngService {
   registroPedidoIng(
     pedidoingrediente: PedidoIngrediente
   ): Observable<PedidoIngrediente> {
-    const urlRegistroPedidoIng = 'http://localhost:8080/api/';
+    const urlRegistroPedidoIng =
+      'http://localhost:8080/api/pedido-ingredientes/pedido-ingrediente';
 
     return this.http.post<PedidoIngrediente>(
       urlRegistroPedidoIng,
       pedidoingrediente
     );
   }
-  obtenerPedidoIngPorId(id: any): Observable<any> {
-    const urlGetPedidoIng = `http://localhost:8080/api/${id}`;
-    return this.http.get<any>(urlGetPedidoIng);
-  }
+  // obtenerPedidoIngPorId(id: any): Observable<any> {
+  //   const urlGetPedidoIng = `http://localhost:8080/api/pedidos-ingredientes/pedido-ingrediente${id}`;
+  //   return this.http.get<any>(urlGetPedidoIng);
+  // }
 }

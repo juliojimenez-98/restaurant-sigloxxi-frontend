@@ -4,6 +4,10 @@ import Swal from 'sweetalert2';
 import { PedidoIngService } from '../../services/pedido-ing.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpParams } from '@angular/common/http';
+import { ProveedoresService } from '../../services/proveedores.service';
+import { IngredientesService } from '../../services/ingredientes.service';
+import { Proveedor } from '../../interfaces/proveedor.interface';
+import { Ingrediente } from '../../interfaces/ingrediente.interface';
 
 @Component({
   selector: 'app-registrar-pedidos-ingredientes',
@@ -11,22 +15,30 @@ import { HttpParams } from '@angular/common/http';
   styleUrls: ['./registrar-pedidos-ingredientes.component.css'],
 })
 export class RegistrarPedidosIngredientesComponent implements OnInit {
+  proveedores: Proveedor[] = [];
+  ingredientes: Ingrediente[] = [];
   formRegistroPedidoIng: FormGroup = this.fb.group({
     id_pedido: [],
     fecha_despacho: ['', [Validators.required]],
     cantidad: ['', [Validators.required]],
     precio: ['', [Validators.required]],
-    estado: ['', [Validators.required]],
+    id_proveedor: ['', [Validators.required]],
+    id_ing: ['', [Validators.required]],
   });
 
   constructor(
     private fb: FormBuilder,
     private servicioPedido: PedidoIngService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private servicioProveedor: ProveedoresService,
+    private servicioIngrediente: IngredientesService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.obtenerProveedores();
+    this.obtenerIngredientes();
+  }
 
   registrarPedidoIng() {
     Swal.fire({
@@ -46,7 +58,7 @@ export class RegistrarPedidosIngredientesComponent implements OnInit {
               `El Pedido de Ingrediente fue registrado exitosamente`,
               'success'
             );
-            this.router.navigateByUrl('/admin/');
+            this.router.navigateByUrl('/admin/pedidos-ingredientes/lista');
             console.log(res);
           }
         },
@@ -70,26 +82,38 @@ export class RegistrarPedidosIngredientesComponent implements OnInit {
       );
   }
 
+  obtenerProveedores() {
+    this.servicioProveedor.obtenerProveedores().subscribe((res) => {
+      this.proveedores = res;
+    });
+  }
+
+  obtenerIngredientes() {
+    this.servicioIngrediente.obtenerIngrediente().subscribe((res) => {
+      this.ingredientes = res;
+    });
+  }
+
   // obtenerPedidoIngPorId() {
   //   this.activatedRoute.params.subscribe((params) => {
   //     let id = params['id'];
-  //     let id_ing = parseInt(id);
-  //     if (id_ing) {
+  //     let id_pedido = parseInt(id);
+  //     if (id_pedido) {
   //       this.servicioPedido
   //         .obtenerPedidoIngPorId(id_pedido)
   //         .subscribe((res: any) => {
   //           console.log(res);
 
   //           this.formRegistroPedidoIng.patchValue({
-  //             id_pedido: res.findIngrediente.id_ing,
-  //             nombre: res.findIngrediente.nombre,
-  //             stock: res.findIngrediente.stock,
-  //             stock_cri: res.findIngrediente.stock_cri,
-  //             unidad: res.findIngrediente.unidad,
-  //             fecha_vencimiento: res.findIngrediente.fecha_vencimiento,
+  //             // id_pedido: res.findIngrediente.id_ing,
+  //             // nombre: res.findIngrediente.nombre,
+  //             // stock: res.findIngrediente.stock,
+  //             // stock_cri: res.findIngrediente.stock_cri,
+  //             // unidad: res.findIngrediente.unidad,
+  //             // fecha_vencimiento: res.findIngrediente.fecha_vencimiento,
   //           });
   //           console.log(res);
-  //           console.log(this.formRegistroIngrediente.value.id_ing);
+  //           console.log(this.formRegistroPedidoIng.value.id_pedido);
   //         });
   //     }
   //   });
