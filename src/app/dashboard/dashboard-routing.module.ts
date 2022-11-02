@@ -27,6 +27,7 @@ import { ListaPedidosIngredientesComponent } from './components/lista-pedidos-in
 import { RegistrarPedidosIngredientesComponent } from './components/registrar-pedidos-ingredientes/registrar-pedidos-ingredientes.component';
 import { BebestiblesPageComponent } from './pages/bebestibles-page/bebestibles-page.component';
 import { ListaBebestiblesComponent } from './components/lista-bebestibles/lista-bebestibles.component';
+import { PedidosIngredientesComponent } from './pages/pedidos-ingredientes/pedidos-ingredientes.component';
 
 const routes: Routes = [
   {
@@ -140,7 +141,7 @@ const routes: Routes = [
           },
           {
             path: 'pedidos-ingredientes',
-            component: PlatosPageComponent,
+            component: PedidosIngredientesComponent,
             children: [
               {
                 path: 'lista',
