@@ -20,7 +20,7 @@ export class BebestiblesService {
       'http://localhost:8080/api/bebestibles/bebestibles';
     return this.http
       .get(urlGetBebestibles)
-      .pipe(map((res: any) => res.Bebestible as Bebestible[]));
+      .pipe(map((res: any) => res.bebestibles as Bebestible[]));
   }
   obtenerBebestiblePaginado(limite: number, desde: number): Observable<any> {
     const urlGetBebestibles = `http://localhost:8080/api/bebestibles/bebestibles/${limite}/${desde}`;
@@ -32,17 +32,17 @@ export class BebestiblesService {
     bebestible: Bebestible,
     id: number
   ): Observable<Bebestible> {
-    const urlActualizarBebestible = `http://localhost:8080/api/bebestibles/bebestibles/${id}`;
+    const urlActualizarBebestible = `http://localhost:8080/api/bebestibles/bebestible/${id}`;
 
     return this.http.put<Bebestible>(urlActualizarBebestible, bebestible);
   }
   obtenerBebestiblePorId(id: any): Observable<any> {
-    const urlGetBebestible = `http://localhost:8080/api/bebestibles/bebestibles/${id}`;
+    const urlGetBebestible = `http://localhost:8080/api/bebestibles/bebestible/${id}`;
     return this.http.get<any>(urlGetBebestible);
   }
 
   eliminarBebestible(id: number): Observable<any> {
-    const urlBorrarBebestible = `http://localhost:8080/api/bebestibles/bebestibles/${id}`;
+    const urlBorrarBebestible = `http://localhost:8080/api/bebestibles/bebestible/${id}`;
     return this.http.delete<any>(urlBorrarBebestible);
   }
 

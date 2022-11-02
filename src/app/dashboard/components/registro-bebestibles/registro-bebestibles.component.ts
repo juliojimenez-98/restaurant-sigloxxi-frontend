@@ -42,6 +42,7 @@ export class RegistroBebestiblesComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerBebestiblePorId();
+
   }
   registrarBebestible() {
     Swal.fire({
@@ -54,14 +55,15 @@ export class RegistroBebestiblesComponent implements OnInit {
     .registroBebestible(this.formRegistroBebestible.value)
     .subscribe(
       (res: any) => {
+        console.log(res)
         Swal.close();
         if (res.msg === 'ok') {
           Swal.fire(
             'Bebestible Registrado',
-            `El bebestible ${res.bebestible.nombre} fue registrado exitosamente`,
+            `El bebestible ${res.bebestibles.nombre} fue registrado exitosamente`,
             'success'
           );
-          this.router.navigateByUrl('/admin/bebestibles/lista-bebestibles');
+          this.router.navigateByUrl('/admin/bebestibles/lista');
           console.log(res);
         }
       },
@@ -96,13 +98,13 @@ obtenerBebestiblePorId() {
           console.log(res);
 
           this.formRegistroBebestible.patchValue({
-            id_bebida: res.findBebestible.id_bebida,
-            nombre: res.findBebestible.nombre,
-            precio: res.findBebestible.precio,
-            stock: res.findBebestible.stock,
-            stock_cri: res.findBebestible.stock_cri,
-            unidad: res.findBebestible.unidad,
-            fecha_vencimiento: res.findBebestible.fecha_vencimiento,
+            id_bebida: res.bebestible.id_bebida,
+            nombre: res.bebestible.nombre,
+            precio: res.bebestible.precio,
+            stock: res.bebestible.stock,
+            stock_cri: res.bebestible.stock_cri,
+            unidad: res.bebestible.unidad,
+            fecha_vencimiento: res.bebestible.fecha_vencimiento,
           });
           console.log(res);
           console.log(this.formRegistroBebestible.value.id_bebida);
@@ -123,7 +125,7 @@ actualizarBebestible() {
           `Bebestible actualizado con exito`,
           'success'
         );
-        this.router.navigateByUrl('/admin/bebestibles/lista-bebestibles');
+        this.router.navigateByUrl('/admin/bebestibles/lista');
       });
   });
 }
