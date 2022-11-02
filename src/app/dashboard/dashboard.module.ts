@@ -27,6 +27,10 @@ import { ProveedoresPageComponent } from './pages/proveedores-page/proveedores-p
 import { ListaProveedoresComponent } from './components/proveedores/lista-proveedores/lista-proveedores.component';
 import { RegistroProveedorComponent } from './components/proveedores/registro-proveedor/registro-proveedor.component';
 import { ActualizarImagenComponent } from './components/platos/actualizar-imagen/actualizar-imagen.component';
+import { DetalleModalMesaComponent } from './components/detalle-modal-mesa/detalle-modal-mesa.component';
+import { PedidosIngredientesComponent } from './pages/pedidos-ingredientes/pedidos-ingredientes.component';
+import { RegistrarPedidosIngredientesComponent } from './components/registrar-pedidos-ingredientes/registrar-pedidos-ingredientes.component';
+import { ListaPedidosIngredientesComponent } from './components/lista-pedidos-ingredientes/lista-pedidos-ingredientes.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +58,10 @@ import { ActualizarImagenComponent } from './components/platos/actualizar-imagen
     ListaProveedoresComponent,
     RegistroProveedorComponent,
     ActualizarImagenComponent,
+    DetalleModalMesaComponent,
+    PedidosIngredientesComponent,
+    RegistrarPedidosIngredientesComponent,
+    ListaPedidosIngredientesComponent,
   ],
   imports: [
     CommonModule,

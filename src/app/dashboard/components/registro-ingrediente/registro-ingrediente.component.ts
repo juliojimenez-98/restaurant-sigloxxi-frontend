@@ -20,11 +20,11 @@ export class RegistroIngredienteComponent implements OnInit {
     fecha_vencimiento: ['', Validators.required],
   });
   unidades: any[] = [
-    { id: 1, nombre: 'Unidad' },
-    { id: 2, nombre: 'Kilogramo' },
-    { id: 3, nombre: 'Litros' },
-    { id: 4, nombre: 'Botella 1L' },
-    { id: 5, nombre: 'Botella 5L' },
+    { nombre: 'Unidad' },
+    { nombre: 'Kilogramo' },
+    { nombre: 'Litros' },
+    { nombre: 'Botella 1L' },
+    { nombre: 'Botella 5L' },
   ];
   constructor(
     private fb: FormBuilder,
@@ -55,6 +55,7 @@ export class RegistroIngredienteComponent implements OnInit {
               `El ingrediente ${res.ingrediente.nombre} fue registrado exitosamente`,
               'success'
             );
+            this.router.navigateByUrl('/admin/ingredientes/lista-ingredientes');
             console.log(res);
           }
         },
@@ -63,13 +64,13 @@ export class RegistroIngredienteComponent implements OnInit {
           console.log(error);
           if (error.error.errors) {
             Swal.fire(
-              'Error al registrar usuario',
+              'Error al registrar Ingrediente',
               `${error.error.errors[0].msg} `,
               'error'
             );
           } else {
             Swal.fire(
-              'Error al registrar usuario',
+              'Error al registrar Ingrediente',
               `${error.error.msg} `,
               'error'
             );
