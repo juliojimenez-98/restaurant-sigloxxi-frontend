@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppMesaPageComponent } from './pages/app-mesa-page/app-mesa-page.component';
 import { CartaMesaComponent } from './components/carta-mesa/carta-mesa.component';
-import { PedidoMesaComponent } from './components/pedido-mesa/pedido-mesa.component';
+import { PagarPedidoComponent } from './components/pagar-pedido/pagar-pedido.component';
 
 const routes: Routes = [
   {
@@ -14,8 +14,8 @@ const routes: Routes = [
         children: [
           { path: 'carta/:id_mesa', component: CartaMesaComponent },
           {
-            path: 'pedido/:id_mesa',
-            component: PedidoMesaComponent,
+            path: 'pedido/:id_mesa/:id_pedido',
+            component: PagarPedidoComponent,
           },
         ],
       },

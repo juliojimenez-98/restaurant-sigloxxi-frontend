@@ -35,6 +35,10 @@ export class PedidoMesaComponent implements OnInit {
     console.log(this.showModalPedido);
   }
 
+  pagarButton() {
+    this.showModalPedido.emit(false);
+  }
+
   obtenerPedidoMesa() {
     this.activatedRoute.params.subscribe((params) => {
       let id = params['id_mesa'];
