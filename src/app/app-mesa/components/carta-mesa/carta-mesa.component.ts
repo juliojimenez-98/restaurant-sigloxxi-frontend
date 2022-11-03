@@ -51,6 +51,13 @@ export class CartaMesaComponent implements OnInit {
     });
   }
 
+  obtenerBebest() {
+    this.servicio.obtenerPlatos().subscribe((res) => {
+      console.log(res);
+      this.platos = res;
+    });
+  }
+
   agregarAlPedido(id: any) {
     this.platosArray.push(id);
     console.log(this.platosArray);
@@ -91,7 +98,7 @@ export class CartaMesaComponent implements OnInit {
             this.showModalCart = false;
             Swal.fire(
               'Pedido ingresado',
-              'Su pedido ya fue ingresado a la cocina, pronto se sirivirá en su mesa',
+              'Su pedido ya fue ingresado a la cocina, pronto se servirá en su mesa',
               'success'
             );
             localStorage.setItem(

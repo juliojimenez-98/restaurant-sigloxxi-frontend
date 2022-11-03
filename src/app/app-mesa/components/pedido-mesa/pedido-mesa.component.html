@@ -36,9 +36,17 @@
   <div class="flex flex-col">
     <button
       (click)="agregarAlPedido()"
-      class="h-10 px-5 m-2 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg hover:bg-indigo-800 text-lg"
+      class="h-10 px-5 m-2 uppercase text-indigo-100 transition-colors duration-150 bg-paleta4 rounded-lg hover:bg-paleta5 text-lg"
     >
       Agregar más platos al pedido
+    </button>
+  </div>
+  <div class="flex flex-col">
+    <button
+      (click)="pagarButton()"
+      class="h-10 px-5 uppercase -mt-2 m-2 text-indigo-100 transition-colors duration-150 bg-lime-700 rounded-lg hover:bg-lime-800 text-lg"
+    >
+      Cerrar Pedido Y Pagar
     </button>
   </div>
 </div>
