@@ -20,6 +20,7 @@ export class SidebarComponent implements OnInit {
   openBebestibles: Boolean = false;
   openDetalleMesas: Boolean = false;
   openPedidoIngredientes: Boolean = false;
+  openRecibos: Boolean = false;
   menuUsuario: MenuSide[] = [
     {
       ruta: 'usuarios/registrar-usuarios',
