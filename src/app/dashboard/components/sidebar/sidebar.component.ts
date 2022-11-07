@@ -112,6 +112,17 @@ export class SidebarComponent implements OnInit {
     },
   ];
 
+  menuRecibo: MenuSide[] = [
+    {
+      ruta: 'recibos-pedidos/registro',
+      nombre: 'Registrar recibo',
+    },
+    {
+      ruta: 'recibos-pedidos/lista',
+      nombre: 'Listar recibos',
+    },
+  ];
+
   esAdmin: boolean = false;
   esMesero: boolean = false;
   esCocinero: boolean = false;

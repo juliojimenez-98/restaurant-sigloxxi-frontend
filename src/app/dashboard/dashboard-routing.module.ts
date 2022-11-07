@@ -29,6 +29,9 @@ import { BebestiblesPageComponent } from './pages/bebestibles-page/bebestibles-p
 import { ListaBebestiblesComponent } from './components/lista-bebestibles/lista-bebestibles.component';
 import { RegistroBebestiblesComponent } from './components/registro-bebestibles/registro-bebestibles.component';
 import { PedidosIngredientesComponent } from './pages/pedidos-ingredientes/pedidos-ingredientes.component';
+import { ReciboPedidosPageComponent } from './pages/recibo-pedidos-page/recibo-pedidos-page.component';
+import { ListaComponent } from './components/reciboPedidos/lista/lista.component';
+import { RegistroComponent } from './components/reciboPedidos/registro/registro.component';
 
 const routes: Routes = [
   {
@@ -175,6 +178,20 @@ const routes: Routes = [
                 component: RegistroBebestiblesComponent ,
               },
               
+            ],
+          },
+          {
+            path: 'recibos-pedidos',
+            component: ReciboPedidosPageComponent,
+            children: [
+              {
+                path: 'lista',
+                component: ListaComponent,
+              },
+              {
+                path: 'registro',
+                component: RegistroComponent,
+              },
             ],
           },
         ],
