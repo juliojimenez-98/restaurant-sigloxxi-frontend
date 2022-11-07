@@ -34,6 +34,9 @@ import { ListaPedidosIngredientesComponent } from './components/lista-pedidos-in
 import { ListaBebestiblesComponent } from './components/lista-bebestibles/lista-bebestibles.component';
 import { RegistroBebestiblesComponent } from './components/registro-bebestibles/registro-bebestibles.component';
 import { BebestiblesPageComponent } from './pages/bebestibles-page/bebestibles-page.component';
+import { ReciboPedidosPageComponent } from './pages/recibo-pedidos-page/recibo-pedidos-page.component';
+import { ListaComponent } from './components/reciboPedidos/lista/lista.component';
+import { RegistroComponent } from './components/reciboPedidos/registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +71,9 @@ import { BebestiblesPageComponent } from './pages/bebestibles-page/bebestibles-p
     ListaBebestiblesComponent,
     RegistroBebestiblesComponent,
     BebestiblesPageComponent,
+    ReciboPedidosPageComponent,
+    ListaComponent,
+    RegistroComponent,
   ],
   imports: [
     CommonModule,
