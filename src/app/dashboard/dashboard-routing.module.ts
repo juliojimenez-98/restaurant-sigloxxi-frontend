@@ -171,13 +171,12 @@ const routes: Routes = [
               },
               {
                 path: 'registro',
-                component: RegistroBebestiblesComponent ,
+                component: RegistroBebestiblesComponent,
               },
               {
                 path: 'registro/:id',
-                component: RegistroBebestiblesComponent ,
+                component: RegistroBebestiblesComponent,
               },
-              
             ],
           },
           {
@@ -189,7 +188,7 @@ const routes: Routes = [
                 component: ListaComponent,
               },
               {
-                path: 'registro',
+                path: 'registro/:id',
                 component: RegistroComponent,
               },
             ],
