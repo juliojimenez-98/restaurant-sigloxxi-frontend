@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Cliente } from '../interfaces/cliente.interfece';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Reserva } from '../interfaces/reserva.interface';
 
 @Injectable({
@@ -26,4 +26,25 @@ export class ReservarService {
     const urlGetClienteReserva = `http://localhost:8080/api/clientes/cliente/${email}`;
     return this.http.get<any>(urlGetClienteReserva);
   }
+
+  getReservasPorEmail(email: string) {
+    const urlGetReserva = `http://localhost:8080/api/reserva/reserva/${email}`;
+    return this.http
+      .get(urlGetReserva)
+      .pipe(map((res: any) => res.reservas as Reserva[]));
+  }
+
+  // cancelarReserva(id: number, estado: number) {
+  //   return this.http.put<CancelarReservaResponse>(
+  //     `http://localhost:8080/api/reserva/cancelar/${id}`,
+  //     { estado }
+  //   );
+  // }
+
+  // confirmarReserva(id: number, estado: number) {
+  //   return this.http.put<CancelarReservaResponse>(
+  //     `http://localhost:8080/api/reserva/confirmar/${id}`,
+  //     { estado }
+  //   );
+  // }
 }

@@ -18,6 +18,8 @@ export class ReservarComponent implements OnInit {
   nextStep: boolean = false;
   minDate: Date;
   maxDate: Date;
+  openTab = 1;
+
   constructor(private fb: FormBuilder, private service: ReservarService) {
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(currentYear - 20, 0, 1);
@@ -26,6 +28,9 @@ export class ReservarComponent implements OnInit {
 
   ngOnInit(): void {
     localStorage.clear();
+  }
+  toggleTabs($tabNumber: number) {
+    this.openTab = $tabNumber;
   }
 
   registrarCliente() {

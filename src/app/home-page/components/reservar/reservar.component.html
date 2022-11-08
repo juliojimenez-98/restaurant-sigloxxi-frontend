@@ -1,93 +1,140 @@
-<ng-container *ngIf="!nextStep">
-  <main class="flex mt-8 flex-col justify-center bg-white p-16">
-    <h1 class="text-3xl mx-auto mt-14 font-bold text-gray-800">
-      Reserva una mesa con nosotros
-    </h1>
-    <p class="mb-8 mx-auto font-semibold text-gray-800">Ingresa tus datos</p>
+<div class="flex flex-wrap mt-20 p-14">
+  <div class="w-full">
+    <ul class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row">
+      <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+        <a
+          class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal"
+          (click)="toggleTabs(1)"
+          [ngClass]="{
+            'text-paleta4 bg-white hover:bg-paleta4 cursor-pointer hover:text-white':
+              openTab !== 1,
+            'text-white bg-paleta4': openTab === 1
+          }"
+        >
+          Reservar
+        </a>
+      </li>
+      <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+        <a
+          class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal"
+          (click)="toggleTabs(2)"
+          [ngClass]="{
+            'text-paleta4 bg-white hover:bg-paleta4 cursor-pointer hover:text-white':
+              openTab !== 2,
+            'text-white bg-paleta4 ': openTab === 2
+          }"
+        >
+          Mis Reservas
+        </a>
+      </li>
+    </ul>
+    <div
+      class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
+    >
+      <div class="px-4 py-2 flex-auto">
+        <div class="tab-content tab-space">
+          <div [ngClass]="{ hidden: openTab !== 1, block: openTab === 1 }">
+            <ng-container *ngIf="!nextStep">
+              <main class="flex mt-2 flex-col justify-center bg-white p-6">
+                <h1 class="text-3xl mx-auto mt-4 font-bold text-gray-800">
+                  Reserva una mesa con nosotros
+                </h1>
+                <p class="mb-8 mx-auto font-semibold text-gray-800">
+                  Ingresa tus datos
+                </p>
 
-    <div class="flex items-center justify-center p-6">
-      <div class="mx-auto w-full max-w-[550px]">
-        <form [formGroup]="formRegistroCliente">
-          <div class="mb-4">
-            <label
-              for="nombre"
-              class="mb-3 block text-base font-medium text-[#07074D]"
-            >
-              Nombre
-            </label>
-            <input
-              type="text"
-              name="nombre"
-              formControlName="nombre"
-              id="nombre"
-              placeholder="Ingresa tu nombre"
-              class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-            />
-          </div>
-          <div class="mb-4">
-            <label
-              for="appa"
-              class="mb-3 block text-base font-medium text-[#07074D]"
-            >
-              Apellido
-            </label>
-            <input
-              type="text"
-              formControlName="appa"
-              name="appa"
-              id="appa"
-              placeholder="Ingresa tu apellido"
-              class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-            />
-          </div>
+                <div class="flex items-center justify-center p-6">
+                  <div class="mx-auto w-full max-w-[550px]">
+                    <form [formGroup]="formRegistroCliente">
+                      <div class="mb-4">
+                        <label
+                          for="nombre"
+                          class="mb-3 block text-base font-medium text-[#07074D]"
+                        >
+                          Nombre
+                        </label>
+                        <input
+                          type="text"
+                          name="nombre"
+                          formControlName="nombre"
+                          id="nombre"
+                          placeholder="Ingresa tu nombre"
+                          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        />
+                      </div>
+                      <div class="mb-4">
+                        <label
+                          for="appa"
+                          class="mb-3 block text-base font-medium text-[#07074D]"
+                        >
+                          Apellido
+                        </label>
+                        <input
+                          type="text"
+                          formControlName="appa"
+                          name="appa"
+                          id="appa"
+                          placeholder="Ingresa tu apellido"
+                          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        />
+                      </div>
 
-          <div class="mb-4">
-            <label
-              for="email"
-              class="mb-3 block text-base font-medium text-[#07074D]"
-              >Correo</label
-            >
-            <input
-              formControlName="email"
-              type="email"
-              name="email"
-              id="email"
-              placeholder="example@example.com"
-              class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-            />
-          </div>
+                      <div class="mb-4">
+                        <label
+                          for="email"
+                          class="mb-3 block text-base font-medium text-[#07074D]"
+                          >Correo</label
+                        >
+                        <input
+                          formControlName="email"
+                          type="email"
+                          name="email"
+                          id="email"
+                          placeholder="example@example.com"
+                          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        />
+                      </div>
 
-          <div class="mb-4">
-            <label
-              for="email"
-              class="mb-3 block text-base font-medium text-[#07074D]"
-              >Telefono</label
-            >
-            <input
-              type="number"
-              min="0"
-              formControlName="cel"
-              name="cel"
-              id="email"
-              placeholder="41896214"
-              class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-            />
-          </div>
+                      <div class="mb-4">
+                        <label
+                          for="email"
+                          class="mb-3 block text-base font-medium text-[#07074D]"
+                          >Telefono</label
+                        >
+                        <input
+                          type="number"
+                          min="0"
+                          formControlName="cel"
+                          name="cel"
+                          id="email"
+                          placeholder="41896214"
+                          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        />
+                      </div>
 
-          <div class="mt-4">
-            <button
-              (click)="registrarCliente()"
-              class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
-            >
-              Siguiente
-            </button>
+                      <div class="mt-4">
+                        <button
+                          (click)="registrarCliente()"
+                          class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
+                        >
+                          Siguiente
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </main>
+            </ng-container>
+
+            <ng-container class="min-h-screen" *ngIf="nextStep">
+              <app-reserva-next-step></app-reserva-next-step>
+            </ng-container>
           </div>
-        </form>
+          <div [ngClass]="{ hidden: openTab !== 2, block: openTab === 2 }">
+            <app-mis-reservas></app-mis-reservas>
+          </div>
+        </div>
       </div>
     </div>
-  </main>
-</ng-container>
-
-<ng-container class="min-h-screen" *ngIf="nextStep">
-  <app-reserva-next-step></app-reserva-next-step>
-</ng-container>
+  </div>
+</div>
