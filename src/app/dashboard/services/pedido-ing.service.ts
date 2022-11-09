@@ -28,8 +28,8 @@ export class PedidoIngService {
       .pipe(map((res: any) => res.pedidosIngredientes as PedidoIngrediente[]));
   }
 
-  // obtenerPedidoIngPorId(id: any): Observable<any> {
-  //   const urlGetPedidoIng = `http://localhost:8080/api/pedidos-ingredientes/pedido-ingrediente${id}`;
-  //   return this.http.get<any>(urlGetPedidoIng);
-  // }
+  obtenerPedidoIngPorId(id: any): Observable<any> {
+    const urlGetPedidoIng = `http://localhost:8080/api/pedido-ingredientes/${id}`;
+    return this.http.get<any>(urlGetPedidoIng);
+  }
 }
