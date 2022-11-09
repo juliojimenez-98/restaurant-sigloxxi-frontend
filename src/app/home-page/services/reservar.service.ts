@@ -38,8 +38,6 @@ export class ReservarService {
     return this.http.put<any>(
       `http://localhost:8080/api/reserva/cancelar/${id}`,
       { estado }
-      console.log(this.cancelarReserva);
-      
     );
   }
 
