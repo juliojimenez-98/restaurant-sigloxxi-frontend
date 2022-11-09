@@ -15,6 +15,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { ReservaNextStepComponent } from './components/reserva-next-step/reserva-next-step.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MisReservasComponent } from './components/mis-reservas/mis-reservas.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CartaComponent,
     ContactoComponent,
     ReservaNextStepComponent,
+    MisReservasComponent,
   ],
   imports: [
     CommonModule,
