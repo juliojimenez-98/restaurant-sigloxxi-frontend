@@ -133,7 +133,7 @@
           min="0"
           name="cantidad"
           id="cantidad"
-          placeholder="Ingresa la Cantidad del Pedido"
+          placeholder="Ingresa la cantidad que se recibió"
           class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
       </div>
@@ -148,11 +148,28 @@
           class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
           name="id_receta"
         >
-          <option value="">Selecciona Receta del Plato</option>
+          <option value="">Selecciona Estado del recibo</option>
           <option *ngFor="let estado of estadosRecibo" [value]="estado.id">
             {{ estado.nombre }}
           </option>
         </select>
+      </div>
+
+      <div class="mb-8">
+        <label
+          for="prep"
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Preparación
+        </label>
+        <textarea
+          rows="4"
+          formControlName="prep"
+          name="prep"
+          id="prep"
+          placeholder="Ingresa aquí la preparación de la receta."
+          class="w-full resize-none rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        ></textarea>
       </div>
 
       <div>
