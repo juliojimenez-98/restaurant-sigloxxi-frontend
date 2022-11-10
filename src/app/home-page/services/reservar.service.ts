@@ -41,10 +41,10 @@ export class ReservarService {
     );
   }
 
-  // confirmarReserva(id: number, estado: number) {
-  //   return this.http.put<CancelarReservaResponse>(
-  //     `http://localhost:8080/api/reserva/confirmar/${id}`,
-  //     { estado }
-  //   );
-  // }
+  confirmarReserva(id: number, estado: number) {
+    return this.http.put<any>(
+      `http://localhost:8080/api/reserva/confirmar/${id}`,
+      { estado }
+    );
+  }
 }

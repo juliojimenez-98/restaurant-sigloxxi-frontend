@@ -6,4 +6,5 @@ export interface Reserva {
   estado: number;
   cant_personas: number;
   cliente?: Cliente;
+  id_reserva?: number;
 }

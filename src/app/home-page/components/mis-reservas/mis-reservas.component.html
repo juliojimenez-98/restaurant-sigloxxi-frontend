@@ -144,11 +144,13 @@
       </div>
       <div class="flex space-x-4 bg-white py-4 text-center">
         <button
+          (click)="cancelar(reserva.id_reserva!)"
           class="w-1/2 inline-block rounded-md bg-red-500 px-10 py-2 font-semibold text-red-100 shadow-md duration-75 hover:bg-red-400"
         >
           Cancelar
         </button>
         <button
+          (click)="confirmar(reserva.id_reserva!)"
           class="w-1/2 inline-block rounded-md bg-green-500 px-6 py-2 font-semibold text-green-100 shadow-md duration-75 hover:bg-green-400"
         >
           Confirmar
