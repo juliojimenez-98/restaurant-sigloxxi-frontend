@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProveedoresService } from '../../../services/proveedores.service';
 import { Proveedor } from '../../../interfaces/proveedor.interface';
 import Swal from 'sweetalert2';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-lista-proveedores',
@@ -10,8 +11,11 @@ import Swal from 'sweetalert2';
 })
 export class ListaProveedoresComponent implements OnInit {
   proveedores: Proveedor[] = [];
+  formProveedores: FormGroup = this.fb.group({
+    nombre: ['', [Validators.required]],
+  });
 
-  constructor(private servicio: ProveedoresService) {}
+  constructor(private servicio: ProveedoresService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.obtenerProveedores();
@@ -46,5 +50,15 @@ export class ListaProveedoresComponent implements OnInit {
         );
       }
     });
+  }
+
+  obtenerProveedoresBuscar() {
+    console.log(this.formProveedores.value.nombre);
+    this.servicio
+      .getProveedoresBuscar(this.formProveedores.value.nombre)
+      .subscribe((res) => {
+        console.log(res);
+        this.proveedores = res;
+      });
   }
 }
