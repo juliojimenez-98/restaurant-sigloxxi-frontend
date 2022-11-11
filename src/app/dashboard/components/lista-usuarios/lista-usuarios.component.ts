@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Usuario } from '../../interfaces/usuario.interface';
 import { UsuariosService } from '../../services/usuarios.service';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-lista-usuarios',
@@ -10,6 +11,9 @@ import { UsuariosService } from '../../services/usuarios.service';
 })
 export class ListaUsuariosComponent implements OnInit {
   usuarios: Usuario[] = [];
+  formUsuarios: FormGroup = this.fb.group({
+    nombre: ['', [Validators.required]],
+  });
   rolesUsuarios: any[] = [];
   esAdmin: boolean = false;
   esMesero: boolean = false;
@@ -17,7 +21,7 @@ export class ListaUsuariosComponent implements OnInit {
   esFinanzas: boolean = false;
   esBodeguero: boolean = false;
 
-  constructor(private servicio: UsuariosService) {}
+  constructor(private servicio: UsuariosService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.obtenerUsuarios();
@@ -57,5 +61,15 @@ export class ListaUsuariosComponent implements OnInit {
         );
       }
     });
+  }
+
+  obtenerUsuariosBuscar() {
+    console.log(this.formUsuarios.value.nombre);
+    this.servicio
+      .getUsuariosBuscar(this.formUsuarios.value.nombre)
+      .subscribe((res) => {
+        console.log(res);
+        this.usuarios = res;
+      });
   }
 }
