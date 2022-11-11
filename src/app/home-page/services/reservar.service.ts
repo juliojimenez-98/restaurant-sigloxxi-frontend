@@ -34,17 +34,17 @@ export class ReservarService {
       .pipe(map((res: any) => res.reservas as Reserva[]));
   }
 
-  // cancelarReserva(id: number, estado: number) {
-  //   return this.http.put<CancelarReservaResponse>(
-  //     `http://localhost:8080/api/reserva/cancelar/${id}`,
-  //     { estado }
-  //   );
-  // }
+  cancelarReserva(id: number, estado: number) {
+    return this.http.put<any>(
+      `http://localhost:8080/api/reserva/cancelar/${id}`,
+      { estado }
+    );
+  }
 
-  // confirmarReserva(id: number, estado: number) {
-  //   return this.http.put<CancelarReservaResponse>(
-  //     `http://localhost:8080/api/reserva/confirmar/${id}`,
-  //     { estado }
-  //   );
-  // }
+  confirmarReserva(id: number, estado: number) {
+    return this.http.put<any>(
+      `http://localhost:8080/api/reserva/confirmar/${id}`,
+      { estado }
+    );
+  }
 }
