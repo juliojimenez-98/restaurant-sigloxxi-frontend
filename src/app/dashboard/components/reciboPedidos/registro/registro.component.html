@@ -105,18 +105,19 @@
 
 <div class="flex items-center justify-center p-6">
   <div class="mx-auto w-full max-w-[550px]">
-    <form autocomplete="on">
+    <form autocomplete="on" [formGroup]="formRegistroRecibo">
       <div class="mb-4">
         <label
-          for="nombre"
+          for="fecha_recibo"
           class="mb-3 block text-base font-medium text-[#07074D]"
         >
           Fecha De Recibo
         </label>
         <input
           type="text"
-          name="fecha_despacho"
-          id="fecha_despacho"
+          formControlName="fecha_recibo"
+          name="fecha_recibo"
+          id="fecha_recibo"
           placeholder="Fecha de Despacho"
           class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
@@ -131,6 +132,7 @@
         <input
           type="number"
           min="0"
+          formControlName="cantidad"
           name="cantidad"
           id="cantidad"
           placeholder="Ingresa la cantidad que se recibió"
@@ -146,7 +148,8 @@
         </label>
         <select
           class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-          name="id_receta"
+          formControlName="estado"
+          name="estado"
         >
           <option value="">Selecciona Estado del recibo</option>
           <option *ngFor="let estado of estadosRecibo" [value]="estado.id">
@@ -157,16 +160,16 @@
 
       <div class="mb-8">
         <label
-          for="prep"
+          for="detalle"
           class="mb-3 block text-base font-medium text-[#07074D]"
         >
           Preparación
         </label>
         <textarea
           rows="4"
-          formControlName="prep"
-          name="prep"
-          id="prep"
+          formControlName="detalle"
+          name="detalle"
+          id="detalle"
           placeholder="Ingresa aquí la preparación de la receta."
           class="w-full resize-none rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         ></textarea>
@@ -175,6 +178,7 @@
       <div>
         <button
           type="submit"
+          (click)="registrarRecibo()"
           class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
         >
           Registrar

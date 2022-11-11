@@ -23,10 +23,10 @@ export class PedidoIngService {
   }
 
   registroReciboPedido(reciboPedido: ReciboPedido): Observable<ReciboPedido> {
-    const urlRegistroPedidoIng =
+    const urlReciboPedido =
       'http://localhost:8080/api/recibos-pedidos/recibo-pedido';
 
-    return this.http.post<ReciboPedido>(urlRegistroPedidoIng, reciboPedido);
+    return this.http.post<ReciboPedido>(urlReciboPedido, reciboPedido);
   }
   obtenerPedidoIng(): Observable<any> {
     const urlGetPedidoIng =

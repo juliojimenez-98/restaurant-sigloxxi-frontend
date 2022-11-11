@@ -80,9 +80,9 @@ export class ListaIngredientesComponent implements OnInit {
     console.log(this.formIngredientes.value.nombre);
     this.servicio
       .getIngredientesBuscar(this.formIngredientes.value.nombre)
-      .subscribe((res: any) => {
+      .subscribe((res) => {
         console.log(res);
-        this.ingredientes = res.results;
+        this.ingredientes = res;
       });
   }
 }
