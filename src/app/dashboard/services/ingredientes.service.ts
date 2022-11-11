@@ -51,9 +51,9 @@ export class IngredientesService {
   }
 
   getIngredientesBuscar(nombre: string) {
-    const urlGetIngredientes = `http://localhost:8080/api/buscar/ingrediente${nombre}`;
+    const urlGetIngredientes = `http://localhost:8080/api/buscar/ingredientes/${nombre}`;
     return this.http
       .get(urlGetIngredientes)
-      .pipe(map((res: any) => res.ingrediente as Ingrediente[]));
+      .pipe(map((res: any) => res.results as Ingrediente[]));
   }
 }
