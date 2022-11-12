@@ -55,4 +55,11 @@ export class UsuariosService {
     const urlGetUsuarios = `http://localhost:8080/api/usuarios/usuario/${id}`;
     return this.http.delete<any>(urlGetUsuarios);
   }
+
+  getUsuariosBuscar(nombre: string) {
+    const urlGetUsuarios = `http://localhost:8080/api/buscar/usuarios/${nombre}`;
+    return this.http
+      .get(urlGetUsuarios)
+      .pipe(map((res: any) => res.results as Usuario[]));
+  }
 }

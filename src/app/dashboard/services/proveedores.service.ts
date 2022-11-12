@@ -39,4 +39,11 @@ export class ProveedoresService {
     const urlBorrarProveedor = `http://localhost:8080/api/proveedores/proveedor/${id}`;
     return this.http.delete<any>(urlBorrarProveedor);
   }
+
+  getProveedoresBuscar(nombre: string) {
+    const urlGetProveedores = `http://localhost:8080/api/buscar/proveedores/${nombre}`;
+    return this.http
+      .get(urlGetProveedores)
+      .pipe(map((res: any) => res.results as Proveedor[]));
+  }
 }
