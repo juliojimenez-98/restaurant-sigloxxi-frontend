@@ -18,11 +18,7 @@ export class PedidoMesaComponent implements OnInit {
     private servicio: CartaMesaService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) {
-    if (localStorage.getItem('platosPedidos')) {
-      this.platosStorage = JSON.parse(localStorage.getItem('platosPedidos')!);
-    }
-  }
+  ) {}
 
   ngOnInit(): void {
     this.obtenerPedidoMesa();
