@@ -26,4 +26,10 @@ export class RecetasService {
 
     return this.http.post<Receta>(urlRegistroReceta, receta);
   }
+  getRecetasBuscar(nombre_prep: string) {
+    const urlGetRecetas = `http://localhost:8080/api/buscar/recetas/${nombre_prep}`;
+    return this.http
+      .get(urlGetRecetas)
+      .pipe(map((res: any) => res.results as Receta[]));
+  }
 }

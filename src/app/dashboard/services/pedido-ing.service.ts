@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PedidoIngrediente } from '../interfaces/PedidoIngredientes.interface';
 import { Observable, map } from 'rxjs';
+import { ReciboPedido } from '../interfaces/reciboPedido.iterface';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,13 @@ export class PedidoIngService {
       urlRegistroPedidoIng,
       pedidoingredientes
     );
+  }
+
+  registroReciboPedido(reciboPedido: ReciboPedido): Observable<ReciboPedido> {
+    const urlReciboPedido =
+      'http://localhost:8080/api/recibos-pedidos/recibo-pedido';
+
+    return this.http.post<ReciboPedido>(urlReciboPedido, reciboPedido);
   }
   obtenerPedidoIng(): Observable<any> {
     const urlGetPedidoIng =

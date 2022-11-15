@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { PedidoCliente } from '../../interfaces/pedidoCliente';
 
 @Component({
   selector: 'app-carta-mesa',
@@ -20,6 +21,7 @@ export class CartaMesaComponent implements OnInit {
   platosStorage: Plato[] = [];
   horaInicio: string = '';
   horaFin: string = '';
+  pedido!: PedidoCliente;
 
   formRegistroPedidoCliente: FormGroup = this.fb.group({
     id_orden: [],
@@ -34,15 +36,11 @@ export class CartaMesaComponent implements OnInit {
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) {
-    if (localStorage.getItem('platosPedidos')) {
-      this.showModalPedido = true;
-      this.platosStorage = JSON.parse(localStorage.getItem('platosPedidos')!);
-    }
-  }
+  ) {}
 
   ngOnInit(): void {
     this.obtenerPlatos();
+    this.obtenerPedidoMesa();
   }
   obtenerPlatos() {
     this.servicio.obtenerPlatos().subscribe((res) => {
@@ -81,33 +79,50 @@ export class CartaMesaComponent implements OnInit {
   }
 
   registrarPedidoCliente() {
+    var repetidos: any = {};
+
+    this.platosArray.forEach(function (numero: number) {
+      repetidos[numero] = (repetidos[numero] || 0) + 1;
+    });
+
+    console.log(repetidos);
+
+    // this.activatedRoute.params.subscribe((params) => {
+    //   let id = params['id_mesa'];
+    //   let id_mesa = parseInt(id);
+    //   this.formRegistroPedidoCliente.value.cant = this.platosArray.length;
+    //   this.formRegistroPedidoCliente.value.tiempo_espera = 41;
+    //   this.formRegistroPedidoCliente.value.id_mesa = id_mesa;
+    //   this.formRegistroPedidoCliente.value.estado = 1;
+    //   this.formRegistroPedidoCliente.value.platos = this.platosArray;
+
+    //   this.servicio
+    //     .registroPedidoCliente(this.formRegistroPedidoCliente.value)
+    //     .subscribe((res: any) => {
+    //       console.log(res);
+    //       if (res.msg === 'ok') {
+    //         this.showModalCart = false;
+    //         Swal.fire(
+    //           'Pedido ingresado',
+    //           'Su pedido ya fue ingresado a la cocina, pronto se servirá en su mesa',
+    //           'success'
+    //         );
+    //         this.showModalPedido = true;
+    //       }
+    //     });
+    // });
+  }
+
+  obtenerPedidoMesa() {
     this.activatedRoute.params.subscribe((params) => {
       let id = params['id_mesa'];
       let id_mesa = parseInt(id);
-      this.formRegistroPedidoCliente.value.cant = this.platosArray.length;
-      this.formRegistroPedidoCliente.value.tiempo_espera = 41;
-      this.formRegistroPedidoCliente.value.id_mesa = id_mesa;
-      this.formRegistroPedidoCliente.value.estado = 1;
-      this.formRegistroPedidoCliente.value.platos = this.platosArray;
-
-      this.servicio
-        .registroPedidoCliente(this.formRegistroPedidoCliente.value)
-        .subscribe((res: any) => {
-          console.log(res);
-          if (res.msg === 'ok') {
-            this.showModalCart = false;
-            Swal.fire(
-              'Pedido ingresado',
-              'Su pedido ya fue ingresado a la cocina, pronto se servirá en su mesa',
-              'success'
-            );
-            localStorage.setItem(
-              'platosPedidos',
-              JSON.stringify(this.platosArrayInfo)
-            );
-            this.showModalPedido = true;
-          }
-        });
+      this.servicio.obtenerPedidoMesa(id_mesa).subscribe((res) => {
+        this.pedido = res;
+        if (!res) {
+          console.log('No hay pedido activo');
+        }
+      });
     });
   }
 }

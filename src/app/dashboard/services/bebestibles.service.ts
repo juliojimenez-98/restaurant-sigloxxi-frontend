@@ -4,7 +4,7 @@ import { Bebestible } from '../interfaces/bebestible.interface';
 import { Observable, map } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BebestiblesService {
   constructor(private http: HttpClient) {}
@@ -46,4 +46,10 @@ export class BebestiblesService {
     return this.http.delete<any>(urlBorrarBebestible);
   }
 
+  getBebestiblesBuscar(nombre: string) {
+    const urlGetBebestibles = `http://localhost:8080/api/buscar/bebestibles/${nombre}`;
+    return this.http
+      .get(urlGetBebestibles)
+      .pipe(map((res: any) => res.results as Bebestible[]));
+  }
 }

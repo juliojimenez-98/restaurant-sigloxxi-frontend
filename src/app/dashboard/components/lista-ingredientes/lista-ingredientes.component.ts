@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Ingrediente } from '../../interfaces/ingrediente.interface';
 import { IngredientesService } from '../../services/ingredientes.service';
 import Swal from 'sweetalert2';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-lista-ingredientes',
@@ -10,11 +11,14 @@ import Swal from 'sweetalert2';
 })
 export class ListaIngredientesComponent implements OnInit {
   ingredientes: Ingrediente[] = [];
+  formIngredientes: FormGroup = this.fb.group({
+    nombre: ['', [Validators.required]],
+  });
   limite: number = 0;
   desde: number = 10;
   btnActivo: boolean = false;
 
-  constructor(private servicio: IngredientesService) {}
+  constructor(private servicio: IngredientesService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.obtenerIngredientesPaginado();
@@ -70,5 +74,15 @@ export class ListaIngredientesComponent implements OnInit {
         );
       }
     });
+  }
+
+  obtenerIngredientes() {
+    console.log(this.formIngredientes.value.nombre);
+    this.servicio
+      .getIngredientesBuscar(this.formIngredientes.value.nombre)
+      .subscribe((res) => {
+        console.log(res);
+        this.ingredientes = res;
+      });
   }
 }

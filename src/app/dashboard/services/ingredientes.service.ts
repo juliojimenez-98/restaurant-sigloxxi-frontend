@@ -49,4 +49,11 @@ export class IngredientesService {
     const urlBorrarIngrediente = `http://localhost:8080/api/ingredientes/ingrediente/${id}`;
     return this.http.delete<any>(urlBorrarIngrediente);
   }
+
+  getIngredientesBuscar(nombre: string) {
+    const urlGetIngredientes = `http://localhost:8080/api/buscar/ingredientes/${nombre}`;
+    return this.http
+      .get(urlGetIngredientes)
+      .pipe(map((res: any) => res.results as Ingrediente[]));
+  }
 }
