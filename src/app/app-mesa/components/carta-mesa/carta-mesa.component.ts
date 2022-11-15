@@ -17,7 +17,8 @@ export class CartaMesaComponent implements OnInit {
   showModalPedido: boolean = false;
   platos: Plato[] = [];
   platosArray: any[] = [];
-  platosArrayInfo: Plato[] = [];
+  platosArrayCant: any[] = [];
+  platosArrayInfo: any[] = [];
   platosStorage: Plato[] = [];
   horaInicio: string = '';
   horaFin: string = '';
@@ -79,38 +80,53 @@ export class CartaMesaComponent implements OnInit {
   }
 
   registrarPedidoCliente() {
-    var repetidos: any = {};
+   let counts = this.platosArrayInfo.reduce((acc, curr) => {
+     const str = JSON.stringify(curr);
+     acc[str] = (acc[str] || 0) + 1;
+     return acc;
+   }, {});
+   Object.entries(counts).map(element => {
+    var array:any = []
+    array = element
+    var array2: any = [];
+    array2 = JSON.parse(array[0])
+    element[0] = array2 
+    this.platosArrayCant.push(element)
+   });
 
-    this.platosArray.forEach(function (numero: number) {
-      repetidos[numero] = (repetidos[numero] || 0) + 1;
-    });
+   console.log(this.platosArrayCant)
 
-    console.log(repetidos);
+   
 
-    // this.activatedRoute.params.subscribe((params) => {
-    //   let id = params['id_mesa'];
-    //   let id_mesa = parseInt(id);
-    //   this.formRegistroPedidoCliente.value.cant = this.platosArray.length;
-    //   this.formRegistroPedidoCliente.value.tiempo_espera = 41;
-    //   this.formRegistroPedidoCliente.value.id_mesa = id_mesa;
-    //   this.formRegistroPedidoCliente.value.estado = 1;
-    //   this.formRegistroPedidoCliente.value.platos = this.platosArray;
 
-    //   this.servicio
-    //     .registroPedidoCliente(this.formRegistroPedidoCliente.value)
-    //     .subscribe((res: any) => {
-    //       console.log(res);
-    //       if (res.msg === 'ok') {
-    //         this.showModalCart = false;
-    //         Swal.fire(
-    //           'Pedido ingresado',
-    //           'Su pedido ya fue ingresado a la cocina, pronto se servirá en su mesa',
-    //           'success'
-    //         );
-    //         this.showModalPedido = true;
-    //       }
-    //     });
-    // });
+
+
+      this.activatedRoute.params.subscribe((params) => {
+        let id = params['id_mesa'];
+        let id_mesa = parseInt(id);
+        this.formRegistroPedidoCliente.value.cant = this.platosArray.length;
+        this.formRegistroPedidoCliente.value.tiempo_espera = 41;
+        this.formRegistroPedidoCliente.value.id_mesa = id_mesa;
+        this.formRegistroPedidoCliente.value.estado = 1;
+        this.formRegistroPedidoCliente.value.platos = this.platosArrayCant;
+
+        console.log(this.formRegistroPedidoCliente.value)
+
+         this.servicio
+           .registroPedidoCliente(this.formRegistroPedidoCliente.value)
+           .subscribe((res: any) => {
+             console.log(res);
+             if (res.msg === 'ok') {
+               this.showModalCart = false;
+               Swal.fire(
+                 'Pedido ingresado',
+                 'Su pedido ya fue ingresado a la cocina, pronto se servirá en su mesa',
+                 'success'
+               );
+               this.showModalPedido = true;
+             }
+           });
+      });
   }
 
   obtenerPedidoMesa() {
