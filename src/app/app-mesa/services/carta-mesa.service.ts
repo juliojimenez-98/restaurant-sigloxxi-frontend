@@ -35,4 +35,11 @@ export class CartaMesaService {
       .get(urlObtenerPedido)
       .pipe(map((res: any) => res.findPedido as PedidoCliente));
   }
+
+  obtenerPedidos(): Observable<any> {
+    const urlObtenerPedido = `http://localhost:8080/api/pedidos-clientes/pedidos/comanda`;
+    return this.http
+      .get(urlObtenerPedido)
+      .pipe(map((res: any) => res.pedidos as PedidoCliente));
+  }
 }
