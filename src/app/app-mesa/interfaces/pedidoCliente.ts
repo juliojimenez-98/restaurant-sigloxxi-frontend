@@ -5,6 +5,6 @@ export interface PedidoCliente {
   tiempo_espera: number;
   cant: number;
   estado: number;
-  platos: Plato[];
+  platos: Array<Array<Plato | number>>;
   id_mesa: number;
 }
