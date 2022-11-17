@@ -1,0 +1,74 @@
+<section
+  class="p-10 mt-5 flex md:flex-row items-center justify-around bg-white flex-wrap sm:flex-col"
+>
+  <div
+    *ngFor="let mesa of mesas"
+    (click)="toggleModal(mesa)"
+    class="w-1/12 h-24 relative cursor-pointer mb-10 mr-6"
+  >
+    <div
+      [ngClass]="{
+        'bg-red-600': mesa.disponibilidad === 0,
+        'bg-green-600': mesa.disponibilidad === 1,
+        'bg-yellow-500': mesa.disponibilidad === 2
+      }"
+      class="absolute inset-0 opacity-25 rounded-lg shadow-2xl"
+    ></div>
+    <div
+      class="absolute inset-0 transform hover:scale-75 transition duration-300"
+    >
+      <div
+        [ngClass]="{
+          'bg-red-600': mesa.disponibilidad === 0,
+          'bg-green-600': mesa.disponibilidad === 1,
+          'bg-yellow-500': mesa.disponibilidad === 2
+        }"
+        class="h-full w-full rounded-lg shadow-2xl"
+      >
+        <br />
+        <h1 class="text-3xl text-white font-bold text-center my-auto">
+          {{ mesa.id_mesa }}
+        </h1>
+        <div class="flex">
+          <p class="text-white ml-2 font-semibold">{{ mesa.cant_sillas }}</p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-5 h-5 ml-1 text-white font-semibold"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div *ngIf="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+    <div class="relative w-auto my-6 mx-auto max-w-3xl">
+      <!--content-->
+      <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+        <!--header-->
+        <div class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+          <h3 class="text-3xl font-semibold">
+            Modal Title
+          </h3>
+        </div>
+        <!--body-->
+        <div class="relative p-6 flex-auto">
+          <h1>{{mesaSeleccionada.id_mesa}}</h1>
+          <h1>{{mesaSeleccionada.disponibilidad===1?"disponible":""||mesaSeleccionada.disponibilidad===0?"ocupada":""||mesaSeleccionada.disponibilidad===2?"reservada":""}}</h1>
+        </div>
+        <!--footer-->
+        <button *ngIf="mesaSeleccionada.disponibilidad===1">seleccionar</button>
+        <button (click)="showModal=false">cerrar</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
