@@ -30,6 +30,11 @@ const routes: Routes = [
       import('./app-mesa/app-mesa.module').then((m) => m.AppMesaModule),
   },
   {
+    path: 'app-cocinero',
+    loadChildren: () =>
+      import('./app-cocinero/app-cocinero.module').then((m) => m.AppCocineroModule),
+  },
+  {
     path: '',
     redirectTo: '/home/inicio',
     pathMatch: 'full',

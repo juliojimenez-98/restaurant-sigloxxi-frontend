@@ -44,6 +44,6 @@ export class ProveedoresService {
     const urlGetProveedores = `http://localhost:8080/api/buscar/proveedores/${nombre}`;
     return this.http
       .get(urlGetProveedores)
-      .pipe(map((res: any) => res.results as Proveedor[]));
+      .pipe(map((res: any) => res.result as Proveedor[]));
   }
 }
