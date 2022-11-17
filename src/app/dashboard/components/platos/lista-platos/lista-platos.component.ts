@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Plato } from 'src/app/dashboard/interfaces/plato.interface';
 import Swal from 'sweetalert2';
 import { PlatosService } from '../../../services/platos.service';
@@ -11,8 +12,11 @@ import { PlatosService } from '../../../services/platos.service';
 export class ListaPlatosComponent implements OnInit {
   platos: Plato[] = [];
   datosPlato: Plato[] = [];
+  formPlatos: FormGroup = this.fb.group({
+    nombre_prep: ['', [Validators.required]],
+  });
 
-  constructor(private servicio: PlatosService) {}
+  constructor(private servicio: PlatosService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.obtenerPlatos();
@@ -54,5 +58,15 @@ export class ListaPlatosComponent implements OnInit {
         );
       }
     });
+  }
+
+  obtenerPlatosBuscar() {
+    console.log(this.formPlatos.value.nombre_prep);
+    this.servicio
+      .getPlatosBuscar(this.formPlatos.value.nombre_prep)
+      .subscribe((res) => {
+        console.log(res);
+        this.platos = res;
+      });
   }
 }
