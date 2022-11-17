@@ -41,13 +41,16 @@ export class ListaProveedoresComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.servicio.eliminarProveedor(id).subscribe((res) => {
-          this.obtenerProveedores();
+          console.log(res);
+          if (res.msg) {
+            this.obtenerProveedores();
+            Swal.fire(
+              'Borrado',
+              'El Proveedor ha sido eliminado de la base de datos con éxito',
+              'success'
+            );
+          }
         });
-        Swal.fire(
-          'Borrado',
-          'El Proveedor ha sido eliminado de la base de datos con éxito',
-          'success'
-        );
       }
     });
   }
