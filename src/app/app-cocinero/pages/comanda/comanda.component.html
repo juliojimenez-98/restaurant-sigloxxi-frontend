@@ -28,16 +28,21 @@
 
                 <tbody class="text-sm divide-y divide-gray-100">
                   <!-- record 1 -->
-                  <tr>
-                    <td class="p-2">
-                      <div class="font-medium text-gray-800">
-                        {{ item.platos }}
-                      </div>
-                    </td>
-                    <td class="p-2">
-                      <div class="text-left">1</div>
-                    </td>
-                  </tr>
+                  <ng-container *ngFor="let p of item.platos">
+
+                    
+                    <tr >
+                      
+                      <td class="p-2">
+                        <div  class="font-medium text-gray-800">
+                          {{p[0].recetum.nombre_prep}}
+                        </div>
+                      </td>
+                      <td  class="p-2">
+                        <div class="text-left">{{p[1]}}</div>
+                      </td>
+                    </tr>
+                  </ng-container>
                 </tbody>
               </table>
             </div>
