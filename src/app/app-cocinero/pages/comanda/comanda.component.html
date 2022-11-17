@@ -1,5 +1,5 @@
 <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12">
-  <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-6">
     <div *ngFor="let item of pedidos" class="bg-white border rounded-lg p-6">
       <section>
         <div class="flex flex-col justify-center h-full">
@@ -14,7 +14,7 @@
             <div class="overflow-x-auto p-3">
               <table class="table-auto w-full">
                 <thead
-                  class="text-xs font-semibold uppercase text-gray-400 bg-gray-50"
+                  class="text-xs font-semibold uppercase text-gray-100 bg-paleta5"
                 >
                   <tr>
                     <th class="p-2">
@@ -29,10 +29,7 @@
                 <tbody class="text-sm divide-y divide-gray-100">
                   <!-- record 1 -->
                   <ng-container *ngFor="let p of item.platos">
-
-                    
                     <tr >
-                      
                       <td class="p-2">
                         <div  class="font-medium text-gray-800">
                           {{p[0].recetum.nombre_prep}}
