@@ -49,4 +49,11 @@ export class PlatosService {
       formData
     );
   }
+
+  getPlatosBuscar(nombre_prep: string) {
+    const urlGetPlatos = `http://localhost:8080/api/buscar/platos/${nombre_prep}`;
+    return this.http
+      .get(urlGetPlatos)
+      .pipe(map((res: any) => res.results as Plato[]));
+  }
 }
