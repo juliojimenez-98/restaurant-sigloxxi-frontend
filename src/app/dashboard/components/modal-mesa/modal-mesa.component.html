@@ -53,21 +53,66 @@
   <div
     class="flex justify-between font-medium uppercase text-xs pt-4 pb-2 border-t"
   ></div>
+
   <div class="w-full justify-center items-center">
     <div class="grid grid-cols-5 w-full gap-3 pt-3 pb-2 px-2 relative">
-      <span
-        [routerLink]="['/admin/mesas/detalle-mesas/', mesa.id_mesa]"
-        [ngClass]="{
-          'border-red-600 hover:text-red-600': mesa.disponibilidad === 0,
-          'border-green-600 hover:text-green-600': mesa.disponibilidad === 1,
-          'border-yellow-500 hover:text-yellow-500': mesa.disponibilidad === 2
-        }"
-        *ngFor="let mesa of mesas"
-        class="px-15 w-14 flex justify-center items-center border text-grey-1000 cursor-pointer"        
-      >
+  <div
+  *ngFor="let mesa of mesas"
+  (click)="toggleModal(mesa)"
+  class="w-1/12 h-24 relative cursor-pointer mb-10 mr-6"
+>
+  <div
+    [ngClass]="{
+      'border-red-600 hover:text-red-600': mesa.disponibilidad === 0,
+      'bg-green-600': mesa.disponibilidad === 1,
+      'bg-yellow-500': mesa.disponibilidad === 2
+    }"
+    class="px-15 w-14 flex justify-center items-center border text-grey-1000 cursor-pointer"
+  ></div>
+  <div
+    class="absolute inset-0 transform hover:scale-75 transition duration-300"
+  >
+    <div
+      [ngClass]="{
+        'border-red-600 hover:text-red-600': mesa.disponibilidad === 0,
+        'border-green-600 hover:text-green-600': mesa.disponibilidad === 1,
+        'border-yellow-500 hover:text-yellow-500': mesa.disponibilidad === 2
+      }"
+      class="px-15 w-14 flex justify-center items-center border text-grey-1000 cursor-pointer"
+    >
+      <br />
+      <h1 class="px-15 w-14 flex justify-center items-center border text-grey-1000 cursor-pointer">
         {{ mesa.id_mesa }}
-      </span>
+      </h1>
+    </div>
+
+</div>
+</div>
+</div>
+  <div *ngIf="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+    <div class="relative w-auto my-6 mx-auto max-w-3xl">
+      <!--content-->
+      <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+        <!--header-->
+        <div class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+          <h3 class="text-2xl font-semibold">
+            Información mesa: {{mesaSeleccionada.id_mesa}}
+          </h3>
+        </div>
+        <!--body-->
+        <div class="relative p-6 flex-auto">
+          <h1 class="text-lg border-b border-solid ">Estado de mesa: {{mesaSeleccionada.disponibilidad===1?"Disponible":""||mesaSeleccionada.disponibilidad===0?"Ocupada":""||mesaSeleccionada.disponibilidad===2?"Reservada":""}}</h1>
+          <span class="relative inline-block"></span>
+          <h1 class="text-lg  border-b border-solid">Cantidad de personas: {{ mesaSeleccionada.cant_sillas}}</h1>  <!--<h1 *ngIf="mesaSeleccionada.disponibilidad===0">Cantidad de personas: {{ mesaSeleccionada.cant_sillas}}</h1> -->
+          <span class="relative inline-block"></span>
+          <h1 class="text-lg  border-b border-solid">Detalle de mesa:platos/valores</h1>
+        </div>
+        <!--footer-->
+        <button class="border border-red-500 bg-red-500 text-white text-lg  rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline"
+        (click)="showModal=false">cerrar</button>
+      </div>
     </div>
   </div>
-  
+  <div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+
 </div>
