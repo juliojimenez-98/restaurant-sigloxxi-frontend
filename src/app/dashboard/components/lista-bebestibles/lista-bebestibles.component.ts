@@ -33,8 +33,8 @@ export class ListaBebestiblesComponent implements OnInit {
 
   eliminarBebestible(id: any) {
     Swal.fire({
-      title: 'Seguro quieres eliminar el Bebestible?',
-      text: 'Eliminarás el Bebestible',
+      title: '¿Seguro que quieres eliminar el Bebestible?',
+      text: 'Vas a eliminar el Bebestible',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -48,7 +48,7 @@ export class ListaBebestiblesComponent implements OnInit {
         });
         Swal.fire(
           'Borrado',
-          'El bebestible ha sido eliminado de la base de datos con éxito',
+          'El bebestible ha sido eliminado de la base de datos con exito',
           'success'
         );
       }
