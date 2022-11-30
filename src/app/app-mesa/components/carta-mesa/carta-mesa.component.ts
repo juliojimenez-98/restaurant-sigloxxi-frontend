@@ -146,6 +146,10 @@ export class CartaMesaComponent implements OnInit {
           console.log(res);
           if (res.msg === 'ok') {
             this.showModalCart = false;
+            this.platosArrayCant = [];
+            this.bebestiblesArrayCant = [];
+            this.platosArrayInfo = [];
+            this.bebestiblesArrayInfo = [];
             Swal.fire(
               'Pedido ingresado',
               'Su pedido ya fue ingresado a la cocina, pronto se va a servir en su mesa',
