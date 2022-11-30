@@ -54,8 +54,8 @@ export class ListaIngredientesComponent implements OnInit {
 
   eliminarIngrediente(id: any) {
     Swal.fire({
-      title: 'Seguro quieres eliminar el Ingrediente?',
-      text: 'Eliminarás el Ingrediente',
+      title: '¿Seguro que quieres eliminar el Ingrediente?',
+      text: 'Vas a eliminar el Ingrediente',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -69,7 +69,7 @@ export class ListaIngredientesComponent implements OnInit {
         });
         Swal.fire(
           'Borrado',
-          'El ingrediente ha sido eliminado de la base de datos con éxito',
+          'El ingrediente ha sido eliminado de la base de datos con exito',
           'success'
         );
       }

@@ -69,13 +69,13 @@ export class RolesUsuariosComponent implements OnInit {
 
   guardarCambios() {
     Swal.fire({
-      title: 'Cambiar los roles?',
+      title: '¿Desea cambiar los roles?',
       text: `Ahora ${this.usuarioPorId.nombre} ${this.usuarioPorId.appa} tendra otros roles`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, cambiar roles!',
+      confirmButtonText: 'Si, cambiar roles',
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
@@ -86,7 +86,7 @@ export class RolesUsuariosComponent implements OnInit {
             console.log(res);
             if (res.msg === 'ok') {
               Swal.fire(
-                'Actualizado!',
+                '¡Actualizado!',
                 'Se han actualizado los roles del usuario',
                 'success'
               );

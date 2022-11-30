@@ -120,7 +120,7 @@ export class CartaMesaComponent implements OnInit {
             this.showModalCart = false;
             Swal.fire(
               'Pedido ingresado',
-              'Su pedido ya fue ingresado a la cocina, pronto se servirá en su mesa',
+              'Su pedido ya fue ingresado a la cocina, pronto se va a servir en su mesa',
               'success'
             );
             this.showModalPedido = true;

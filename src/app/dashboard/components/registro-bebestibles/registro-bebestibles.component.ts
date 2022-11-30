@@ -28,16 +28,16 @@ export class RegistroBebestiblesComponent implements OnInit {
     { nombre: 'Mililitro' },
     { nombre: '1 Lata' },
     { nombre: 'pack Lata(6)' },
-    { nombre: 'botella express' },
+    { nombre: 'Botella Express' },
     { nombre: 'Litros' },
     { nombre: 'Botella 1L' },
     { nombre: 'Botella 2L' },
   ];
-  constructor( 
+  constructor(
     private fb: FormBuilder,
     private servicioBeb: BebestiblesService,
     private activatedRoute: ActivatedRoute,
-    private router: Router) 
+    private router: Router)
   { }
 
   ngOnInit(): void {
@@ -85,7 +85,7 @@ export class RegistroBebestiblesComponent implements OnInit {
         }
       }
     );
-    
+
 }
 obtenerBebestiblePorId() {
   this.activatedRoute.params.subscribe((params) => {
