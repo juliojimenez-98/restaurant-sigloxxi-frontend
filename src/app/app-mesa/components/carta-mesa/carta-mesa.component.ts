@@ -82,6 +82,11 @@ export class CartaMesaComponent implements OnInit {
     this.showModalCart = !this.showModalCart;
   }
 
+  borrarBebestible(id: any) {
+    var index = this.bebestiblesArrayInfo.indexOf(id);
+    this.bebestiblesArrayInfo.splice(index, 1);
+  }
+
   borrarPlato(id: any) {
     var index = this.platosArrayInfo.indexOf(id);
     this.platosArrayInfo.splice(index, 1);
