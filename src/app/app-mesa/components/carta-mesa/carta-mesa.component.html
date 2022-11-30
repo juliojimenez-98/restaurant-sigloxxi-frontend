@@ -8,7 +8,7 @@
     <div
       class="absolute -top-3 -right-3 px-2.5 py-0.5 bg-red-500 rounded-full text-xs"
     >
-      {{ platosArray.length }}
+      {{ platosArray.length + bebestiblesArrayInfo.length }}
     </div>
   </button>
 </div>
@@ -42,6 +42,7 @@
             </div>
             <div class="flex justify-center w-full">
               <button
+                (click)="agregarBebestiblePedidoInfo(item)"
                 class="w-1/2 m-2 border-2 bg-lime-700 border-lime-700 rounded-lg px-3 py-1 text-white hover:bg-lime-900 hover:text-white"
               >
                 Agregar Al Pedido
@@ -288,12 +289,65 @@
             <!-- Table -->
             <div class="w-full max-w-2xl mx-auto bg-white">
               <div class="overflow-x-auto p-3">
-                <h1
-                  *ngIf="platosArray.length === 0"
-                  class="my-2 text-gray-800 font-bold text-2xl"
+                <table
+                  *ngIf="bebestiblesArrayInfo.length > 0"
+                  class="table-auto w-full rounded-sm"
                 >
-                  Aun no haz agregado nada a tu pedido
-                </h1>
+                  <thead
+                    class="text-xs font-semibold uppercase text-gray-100 bg-paleta5"
+                  >
+                    <tr>
+                      <th class="p-2">
+                        <div class="font-semibold text-left">Bebestible</div>
+                      </th>
+
+                      <th class="p-2">
+                        <div class="font-semibold text-left">Precio</div>
+                      </th>
+                      <th class="p-2">
+                        <div class="font-semibold text-center">
+                          Quitar del pedido
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+
+                  <tbody class="text-sm divide-y divide-gray-100">
+                    <tr *ngFor="let b of bebestiblesArrayInfo">
+                      <td class="p-2">
+                        <div class="font-medium text-gray-800">
+                          {{ b.nombre }}
+                        </div>
+                      </td>
+
+                      <td class="p-2">
+                        <div class="text-left font-medium text-green-500">
+                          $ {{ b.precio }}
+                        </div>
+                      </td>
+                      <td class="p-2">
+                        <div class="flex justify-center">
+                          <button (click)="borrarPlato(b.id_bebida)">
+                            <svg
+                              class="w-8 h-8 hover:text-red-600 rounded-full hover:bg-gray-100 p-1"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                              ></path>
+                            </svg>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
                 <table
                   *ngIf="platosArray.length > 0"
                   class="table-auto w-full rounded-sm"
