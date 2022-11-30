@@ -18,7 +18,7 @@ export class RegistroMesasComponent {
     Swal.fire({
       allowOutsideClick: false,
       icon: 'info',
-      text: 'Registrando usuario',
+      text: 'Registrando mesa',
       showConfirmButton: false,
     });
     this.service.registroMesa(this.formRegistroMesa.value).subscribe(
