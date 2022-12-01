@@ -34,6 +34,13 @@ export class PedidoIngService {
       .pipe(map((res: any) => res.pedidosIngredientes as PedidoIngrediente[]));
   }
 
+  obtenerRecibo(): Observable<any> {
+    const urlGetRecibo = `${environment.apiUrl}recibos-pedidos/recibo-pedidos`;
+    return this.http
+      .get(urlGetRecibo)
+      .pipe(map((res: any) => res.recibo_pedido as ReciboPedido[]));
+  }
+
   obtenerPedidoIngPorId(id: any): Observable<any> {
     const urlGetPedidoIng = `${environment.apiUrl}pedido-ingredientes/${id}`;
     return this.http.get<any>(urlGetPedidoIng);
