@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string) {
-    const urlLogin = 'http://localhost:8080/api/login';
+    const urlLogin = `${environment.apiUrl}login`;
 
     const body = { email, password };
 
@@ -28,7 +29,7 @@ export class AuthService {
   }
 
   cambiarPassword(password: string, id: number): Observable<any> {
-    const urlRegistroUsuarios = `http://localhost:8080/api/usuarios/changepass/${id}`;
+    const urlRegistroUsuarios = `${environment.apiUrl}usuarios/changepass/${id}`;
 
     return this.http.put<any>(urlRegistroUsuarios, password);
   }

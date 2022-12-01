@@ -22,7 +22,8 @@ export class CartaMesaComponent implements OnInit {
   platosArray: any[] = [];
   platosArrayCant: any[] = [];
   platosArrayInfo: any[] = [];
-  platosStorage: Plato[] = [];
+  bebestiblesArrayCant: any[] = [];
+  bebestiblesArrayInfo: any[] = [];
   horaInicio: string = '';
   horaFin: string = '';
   pedido!: PedidoCliente;
@@ -34,6 +35,7 @@ export class CartaMesaComponent implements OnInit {
     estado: ['', [Validators.required]],
     id_mesa: ['', [Validators.required]],
     platos: [],
+    bebestibles: [],
   });
   constructor(
     private servicio: CartaMesaService,
@@ -47,6 +49,7 @@ export class CartaMesaComponent implements OnInit {
     this.obtenerPlatos();
     this.obtenerPedidoMesa();
     this.obtenerBebest();
+    this.platosArrayInfo;
   }
   obtenerPlatos() {
     this.servicio.obtenerPlatos().subscribe((res) => {
@@ -64,16 +67,24 @@ export class CartaMesaComponent implements OnInit {
 
   agregarAlPedido(id: any) {
     this.platosArray.push(id);
-    console.log(this.platosArray);
   }
 
   agregarAlPedidoInfo(plato: Plato) {
     this.platosArrayInfo.push(plato);
-    console.log(this.platosArrayInfo);
+  }
+
+  agregarBebestiblePedidoInfo(bebestible: Bebestible) {
+    this.bebestiblesArrayInfo.push(bebestible);
+    console.log(this.bebestiblesArrayInfo);
   }
 
   toggleModal() {
     this.showModalCart = !this.showModalCart;
+  }
+
+  borrarBebestible(id: any) {
+    var index = this.bebestiblesArrayInfo.indexOf(id);
+    this.bebestiblesArrayInfo.splice(index, 1);
   }
 
   borrarPlato(id: any) {
@@ -99,7 +110,22 @@ export class CartaMesaComponent implements OnInit {
       this.platosArrayCant.push(element);
     });
 
-    console.log(this.platosArrayCant);
+    let countsB = this.bebestiblesArrayInfo.reduce((acc, curr) => {
+      const str = JSON.stringify(curr);
+      acc[str] = (acc[str] || 0) + 1;
+      return acc;
+    }, {});
+    console.log(countsB);
+    Object.entries(countsB).map((element) => {
+      var array: any = [];
+      array = element;
+      var array2: any = [];
+      array2 = JSON.parse(array[0]);
+      element[0] = array2;
+      this.bebestiblesArrayCant.push(element);
+    });
+
+    console.log(this.bebestiblesArrayCant);
 
     this.activatedRoute.params.subscribe((params) => {
       let id = params['id_mesa'];
@@ -109,6 +135,8 @@ export class CartaMesaComponent implements OnInit {
       this.formRegistroPedidoCliente.value.id_mesa = id_mesa;
       this.formRegistroPedidoCliente.value.estado = 1;
       this.formRegistroPedidoCliente.value.platos = this.platosArrayCant;
+      this.formRegistroPedidoCliente.value.bebestibles =
+        this.bebestiblesArrayCant;
 
       console.log(this.formRegistroPedidoCliente.value);
 
@@ -118,6 +146,10 @@ export class CartaMesaComponent implements OnInit {
           console.log(res);
           if (res.msg === 'ok') {
             this.showModalCart = false;
+            this.platosArrayCant = [];
+            this.bebestiblesArrayCant = [];
+            this.platosArrayInfo = [];
+            this.bebestiblesArrayInfo = [];
             Swal.fire(
               'Pedido ingresado',
               'Su pedido ya fue ingresado a la cocina, pronto se va a servir en su mesa',

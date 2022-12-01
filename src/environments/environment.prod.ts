@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'https://restaurant-sigloxxi-backend.vercel.app/api/',
 };

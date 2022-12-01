@@ -1,5 +1,6 @@
 import { Ingrediente } from './ingrediente.interface';
 import { Proveedor } from './proveedor.interface';
+import { Bebestible } from './bebestible.interface';
 
 export interface PedidoIngrediente {
   id_pedido?: number;
@@ -10,5 +11,6 @@ export interface PedidoIngrediente {
   id_proveedor: number;
   id_ing: number;
   ingrediente?: Ingrediente;
+  bebestible?: Bebestible;
   proveedor?: Proveedor;
 }
