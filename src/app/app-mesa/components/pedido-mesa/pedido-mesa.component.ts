@@ -12,7 +12,6 @@ import { CartaMesaService } from '../../services/carta-mesa.service';
 export class PedidoMesaComponent implements OnInit {
   pedido!: PedidoCliente;
   platosStorage: any[] = [];
-  @Input() platosPedidos: Plato[] = [];
   @Output() showModalPedido = new EventEmitter<boolean>();
   constructor(
     private servicio: CartaMesaService,
@@ -22,7 +21,6 @@ export class PedidoMesaComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerPedidoMesa();
-    this.platosPedidos;
     console.log(this.platosStorage);
   }
 
@@ -41,7 +39,6 @@ export class PedidoMesaComponent implements OnInit {
       let id_mesa = parseInt(id);
       this.servicio.obtenerPedidoMesa(id_mesa).subscribe((res) => {
         this.pedido = res;
-        console.log(res);
       });
     });
   }
