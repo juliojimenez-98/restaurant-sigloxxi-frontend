@@ -21,7 +21,6 @@ export class PedidoMesaComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerPedidoMesa();
-    console.log(this.platosStorage);
   }
 
   agregarAlPedido() {
@@ -39,6 +38,7 @@ export class PedidoMesaComponent implements OnInit {
       let id_mesa = parseInt(id);
       this.servicio.obtenerPedidoMesa(id_mesa).subscribe((res) => {
         this.pedido = res;
+        console.log(res)
       });
     });
   }
