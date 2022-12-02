@@ -43,7 +43,11 @@ export class CartaMesaComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private servicioBebestible: BebestiblesService
-  ) {}
+  ) {
+    if (localStorage.getItem("pedidoActivo")) {
+      this.showModalPedido= true
+    }
+  }
 
   ngOnInit(): void {
     this.obtenerPlatos();
@@ -125,7 +129,6 @@ export class CartaMesaComponent implements OnInit {
       this.bebestiblesArrayCant.push(element);
     });
 
-    console.log(this.bebestiblesArrayCant);
 
     this.activatedRoute.params.subscribe((params) => {
       let id = params['id_mesa'];
@@ -150,6 +153,7 @@ export class CartaMesaComponent implements OnInit {
             this.bebestiblesArrayCant = [];
             this.platosArrayInfo = [];
             this.bebestiblesArrayInfo = [];
+            localStorage.setItem("pedidoActivo","1")
             Swal.fire(
               'Pedido ingresado',
               'Su pedido ya fue ingresado a la cocina, pronto se va a servir en su mesa',
