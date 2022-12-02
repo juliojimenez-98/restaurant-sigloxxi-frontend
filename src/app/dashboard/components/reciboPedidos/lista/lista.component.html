@@ -12,8 +12,9 @@
             <th class="px-4 py-3">Estado</th>
           </tr>
         </thead>
-        <tbody class="bg-white">
-          <tr *ngFor="let recibopedido of recibopedido" class="text-gray-700">
+        <tbody class="bg-white"> <!--revisar-->
+          <tr *ngFor="let recibopedido of recibopedido"
+          class="text-gray-700">
             <td class="px-4 py-3 border">
               <div class="flex items-center text-sm">
                 <div>
@@ -26,47 +27,14 @@
             <td class="px-4 py-3 text-ms font-semibold border">
               {{ recibopedido.cantidad }}
             </td>
-            <!-- <td class="px-4 py-3 text-ms font-semibold border">
-              {{ pedidoing.precio }}
+            <td class="px-4 py-3 text-ms font-semibold border">
+              {{ recibopedido.detalle }}
             </td>
             <td class="px-4 py-3 text-sm font-semibold border">
-              {{ pedidoing.estado }}
+              {{ recibopedido.estado}}
             </td>
-            <td class="px-4 py-3 text-sm font-semibold border">
-              {{ pedidoing.ingrediente!.nombre }}
-            </td>
-            <td class="px-4 py-3 text-sm font-semibold border">k</td>
-            <td class="px-4 py-3 text-sm font-semibold border">
-              <button
-                [routerLink]="[
-                  '/admin/recibos-pedidos/registro',
-                  pedidoing.id_pedido
-                ]"
-                class="relative group overflow-hidden px-2 h-8 rounded-full flex space-x-3 items-center bg-paleta4 hover:bg-paleta5"
-              >
-                <span class="text-sm text-white">Registrar recibo</span>
-                <div class="flex items-center -space-x-3 translate-x-3">
-                  <div
-                    class="w-2.5 h-[1.6px] rounded bg-white origin-left scale-x-0 transition duration-300 group-hover:scale-x-100"
-                  ></div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 stroke-white -translate-x-2 transition duration-300 group-hover:translate-x-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </div>
-              </button>
-            </td>
-          </tr> -->
+
+          </tr>
             <!-- <div class="inline-flex mt-2 xs:mt-0">
               <div class="mx-auto">
                 <button
@@ -84,7 +52,7 @@
                 </button>
               </div>
             </div> -->
-          </tr>
+<!---          </tr>-->
         </tbody>
       </table>
     </div>
