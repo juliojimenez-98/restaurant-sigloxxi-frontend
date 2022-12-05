@@ -6,15 +6,28 @@
           <tr
             class="text-md font-semibold tracking-wide text-left text-gray-100 bg-paleta5 uppercase border-b border-gray-600"
           >
+            <th class="px-4 py-3">Ingrediente</th>
+            <th class="px-4 py-3">Proveedor</th>
+            <th class="px-4 py-3">Cantidad Solicitada</th>
             <th class="px-4 py-3">Fecha Recibo</th>
-            <th class="px-4 py-3">Cantidad</th>
+            <th class="px-4 py-3">Cantidad Recibida</th>
             <th class="px-4 py-3">Detalle</th>
             <th class="px-4 py-3">Estado</th>
           </tr>
         </thead>
-        <tbody class="bg-white"> <!--revisar-->
-          <tr *ngFor="let recibopedido of recibopedido"
-          class="text-gray-700">
+        <tbody class="bg-white">
+          <!--revisar-->
+          <tr *ngFor="let recibopedido of recibopedido" class="text-gray-700">
+            <td class="px-4 py-3 text-ms font-semibold border">
+              {{ recibopedido.pedido_ing.ingrediente?.nombre }}
+            </td>
+            <td class="px-4 py-3 text-ms font-semibold border">
+              {{ recibopedido.pedido_ing.proveedor!.nombre }}
+            </td>
+            <td class="px-4 py-3 text-ms font-semibold border">
+              {{ recibopedido.pedido_ing.cantidad }}
+            </td>
+
             <td class="px-4 py-3 border">
               <div class="flex items-center text-sm">
                 <div>
@@ -30,12 +43,29 @@
             <td class="px-4 py-3 text-ms font-semibold border">
               {{ recibopedido.detalle }}
             </td>
-            <td class="px-4 py-3 text-sm font-semibold border">
-              {{ recibopedido.estado}}
+            <td class="flex px-4 py-3 text-sm font-semibold border">
+              <div class="flex">
+                <span
+                  [ngClass]="{
+                    'bg-red-600': !recibopedido.estado,
+                    'bg-green-600 text-white': recibopedido.estado,
+                    'bg-yellow-500': recibopedido.estado === 2
+                  }"
+                  class="w-full py-1 px-3 rounded-full text-xs"
+                  >{{
+                    recibopedido.estado === 2
+                      ? "Con Detalles"
+                      : "" || recibopedido.estado
+                      ? "Buen Estado"
+                      : "" || !recibopedido.estado
+                      ? "Rechazado"
+                      : ""
+                  }}</span
+                >
+              </div>
             </td>
-
           </tr>
-            <!-- <div class="inline-flex mt-2 xs:mt-0">
+          <!-- <div class="inline-flex mt-2 xs:mt-0">
               <div class="mx-auto">
                 <button
                   *ngIf="btnActivo"
@@ -52,7 +82,7 @@
                 </button>
               </div>
             </div> -->
-<!---          </tr>-->
+          <!---          </tr>-->
         </tbody>
       </table>
     </div>

@@ -5,7 +5,6 @@ import { Observable, map } from 'rxjs';
 import { ReciboPedido } from '../interfaces/reciboPedido.iterface';
 import { environment } from 'src/environments/environment';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -39,12 +38,11 @@ export class PedidoIngService {
     const urlGetRecibo = `${environment.apiUrl}recibos-pedidos/recibo-pedidos`;
     return this.http
       .get(urlGetRecibo)
-      .pipe(map((res: any) => res.recibo_pedido as ReciboPedido[]));
+      .pipe(map((res: any) => res.recibo_pedidos as ReciboPedido[]));
   }
 
   obtenerPedidoIngPorId(id: any): Observable<any> {
     const urlGetPedidoIng = `${environment.apiUrl}pedido-ingredientes/${id}`;
     return this.http.get<any>(urlGetPedidoIng);
   }
-
 }

@@ -10,19 +10,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./lista.component.css'],
 })
 export class ListaComponent implements OnInit {
-  recibopedido: ReciboPedido[] = []
+  recibopedido: ReciboPedido[] = [];
   estadosRecibo: any = [
     { id: 1, nombre: 'Buen Estado' },
     { id: 2, nombre: 'Con observaciones' },
     { id: 0, nombre: 'Rechazado' },
   ];
 
-
-  constructor(
-    private servicio: PedidoIngService) {}
+  constructor(private servicio: PedidoIngService) {}
 
   ngOnInit(): void {
-    this.obtenerRecibos;
+    this.obtenerRecibos();
   }
 
   obtenerRecibos() {
