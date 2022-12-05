@@ -6,5 +6,7 @@ export interface PedidoCliente {
   cant: number;
   estado: number;
   platos: Array<Array<any>>;
+  bebestibles: Array<Array<any>>;
+  total:number
   id_mesa: number;
 }

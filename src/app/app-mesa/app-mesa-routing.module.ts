@@ -19,6 +19,7 @@ const routes: Routes = [
             component: PagarPedidoComponent,
           },
           { path: 'mesas-clientes', component: MesasClientesComponent },
+          { path: 'pago/:id', component: PagarPedidoComponent },
         ],
       },
     ],
