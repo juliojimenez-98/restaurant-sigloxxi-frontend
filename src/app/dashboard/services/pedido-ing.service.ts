@@ -5,6 +5,7 @@ import { Observable, map } from 'rxjs';
 import { ReciboPedido } from '../interfaces/reciboPedido.iterface';
 import { environment } from 'src/environments/environment';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -45,4 +46,5 @@ export class PedidoIngService {
     const urlGetPedidoIng = `${environment.apiUrl}pedido-ingredientes/${id}`;
     return this.http.get<any>(urlGetPedidoIng);
   }
+
 }
