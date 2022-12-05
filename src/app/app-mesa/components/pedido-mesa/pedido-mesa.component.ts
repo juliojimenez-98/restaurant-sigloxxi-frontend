@@ -28,8 +28,9 @@ export class PedidoMesaComponent implements OnInit {
     console.log(this.showModalPedido);
   }
 
-  pagarButton() {
+  pagarButton(id:any) {
     this.showModalPedido.emit(false);
+    this.router.navigateByUrl(`/app-mesa/pago/${id}`)
   }
 
   obtenerPedidoMesa() {
