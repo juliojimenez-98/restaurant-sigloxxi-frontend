@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Plato } from '../../dashboard/interfaces/plato.interface';
 import { PedidoCliente } from '../interfaces/pedidoCliente';
@@ -41,5 +41,24 @@ export class CartaMesaService {
     return this.http
       .get(urlObtenerPedido)
       .pipe(map((res: any) => res.pedidos as PedidoCliente));
+  }
+
+  webPayPagar(monto:any): Observable<any> {
+    const urlWebPay = `http://localhost:8080/api/webpay/pagar`;
+
+    var headers={
+      'Content-Type': 'application/json',
+      "Tbk-Api-Key-Idt": "597055555532",
+      "Tbk-Api-Key-Secret": "579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C",
+    }
+
+    var body={
+     "buy_order": "ordenCompra12345678",
+     "session_id": "sesion1234557545",
+     "amount": monto,
+     "return_url": "http://www.comercio.cl/webpay/retorno"
+    }
+     return this.http.post(urlWebPay,body,{headers:headers})
+     ;
   }
 }
