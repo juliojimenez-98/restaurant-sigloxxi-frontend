@@ -32,6 +32,7 @@ import { PedidosIngredientesComponent } from './pages/pedidos-ingredientes/pedid
 import { ReciboPedidosPageComponent } from './pages/recibo-pedidos-page/recibo-pedidos-page.component';
 import { ListaComponent } from './components/reciboPedidos/lista/lista.component';
 import { RegistroComponent } from './components/reciboPedidos/registro/registro.component';
+import { ActualizarImagenBebestibleComponent } from './components/actualizar-imagen-bebestible/actualizar-imagen-bebestible.component';
 
 const routes: Routes = [
   {
@@ -176,6 +177,10 @@ const routes: Routes = [
               {
                 path: 'registro/:id',
                 component: RegistroBebestiblesComponent,
+              },
+              {
+                path: 'actualizar-imagen/:id',
+                component: ActualizarImagenBebestibleComponent,
               },
             ],
           },

@@ -52,12 +52,12 @@ export class CartaMesaService {
       "Tbk-Api-Key-Secret": "579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C",
     }
 
-    var body={
-     "buy_order": "ordenCompra12345678",
-     "session_id": "sesion1234557545",
-     "amount": monto,
-     "return_url": "http://www.comercio.cl/webpay/retorno"
-    }
+    var body = {
+      buy_order: 'ordenCompra12345678',
+      session_id: 'sesion1234557545',
+      amount: monto,
+      return_url: `${environment.apiUrlFront}/app-mesa/pagado`,
+    };
      return this.http.post(urlWebPay,body,{headers:headers})
      ;
   }
