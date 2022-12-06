@@ -8,6 +8,7 @@ import { ProveedoresService } from '../../services/proveedores.service';
 import { IngredientesService } from '../../services/ingredientes.service';
 import { Proveedor } from '../../interfaces/proveedor.interface';
 import { Ingrediente } from '../../interfaces/ingrediente.interface';
+import { Bebestible } from '../../interfaces/bebestible.interface';
 
 @Component({
   selector: 'app-registrar-pedidos-ingredientes',
@@ -17,6 +18,7 @@ import { Ingrediente } from '../../interfaces/ingrediente.interface';
 export class RegistrarPedidosIngredientesComponent implements OnInit {
   proveedores: Proveedor[] = [];
   ingredientes: Ingrediente[] = [];
+  bebestibles: Bebestible[] = [];
   formRegistroPedidoIng: FormGroup = this.fb.group({
     id_pedido: [],
     fecha_despacho: ['', [Validators.required]],
@@ -25,6 +27,17 @@ export class RegistrarPedidosIngredientesComponent implements OnInit {
     id_proveedor: ['', [Validators.required]],
     id_ing: ['', [Validators.required]],
   });
+  formRegistroBebestible: FormGroup = this.fb.group({
+    id_bebida: [],
+    nombre: ['', [Validators.required]],
+    precio: ['', [Validators.required]],
+    stock: ['', [Validators.required]],
+    stock_cri: ['', [Validators.required]],
+    unidad: ['', [Validators.required, Validators.minLength(2)]],
+    fecha_vencimiento: ['', Validators.required],
+  });
+  nextStep: boolean = false;
+  openTab = 1;
 
   constructor(
     private fb: FormBuilder,
@@ -38,6 +51,9 @@ export class RegistrarPedidosIngredientesComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerProveedores();
     this.obtenerIngredientes();
+  }
+  toggleTabs($tabNumber: number) {
+    this.openTab = $tabNumber;
   }
 
   registrarPedidoIng() {
