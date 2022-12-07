@@ -1,5 +1,5 @@
 <div
-  class="from-paleta5 to-paleta2 bg-gradient-to-r h-screen z-10 mx-auto inset-x-0 top-0 flex justify-between items-center"
+  class="from-paleta5 to-paleta2 bg-gradient-to-r h-20 mx-auto inset-x-0 top-0 flex justify-between items-center"
 >
   <h1
     href="#"
@@ -7,13 +7,15 @@
   >
     Restaurant Siglo XXI
 </h1>
+</div>
+
 <!-- component -->
 
 <!-- Code block starts -->
 
 
 
-      <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
+      <div role="alert" class="container mt-4 mx-auto w-11/12 md:w-2/3 max-w-lg">
           <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
               <div class="w-full flex justify-start text-gray-600 mb-3">
                   <svg  xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="52" height="52" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -23,21 +25,22 @@
                   </svg>
               </div>
               <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">¡Tu pago ha sido exitoso!</h1>
-              <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre</label>
-              <input id="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Nombre" />
+              <!-- <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre</label>
+              <div id="name" class="mb-5 mt-2 text-gray-600  font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300  border-b" placeholder="Nombre">hola</div> 
               <label for="value" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Valor Pagado</label>
-              <input id="value"  class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="$$$" />
+              <div id="name" class="mb-5 mt-2 text-gray-600  font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300  border-b" placeholder="Nombre">hola</div> 
               <label for="expiry" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Fecha de la transaccion</label>
               <div class="relative mb-5 mt-2">
-                  <input id="expiry" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="DD/MM/AA" />
+                               <div id="name" class="mb-5 mt-2 text-gray-600  font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300  border-b" placeholder="Nombre">hola</div> 
+
               </div>
               <label for="id_pago" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">ID Pago</label>
-             <input id="id_pago" class="mb-8 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="XXXXXXXX" />
+                           <div id="name" class="mb-5 mt-2 text-gray-600  font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300  border-b" placeholder="Nombre">hola</div>  -->
+
               <div class="flex items-center justify-start w-full">
-                  <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700 transition duration-150 ease-in-out hover:bg-red-600 bg-red-700 rounded text-white px-8 py-2 text-sm">Cerrar</button>
+                  <button (click)="cerrarPedido()" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700 transition duration-150 ease-in-out hover:bg-red-600 bg-red-700 rounded text-white px-8 py-2 text-sm">Cerrar</button>
               </div>
           </div>
       </div>
 
 <!-- Code block ends -->
-</div>
