@@ -44,6 +44,7 @@
             <td class="px-4 py-3 text-sm font-semibold border">{{ pedidoing.proveedor!.nombre }}</td>
             <td class="px-4 py-3 text-sm font-semibold border">
               <button
+              *ngIf="pedidoing.estado===1"
                 [routerLink]="[
                   '/admin/recibos-pedidos/registro',
                   pedidoing.id_pedido
