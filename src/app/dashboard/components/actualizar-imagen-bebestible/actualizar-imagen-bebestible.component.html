@@ -1,0 +1,42 @@
+<div class="flex flex-col">
+  <h1 class="mx-auto mt-14 mb-14 text-2xl font-bold">
+    Selecciona una imagen para subir
+  </h1>
+  <div class="mx-auto">
+    <label class="image-upload-container btn btn-bwm">
+      <span>Elegir imagen</span>
+      <input
+        #imageInput
+        class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+        type="file"
+        accept="image/*"
+        (change)="processFile(imageInput)"
+      />
+    </label>
+
+    <button
+      (click)="subirImagen()"
+      class="h-10 px-5 m-2 w-2/3 text-white transition-colors duration-150 bg-paleta4 rounded-lg hover:bg-paleta5"
+    >
+      Subir imagen
+    </button>
+
+    <div *ngIf="selectedFile" class="img-preview-container">
+      <div
+        class="img-preview{{ selectedFile.status === 'fail' ? '-error' : '' }}"
+        [ngStyle]="{ 'background-image': 'url(' + selectedFile.src + ')' }"
+      ></div>
+
+      <div *ngIf="selectedFile.pending" class="img-loading-overlay">
+        <div class="img-spinning-circle"></div>
+      </div>
+
+      <div *ngIf="selectedFile.status === 'ok'" class="text-green-600">
+        La imagen fue subida con éxito
+      </div>
+      <div *ngIf="selectedFile.status === 'fail'" class="text-red-600">
+        La subida de la imagen falló
+      </div>
+    </div>
+  </div>
+</div>

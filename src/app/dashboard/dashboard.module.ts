@@ -37,6 +37,7 @@ import { BebestiblesPageComponent } from './pages/bebestibles-page/bebestibles-p
 import { ReciboPedidosPageComponent } from './pages/recibo-pedidos-page/recibo-pedidos-page.component';
 import { ListaComponent } from './components/reciboPedidos/lista/lista.component';
 import { RegistroComponent } from './components/reciboPedidos/registro/registro.component';
+import { ActualizarImagenBebestibleComponent } from './components/actualizar-imagen-bebestible/actualizar-imagen-bebestible.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { RegistroComponent } from './components/reciboPedidos/registro/registro.
     ReciboPedidosPageComponent,
     ListaComponent,
     RegistroComponent,
+    ActualizarImagenBebestibleComponent,
   ],
   imports: [
     CommonModule,
