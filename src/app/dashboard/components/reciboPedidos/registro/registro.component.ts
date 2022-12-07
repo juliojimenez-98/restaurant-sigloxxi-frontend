@@ -52,6 +52,9 @@ export class RegistroComponent implements OnInit {
 
   registrarRecibo() {
     this.formRegistroRecibo.value.id_pedido = this.pedido.id_pedido;
+    this.formRegistroRecibo.value.estado = parseInt(
+      this.formRegistroRecibo.value.estado);
+    console.log(this.formRegistroRecibo.value)
     this.servicioPedidos
       .registroReciboPedido(this.formRegistroRecibo.value)
       .subscribe((res: any) => {

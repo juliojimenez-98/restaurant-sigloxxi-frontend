@@ -12,4 +12,9 @@ export class PagadoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  cerrarPedido(){
+    localStorage.removeItem('pedidoActivo');
+    
+  }
+
 }
