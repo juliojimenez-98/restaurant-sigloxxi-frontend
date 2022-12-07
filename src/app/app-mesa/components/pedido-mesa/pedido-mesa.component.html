@@ -16,25 +16,48 @@
 
     <tbody class="text-sm divide-y divide-gray-100">
       <!-- record 1 -->
-      <tr>
-        <td *ngFor="let item of pedido.platos" class="p-2">
-          <div  class="font-medium text-gray-800">
-              {{item[0].recetum.nombre_prep}}
-          </div>
-        </td>
-        <td *ngFor="let item of pedido.platos" class="p-2">
-          <div class="text-center">
-              {{item[1]}}
-            </div>
-        </td>
-        <td class="p-2">
-          <div class="text-left font-medium text-green-500">
+      <ng-container *ngIf="pedido.bebestibles">
+        <ng-container *ngFor="let item of pedido.bebestibles">
+              <tr>
+              <td class="p-2">
+              <div  class="font-medium text-gray-800">
+                {{item[0].nombre}}
+              </div>
+            </td>
+            <td class="p-2">
+              <div  class="font-medium text-gray-800">
+                {{item[1]}}
+              </div>
+            </td>
+            <td class="p-2">
+              <div  class="font-medium text-gray-800">
+                {{item[0].precio}}
+              </div>
+            </td>
+          </tr>
+          </ng-container>
+        </ng-container>
+          <ng-container *ngIf="pedido.platos">
             <ng-container *ngFor="let item of pedido.platos">
-              {{item[0].recetum.nombre_prep}}
-            </ng-container>
-          </div>
-        </td>
-      </tr>
+              <tr>
+              <td class="p-2">
+                <div  class="font-medium text-gray-800">
+                  {{item[0].recetum.nombre_prep}}
+                </div>
+          </td>
+          <td class="p-2">
+            <div class="font-medium text-gray-800">
+              {{item[1]}}
+              </div>
+            </td>
+            <td class="p-2">
+            <div class="font-medium text-gray-800">
+                {{item[0].precio}}
+              </div>
+            </td>
+          </tr>
+          </ng-container>
+        </ng-container>
     </tbody>
   </table>
   <div class="flex flex-col">
@@ -47,7 +70,7 @@
   </div>
   <div class="flex flex-col">
     <button
-      (click)="pagarButton()"
+      (click)="pagarButton(pedido.id_mesa)"
       class="h-10 px-5 uppercase -mt-2 m-2 text-indigo-100 transition-colors duration-150 bg-lime-700 rounded-lg hover:bg-lime-800 text-lg"
     >
       Cerrar Pedido Y Pagar

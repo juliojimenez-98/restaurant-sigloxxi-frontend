@@ -4,6 +4,7 @@ import { AppMesaPageComponent } from './pages/app-mesa-page/app-mesa-page.compon
 import { CartaMesaComponent } from './components/carta-mesa/carta-mesa.component';
 import { PagarPedidoComponent } from './components/pagar-pedido/pagar-pedido.component';
 import { MesasClientesComponent } from './components/mesas-clientes/mesas-clientes.component';
+import { PagadoComponent } from './components/pagado/pagado.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,8 @@ const routes: Routes = [
             component: PagarPedidoComponent,
           },
           { path: 'mesas-clientes', component: MesasClientesComponent },
+          { path: 'pago/:id', component: PagarPedidoComponent },
+          { path: 'pagado', component: PagadoComponent },
         ],
       },
     ],
