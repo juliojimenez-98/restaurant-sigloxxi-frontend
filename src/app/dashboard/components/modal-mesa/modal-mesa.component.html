@@ -1,7 +1,7 @@
 
 
 <div class="mt-4">
-  <h1 class="font-bold text-3xl text-gray-900 text-center">Reservas totales</h1>
+  <h1 class="font-bold text-3xl text-gray-900 text-center">Mesas</h1>
 </div>
 
 <!-- component -->
@@ -100,14 +100,94 @@
           </h3>
         </div>
         <!--body-->
-        <div class="relative p-6 flex-auto">
+        <div class="relative p-2 flex-auto">
           <h1 class="text-lg border-b border-solid ">Estado de mesa: {{mesaSeleccionada.disponibilidad===1?"Disponible":""||mesaSeleccionada.disponibilidad===0?"Ocupada":""||mesaSeleccionada.disponibilidad===2?"Reservada":""}}</h1>
           <span class="relative inline-block"></span>
           <h1 class="text-lg  border-b border-solid">Cantidad de personas: {{ mesaSeleccionada.cant_sillas}}</h1>  <!--<h1 *ngIf="mesaSeleccionada.disponibilidad===0">Cantidad de personas: {{ mesaSeleccionada.cant_sillas}}</h1> -->
           <span class="relative inline-block"></span>
           <h1 class="text-lg  border-b border-solid">Detalle de mesa:platos/valores</h1>
         </div>
+
+        <section *ngIf="pedido" class="antialiased bg-gray-100px-4" x-data="app">
+    <div class="flex flex-col justify-center">
+        <!-- Table -->
+        <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+            <header class="px-5 py-4 border-b border-gray-100">
+                <div class="font-semibold text-gray-800">Manage Carts</div>
+            </header>
+
+            <div class="overflow-x-auto p-3">
+                <table class="table-auto w-full">
+                    <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                        <tr>
+                            <th class="p-2">
+                                <div class="font-semibold text-left">Plato/Bebestible</div>
+                            </th>
+                            <th class="p-2">
+                                <div class="font-semibold text-left">Cantidad</div>
+                            </th>
+                            <th class="p-2">
+                                <div class="font-semibold text-left">Total</div>
+                            </th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody class="text-sm divide-y divide-gray-100">
+                        <!-- record 1 -->
+                        <ng-container *ngFor="let item of pedido.bebestibles">
+                            <tr>
+                            <td class="p-2">
+                                <div class="font-medium text-gray-800">
+                                    {{item[0].nombre}}
+                                </div>
+                            </td>
+                            <td class="p-2">
+                                <div class="text-left">{{item[1]}}</div>
+                            </td>
+                            <td class="p-2">
+                                <div class="text-left font-medium text-green-500">
+                                    {{item[0].precio}}
+                                </div>
+                            </td>
+                        </tr>
+                        </ng-container>
+                        <ng-container *ngFor="let item of pedido.platos">
+                            <tr>
+                            <td class="p-2">
+                                <div class="font-medium text-gray-800">
+                                    {{item[0].recetum.nombre_prep}}
+                                </div>
+                            </td>
+                            <td class="p-2">
+                                <div class="text-left">{{item[1]}}</div>
+                            </td>
+                            <td class="p-2">
+                                <div class="text-left font-medium text-green-500">
+                                    {{item[0].precio}}
+                                </div>
+                            </td>
+                        </tr>
+                        </ng-container>
+                       
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- total amount -->
+            <div class="flex justify-end font-bold space-x-4 text-2xl border-t border-gray-100 px-5 py-4">
+                <div>Total</div>
+                <div class="text-blue-600">${{pedido.total}} <span x-text="total.toFixed(2)"></span></div>
+            </div>
+
+        </div>
+    </div>
+  </section>
         <!--footer-->
+        <button *ngIf="mesaSeleccionada.disponibilidad===0" class="border border-yellow-500 bg-yellow-500 text-white text-lg  rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-600 focus:outline-none focus:shadow-outline"
+        (click)="showModal=false">Finalizar pedido / Habilitar Mesa</button>
+        <button *ngIf="mesaSeleccionada.disponibilidad===2" class="border border-yellow-500 bg-yellow-500 text-white text-lg  rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-600 focus:outline-none focus:shadow-outline"
+        (click)="showModal=false">Mesa Ocupada</button>
         <button class="border border-red-500 bg-red-500 text-white text-lg  rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline"
         (click)="showModal=false">cerrar</button>
       </div>

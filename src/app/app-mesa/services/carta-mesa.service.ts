@@ -29,7 +29,7 @@ export class CartaMesaService {
     );
   }
 
-  obtenerPedidoMesa(id: number): Observable<any> {
+  obtenerPedidoMesa(id: any): Observable<any> {
     const urlObtenerPedido = `${environment.apiUrl}pedidos-clientes/${id}`;
     return this.http
       .get(urlObtenerPedido)
