@@ -1,5 +1,3 @@
-
-
 <div class="mt-4">
   <h1 class="font-bold text-3xl text-gray-900 text-center">Mesas</h1>
 </div>
@@ -35,13 +33,13 @@
         type="button"
         class="border border-red-500 bg-red-500 cursor-default text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none focus:outline-none focus:shadow-outline"
       >
-        Disponible
+        Ocupada
       </button>
       <button
         type="button"
         class="border border-green-500 bg-green-500 cursor-default text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none focus:outline-none focus:shadow-outline"
       >
-        Ocupada
+        Disponible
       </button>
       <button
         class="border border-yellow-500 bg-yellow-500 cursor-default text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none focus:outline-none focus:shadow-outline"
@@ -56,143 +54,190 @@
 
   <div class="w-full justify-center items-center">
     <div class="grid grid-cols-5 w-full gap-3 pt-3 pb-2 px-2 relative">
-  <div
-  *ngFor="let mesa of mesas"
-  (click)="toggleModal(mesa)"
-  class="w-1/12 h-24 relative cursor-pointer mb-10 mr-6"
->
-  <div
-    [ngClass]="{
-      'bg-red-600': mesa.disponibilidad === 0,
-      'bg-green-600': mesa.disponibilidad === 1,
-      'bg-yellow-500': mesa.disponibilidad === 2
-    }"
-    class="px-15 w-14 flex justify-center items-center border text-white-1000 cursor-pointer"
-  ></div>
-  <div
-    class="absolute inset-0 transform hover:scale-75 transition duration-300"
-  >
-    <div
-      [ngClass]="{
-      'bg-red-600': mesa.disponibilidad === 0,
-      'bg-green-600': mesa.disponibilidad === 1,
-      'bg-yellow-500': mesa.disponibilidad === 2
-      }"
-      class="px-15 w-14 flex justify-center items-center border text-white-1000 cursor-pointer"
-    >
-      <br />
-      <h1 class="text-3xl text-white font-bold text-center my-auto">
-        {{ mesa.id_mesa }}
-      </h1>
+      <div
+        *ngFor="let mesa of mesas"
+        (click)="toggleModal(mesa)"
+        class="w-1/12 h-24 relative cursor-pointer mb-10 mr-6"
+      >
+        <div
+          [ngClass]="{
+            'bg-red-600': mesa.disponibilidad === 0,
+            'bg-green-600': mesa.disponibilidad === 1,
+            'bg-yellow-500': mesa.disponibilidad === 2
+          }"
+          class="px-15 w-14 flex justify-center items-center border text-white-1000 cursor-pointer"
+        ></div>
+        <div
+          class="absolute inset-0 transform hover:scale-75 transition duration-300"
+        >
+          <div
+            [ngClass]="{
+              'bg-red-600': mesa.disponibilidad === 0,
+              'bg-green-600': mesa.disponibilidad === 1,
+              'bg-yellow-500': mesa.disponibilidad === 2
+            }"
+            class="px-15 w-14 flex justify-center items-center border text-white-1000 cursor-pointer"
+          >
+            <br />
+            <h1 class="text-3xl text-white font-bold text-center my-auto">
+              {{ mesa.id_mesa }}
+            </h1>
+          </div>
+        </div>
+      </div>
     </div>
+    <div
+      *ngIf="showModal"
+      class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex"
+    >
+      <div class="relative w-auto my-6 mx-auto max-w-3xl">
+        <!--content-->
+        <div
+          class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"
+        >
+          <!--header-->
+          <div
+            class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t"
+          >
+            <h3 class="text-2xl font-semibold">
+              Informacion mesa: {{ mesaSeleccionada.id_mesa }}
+            </h3>
+          </div>
+          <!--body-->
+          <div class="relative p-2 flex-auto">
+            <h1 class="text-lg border-b border-solid">
+              Estado de mesa:
+              {{
+                mesaSeleccionada.disponibilidad === 1
+                  ? "Disponible"
+                  : "" || mesaSeleccionada.disponibilidad === 0
+                  ? "Ocupada"
+                  : "" || mesaSeleccionada.disponibilidad === 2
+                  ? "Reservada"
+                  : ""
+              }}
+            </h1>
+            <span class="relative inline-block"></span>
+            <h1 class="text-lg border-b border-solid">
+              Cantidad de personas: {{ mesaSeleccionada.cant_sillas }}
+            </h1>
+            <!--<h1 *ngIf="mesaSeleccionada.disponibilidad===0">Cantidad de personas: {{ mesaSeleccionada.cant_sillas}}</h1> -->
+            <span class="relative inline-block"></span>
+            <h1 class="text-lg border-b border-solid">
+              Detalle de mesa:platos/valores
+            </h1>
+          </div>
 
-</div>
-</div>
-</div>
-  <div *ngIf="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
-    <div class="relative w-auto my-6 mx-auto max-w-3xl">
-      <!--content-->
-      <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-        <!--header-->
-        <div class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-          <h3 class="text-2xl font-semibold">
-            Informacion mesa: {{mesaSeleccionada.id_mesa}}
-          </h3>
-        </div>
-        <!--body-->
-        <div class="relative p-2 flex-auto">
-          <h1 class="text-lg border-b border-solid ">Estado de mesa: {{mesaSeleccionada.disponibilidad===1?"Disponible":""||mesaSeleccionada.disponibilidad===0?"Ocupada":""||mesaSeleccionada.disponibilidad===2?"Reservada":""}}</h1>
-          <span class="relative inline-block"></span>
-          <h1 class="text-lg  border-b border-solid">Cantidad de personas: {{ mesaSeleccionada.cant_sillas}}</h1>  <!--<h1 *ngIf="mesaSeleccionada.disponibilidad===0">Cantidad de personas: {{ mesaSeleccionada.cant_sillas}}</h1> -->
-          <span class="relative inline-block"></span>
-          <h1 class="text-lg  border-b border-solid">Detalle de mesa:platos/valores</h1>
-        </div>
+          <section
+            *ngIf="pedido"
+            class="antialiased bg-gray-100px-4"
+            x-data="app"
+          >
+            <div class="flex flex-col justify-center">
+              <!-- Table -->
+              <div
+                class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200"
+              >
+                <header class="px-5 py-4 border-b border-gray-100">
+                  <div class="font-semibold text-gray-800">Manage Carts</div>
+                </header>
 
-        <section *ngIf="pedido" class="antialiased bg-gray-100px-4" x-data="app">
-    <div class="flex flex-col justify-center">
-        <!-- Table -->
-        <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
-            <header class="px-5 py-4 border-b border-gray-100">
-                <div class="font-semibold text-gray-800">Manage Carts</div>
-            </header>
-
-            <div class="overflow-x-auto p-3">
-                <table class="table-auto w-full">
-                    <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
-                        <tr>
-                            <th class="p-2">
-                                <div class="font-semibold text-left">Plato/Bebestible</div>
-                            </th>
-                            <th class="p-2">
-                                <div class="font-semibold text-left">Cantidad</div>
-                            </th>
-                            <th class="p-2">
-                                <div class="font-semibold text-left">Total</div>
-                            </th>
-
-                        </tr>
+                <div class="overflow-x-auto p-3">
+                  <table class="table-auto w-full">
+                    <thead
+                      class="text-xs font-semibold uppercase text-gray-400 bg-gray-50"
+                    >
+                      <tr>
+                        <th class="p-2">
+                          <div class="font-semibold text-left">
+                            Plato/Bebestible
+                          </div>
+                        </th>
+                        <th class="p-2">
+                          <div class="font-semibold text-left">Cantidad</div>
+                        </th>
+                        <th class="p-2">
+                          <div class="font-semibold text-left">Total</div>
+                        </th>
+                      </tr>
                     </thead>
 
                     <tbody class="text-sm divide-y divide-gray-100">
-                        <!-- record 1 -->
-                        <ng-container *ngFor="let item of pedido.bebestibles">
-                            <tr>
-                            <td class="p-2">
-                                <div class="font-medium text-gray-800">
-                                    {{item[0].nombre}}
-                                </div>
-                            </td>
-                            <td class="p-2">
-                                <div class="text-left">{{item[1]}}</div>
-                            </td>
-                            <td class="p-2">
-                                <div class="text-left font-medium text-green-500">
-                                    {{item[0].precio}}
-                                </div>
-                            </td>
+                      <!-- record 1 -->
+                      <ng-container *ngFor="let item of pedido.bebestibles">
+                        <tr>
+                          <td class="p-2">
+                            <div class="font-medium text-gray-800">
+                              {{ item[0].nombre }}
+                            </div>
+                          </td>
+                          <td class="p-2">
+                            <div class="text-left">{{ item[1] }}</div>
+                          </td>
+                          <td class="p-2">
+                            <div class="text-left font-medium text-green-500">
+                              {{ item[0].precio }}
+                            </div>
+                          </td>
                         </tr>
-                        </ng-container>
-                        <ng-container *ngFor="let item of pedido.platos">
-                            <tr>
-                            <td class="p-2">
-                                <div class="font-medium text-gray-800">
-                                    {{item[0].recetum.nombre_prep}}
-                                </div>
-                            </td>
-                            <td class="p-2">
-                                <div class="text-left">{{item[1]}}</div>
-                            </td>
-                            <td class="p-2">
-                                <div class="text-left font-medium text-green-500">
-                                    {{item[0].precio}}
-                                </div>
-                            </td>
+                      </ng-container>
+                      <ng-container *ngFor="let item of pedido.platos">
+                        <tr>
+                          <td class="p-2">
+                            <div class="font-medium text-gray-800">
+                              {{ item[0].recetum.nombre_prep }}
+                            </div>
+                          </td>
+                          <td class="p-2">
+                            <div class="text-left">{{ item[1] }}</div>
+                          </td>
+                          <td class="p-2">
+                            <div class="text-left font-medium text-green-500">
+                              {{ item[0].precio }}
+                            </div>
+                          </td>
                         </tr>
-                        </ng-container>
-                       
+                      </ng-container>
                     </tbody>
-                </table>
-            </div>
+                  </table>
+                </div>
 
-            <!-- total amount -->
-            <div class="flex justify-end font-bold space-x-4 text-2xl border-t border-gray-100 px-5 py-4">
-                <div>Total</div>
-                <div class="text-blue-600">${{pedido.total}} <span x-text="total.toFixed(2)"></span></div>
+                <!-- total amount -->
+                <div
+                  class="flex justify-end font-bold space-x-4 text-2xl border-t border-gray-100 px-5 py-4"
+                >
+                  <div>Total</div>
+                  <div class="text-blue-600">
+                    ${{ pedido.total }} <span x-text="total.toFixed(2)"></span>
+                  </div>
+                </div>
+              </div>
             </div>
-
+          </section>
+          <!--footer-->
+          <button
+            *ngIf="mesaSeleccionada.disponibilidad === 0"
+            class="border border-yellow-500 bg-yellow-500 text-white text-lg rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-600 focus:outline-none focus:shadow-outline"
+            (click)="showModal = false"
+          >
+            Finalizar pedido / Habilitar Mesa
+          </button>
+          <button
+            *ngIf="mesaSeleccionada.disponibilidad === 2"
+            class="border border-yellow-500 bg-yellow-500 text-white text-lg rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-600 focus:outline-none focus:shadow-outline"
+            (click)="showModal = false"
+          >
+            Mesa Ocupada
+          </button>
+          <button
+            class="border border-red-500 bg-red-500 text-white text-lg rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline"
+            (click)="showModal = false"
+          >
+            cerrar
+          </button>
         </div>
-    </div>
-  </section>
-        <!--footer-->
-        <button *ngIf="mesaSeleccionada.disponibilidad===0" class="border border-yellow-500 bg-yellow-500 text-white text-lg  rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-600 focus:outline-none focus:shadow-outline"
-        (click)="showModal=false">Finalizar pedido / Habilitar Mesa</button>
-        <button *ngIf="mesaSeleccionada.disponibilidad===2" class="border border-yellow-500 bg-yellow-500 text-white text-lg  rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-600 focus:outline-none focus:shadow-outline"
-        (click)="showModal=false">Mesa Ocupada</button>
-        <button class="border border-red-500 bg-red-500 text-white text-lg  rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline"
-        (click)="showModal=false">cerrar</button>
       </div>
     </div>
+    <div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
   </div>
-  <div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
-
 </div>
