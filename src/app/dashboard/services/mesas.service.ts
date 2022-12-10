@@ -22,4 +22,9 @@ export class MesasService {
       .get(urlGetMesas)
       .pipe(map((res: any) => res.mesas as Mesa[]));
   }
+  actualizarMesa(id: any, estado: any): Observable<any> {
+    const urlActualizarMesa = `${environment.apiUrl}mesas/mesa/${id}/${estado}`;
+
+    return this.http.put<any>(urlActualizarMesa, {});
+  }
 }
