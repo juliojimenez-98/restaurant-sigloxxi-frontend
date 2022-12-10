@@ -22,7 +22,10 @@ export class ModalMesaComponent implements OnInit {
   showModal = false;
   disponibilidad: Mesa[] = [];
 
-  constructor(private service: MesasService, private service2: CartaMesaService) {}
+  constructor(
+    private service: MesasService,
+    private service2: CartaMesaService
+  ) {}
 
   ngOnInit(): void {
     this.obtenerMesas();
@@ -30,7 +33,7 @@ export class ModalMesaComponent implements OnInit {
   toggleModal(mesa: Mesa) {
     this.showModal = !this.showModal;
     this.mesaSeleccionada = mesa;
-    this.obtenerPedidoPorMesa()
+    this.obtenerPedidoPorMesa();
   }
   obtenerMesas() {
     this.service.obtenerMesas().subscribe((res: any) => {
@@ -43,7 +46,7 @@ export class ModalMesaComponent implements OnInit {
       .obtenerPedidoMesa(this.mesaSeleccionada.id_mesa)
       .subscribe((res: any) => {
         this.pedido = res;
-        console.log(this.pedido)
+        console.log(this.pedido);
       });
   }
 
@@ -54,5 +57,27 @@ export class ModalMesaComponent implements OnInit {
       text: 'Seleccionar detalle',
       showConfirmButton: false,
     });
+  }
+
+  habilitarMesa() {
+    this.service
+      .actualizarMesa(this.mesaSeleccionada.id_mesa, 1)
+      .subscribe((mesasRes) => {
+        console.log(mesasRes);
+        Swal.fire('Habilitar Mesa', 'Mesa habilitada para clientes', 'success');
+      });
+  }
+
+  finalizarPedido() {
+    this.service
+      .actualizarMesa(this.mesaSeleccionada.id_mesa, 0)
+      .subscribe((mesasRes) => {
+        console.log(mesasRes);
+        Swal.fire(
+          'Finalizar Pedido',
+          'Pedido finalizado, Mesa habilitada para ser reservada',
+          'success'
+        );
+      });
   }
 }

@@ -216,13 +216,15 @@
           </section>
           <!--footer-->
           <button
+            (click)="finalizarPedido()"
             *ngIf="mesaSeleccionada.disponibilidad === 1"
             class="border border-yellow-500 bg-yellow-500 text-white text-lg rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-600 focus:outline-none focus:shadow-outline"
             (click)="showModal = false"
           >
-            Finalizar pedido / Habilitar Mesa
+            Finalizar Pedido
           </button>
           <button
+            (click)="habilitarMesa()"
             *ngIf="mesaSeleccionada.disponibilidad === 2"
             class="border border-yellow-500 bg-yellow-500 text-white text-lg rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-600 focus:outline-none focus:shadow-outline"
             (click)="showModal = false"

@@ -35,7 +35,7 @@ export class MesasClientesComponent implements OnInit {
 
   actualizarMesa() {
     this.service
-      .actualizarMesa(this.mesaSeleccionada.id_mesa, 0)
+      .actualizarMesa(this.mesaSeleccionada.id_mesa, 1)
       .subscribe((mesasRes) => {
         console.log(mesasRes);
         Swal.fire('Seleccionar Mesa', 'Puede pasar a sentarse', 'success');
