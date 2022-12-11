@@ -29,12 +29,14 @@ export class PagarPedidoComponent implements OnInit {
       this.servicio.obtenerPedidoMesa(id_mesa).subscribe((res) => {
         this.pedido = res;
         console.log(res);
+        this.webpay();
+
       });
     });
   }
 
   webpay() {
-    this.servicio.webPayPagar(this.pedido.total).subscribe((res: any) => {
+    this.servicio.webPayPagar(this.pedido.total,this.pedido.id_orden).subscribe((res: any) => {
       console.log(res.response);
       this.tokenReturn = res.response.token;
       this.linkReturn = res.response.url;

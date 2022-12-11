@@ -5,7 +5,7 @@ import * as moment from 'moment';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { PedidoCliente } from '../../interfaces/pedidoCliente';
+import { PedidoCliente, PedioClienteActualizar } from '../../interfaces/pedidoCliente';
 import { BebestiblesService } from '../../../dashboard/services/bebestibles.service';
 import { Bebestible } from '../../../dashboard/interfaces/bebestible.interface';
 
@@ -17,16 +17,22 @@ import { Bebestible } from '../../../dashboard/interfaces/bebestible.interface';
 export class CartaMesaComponent implements OnInit {
   showModalCart: boolean = false;
   showModalPedido: boolean = false;
+  pedidoActivo: boolean = false;
   bebestibles: Bebestible[] = [];
+  bebestiblesIt: any = [];
+  platosIt: any = [];
   platos: Plato[] = [];
   platosArray: any[] = [];
   platosArrayCant: any[] = [];
+  pedidoActualizar: any[] = [];
+  pedidoActualizado: any = [];
   platosArrayInfo: any[] = [];
   bebestiblesArrayCant: any[] = [];
   bebestiblesArrayInfo: any[] = [];
   horaInicio: string = '';
   horaFin: string = '';
   pedido!: PedidoCliente;
+  pedidoAct!: PedidoCliente;
 
   formRegistroPedidoCliente: FormGroup = this.fb.group({
     id_orden: [],
@@ -44,8 +50,11 @@ export class CartaMesaComponent implements OnInit {
     private router: Router,
     private servicioBebestible: BebestiblesService
   ) {
-    if (localStorage.getItem("pedidoActivo")) {
-      this.showModalPedido= true
+    if (localStorage.getItem('pedidoActivo')) {
+      this.showModalPedido = true;
+    }
+    if (localStorage.getItem('pedidoActivo')) {
+      this.pedidoActivo = true;
     }
   }
 
@@ -73,13 +82,107 @@ export class CartaMesaComponent implements OnInit {
     this.platosArray.push(id);
   }
 
+  actualizarPedido() {
+    if (this.pedidoActivo) {
+      this.pedidoActualizar.push(this.pedido);
+    }
+
+    let counts = this.platosArrayInfo.reduce((acc, curr) => {
+      const str = JSON.stringify(curr);
+      acc[str] = (acc[str] || 0) + 1;
+      return acc;
+    }, {});
+    Object.entries(counts).map((element) => {
+      var array: any = [];
+      array = element;
+      var array2: any = [];
+      array2 = JSON.parse(array[0]);
+      element[0] = array2;
+      this.platosArrayCant.push(element);
+    });
+
+    let countsB = this.bebestiblesArrayInfo.reduce((acc, curr) => {
+      const str = JSON.stringify(curr);
+      acc[str] = (acc[str] || 0) + 1;
+      return acc;
+    }, {});
+    Object.entries(countsB).map((element) => {
+      var array: any = [];
+      array = element;
+      var array2: any = [];
+      array2 = JSON.parse(array[0]);
+      element[0] = array2;
+      this.bebestiblesArrayCant.push(element);
+    });
+
+    this.pedidoActualizar.map((e: PedidoCliente) => {
+      if (e.platos) {
+        e.platos.push(...this.platosArrayCant);
+      }
+      if (e.bebestibles) {
+        e.bebestibles.push(...this.bebestiblesArrayCant);
+      }
+      console.log(e);
+      this.pedidoAct = e;
+
+      // var platosEst = this.pedidoActualizado.platos.map((e: any) => {
+      //    return e;
+      //  });
+      //  this.platosIt= platosEst
+
+      //  var bebestiblesEst  = this.pedidoActualizado.bebestibles.map((e: any) => {
+      //    return e;
+      //  });
+      //  this.bebestiblesIt = bebestiblesEst;
+    });
+
+    //  this.bebestiblesIt = this.pedidoActualizado.map((e: any) => {
+    //    return e.bebestibles;
+    //  }),
+
+    //  this.platosIt = this.pedidoActualizado.map((e: any) => {
+    //    return e.platos;
+    //   })
+
+    //   console.log(this.platosIt)
+
+    // this.pedidoAct={
+    //   bebestibles:this.bebestiblesIt,
+    //   platos:this.platosIt
+    // }
+
+    console.log('body', this.pedidoAct);
+
+    this.servicio
+      .ActualizarPedidoCliente(this.pedido.id_orden, this.pedidoAct)
+      .subscribe((res: any) => {
+        console.log(res);
+        if (res.msg === 'ok') {
+          this.showModalCart = false;
+          this.platosArrayCant = [];
+          this.bebestiblesArrayCant = [];
+          this.platosArrayInfo = [];
+          this.bebestiblesArrayInfo = [];
+          this.pedidoActualizar = [];
+          this.pedidoActualizado = [];
+          localStorage.setItem('pedidoActivo', '1');
+          Swal.fire(
+            'Pedido fue actualizado',
+            'Su pedido ya fue ingresado a la cocina, pronto se va a servir en su mesa',
+            'success'
+          );
+          this.showModalPedido = true;
+          window.location.reload();
+        }
+      });
+  }
+
   agregarAlPedidoInfo(plato: Plato) {
     this.platosArrayInfo.push(plato);
   }
 
   agregarBebestiblePedidoInfo(bebestible: Bebestible) {
     this.bebestiblesArrayInfo.push(bebestible);
-    console.log(this.bebestiblesArrayInfo);
   }
 
   toggleModal() {
@@ -129,7 +232,6 @@ export class CartaMesaComponent implements OnInit {
       this.bebestiblesArrayCant.push(element);
     });
 
-
     this.activatedRoute.params.subscribe((params) => {
       let id = params['id_mesa'];
       let id_mesa = parseInt(id);
@@ -153,13 +255,14 @@ export class CartaMesaComponent implements OnInit {
             this.bebestiblesArrayCant = [];
             this.platosArrayInfo = [];
             this.bebestiblesArrayInfo = [];
-            localStorage.setItem("pedidoActivo","1")
+            localStorage.setItem('pedidoActivo', '1');
             Swal.fire(
               'Pedido ingresado',
               'Su pedido ya fue ingresado a la cocina, pronto se va a servir en su mesa',
               'success'
             );
             this.showModalPedido = true;
+            window.location.reload();
           }
         });
     });
