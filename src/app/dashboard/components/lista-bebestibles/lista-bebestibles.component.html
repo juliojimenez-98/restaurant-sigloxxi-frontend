@@ -1,7 +1,45 @@
-
-
-
-<section class="text-gray-600 mt-28 body-font shadow-sm">
+<div class="max-w-2xl mx-auto">
+  <form
+    autocomplete="on"
+    [formGroup]="formBebestibles"
+    class="flex items-center"
+  >
+    <label for="voice-search" class="sr-only">Buscar</label>
+    <div class="relative w-full">
+      <div
+        class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+      >
+        <svg
+          class="w-5 h-5 text-gray-500"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </div>
+      <input
+        formControlName="nombre"
+        type="nombre"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+        placeholder="Buscar Bebestibles."
+        required
+      />
+    </div>
+    <button
+      (click)="obtenerBebestiblesBuscar()"
+      type="submit"
+      class="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-paleta5 rounded-lg hover:bg-paleta2 focus:ring-4 focus:outline-none focus:ring-blue-300"
+    >
+      Buscar
+    </button>
+  </form>
+</div>
+<section class="text-gray-600 body-font shadow-sm">
   <h2 class="text-2xl mt-4 text-gray-500 font-bold text-center">Bebestibles</h2>
   <div class="container px-5 py-5 mx-auto">
     <div class="flex flex-wrap -m-4">
@@ -9,15 +47,15 @@
       <ng-container *ngFor="let bebida of bebestibles">
         <div class="p-4 md:w-1/3">
           <div class="h-full border border-gray-400 rounded-lg overflow-hidden">
-             <img
+            <img
               class="lg:h-48 md:h-36 w-full object-cover object-center"
               [src]="bebida.img"
               alt="blog cover"
-            /> 
+            />
 
             <div class="p-2">
               <h1 class="title-font text-lg font-medium text-gray-900 mb-3">
-                {{ bebida.nombre }} {{bebida.unidad}}
+                {{ bebida.nombre }} {{ bebida.unidad }}
               </h1>
             </div>
             <div class="p-2">
@@ -49,5 +87,3 @@
     </div>
   </div>
 </section>
-
-

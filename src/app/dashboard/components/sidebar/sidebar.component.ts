@@ -21,6 +21,7 @@ export class SidebarComponent implements OnInit {
   openDetalleMesas: Boolean = false;
   openPedidoIngredientes: Boolean = false;
   openRecibos: Boolean = false;
+  openFinanzas: Boolean = false;
   menuUsuario: MenuSide[] = [
     {
       ruta: 'usuarios/registrar-usuarios',
@@ -117,6 +118,16 @@ export class SidebarComponent implements OnInit {
     {
       ruta: 'recibos-pedidos/lista',
       nombre: 'Listar recibos',
+    },
+  ];
+  menuFinanzas: MenuSide[] = [
+    {
+      ruta: 'finanzas/ingresos',
+      nombre: 'Ingresos',
+    },
+    {
+      ruta: 'finanzas/egresos',
+      nombre: 'Egresos',
     },
   ];
 

@@ -38,6 +38,10 @@ import { ReciboPedidosPageComponent } from './pages/recibo-pedidos-page/recibo-p
 import { ListaComponent } from './components/reciboPedidos/lista/lista.component';
 import { RegistroComponent } from './components/reciboPedidos/registro/registro.component';
 import { ActualizarImagenBebestibleComponent } from './components/actualizar-imagen-bebestible/actualizar-imagen-bebestible.component';
+import { FinanzasPageComponent } from './pages/finanzas-page/finanzas-page.component';
+import { IngresosComponent } from './components/finanzas/ingresos/ingresos.component';
+import { EgresosComponent } from './components/finanzas/egresos/egresos.component';
+import { FinanzasInicioComponent } from './components/finanzas/finanzas-inicio/finanzas-inicio.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +80,11 @@ import { ActualizarImagenBebestibleComponent } from './components/actualizar-ima
     ListaComponent,
     RegistroComponent,
     ActualizarImagenBebestibleComponent,
+    FinanzasPageComponent,
+    IngresosComponent,
+    EgresosComponent,
+    FinanzasInicioComponent,
+
   ],
   imports: [
     CommonModule,
