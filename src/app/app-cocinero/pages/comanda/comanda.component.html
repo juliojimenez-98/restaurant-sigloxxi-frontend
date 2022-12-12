@@ -28,6 +28,18 @@
 
                 <tbody class="text-sm divide-y divide-gray-100">
                   <!-- record 1 -->
+                  <ng-container *ngFor="let p of item.bebestibles">
+                    <tr >
+                      <td class="p-2">
+                        <div  class="font-medium text-gray-800">
+                          {{p[0].nombre}}
+                        </div>
+                      </td>
+                      <td  class="p-2">
+                        <div class="text-left">{{p[1]}}</div>
+                      </td>
+                    </tr>
+                  </ng-container>
                   <ng-container *ngFor="let p of item.platos">
                     <tr >
                       <td class="p-2">
