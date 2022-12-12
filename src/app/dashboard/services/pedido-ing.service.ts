@@ -45,4 +45,9 @@ export class PedidoIngService {
     const urlGetPedidoIng = `${environment.apiUrl}pedido-ingredientes/${id}`;
     return this.http.get<any>(urlGetPedidoIng);
   }
+
+  totalVentas(): Observable<any> {
+    const urlTotalVentas = `${environment.apiUrl}ventas/total-ventas`;
+    return this.http.get<any>(urlTotalVentas);
+  }
 }
