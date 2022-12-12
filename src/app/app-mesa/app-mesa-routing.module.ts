@@ -21,7 +21,7 @@ const routes: Routes = [
           },
           { path: 'mesas-clientes', component: MesasClientesComponent },
           { path: 'pago/:id', component: PagarPedidoComponent },
-          { path: 'pagado', component: PagadoComponent },
+          { path: 'pagado/:id', component: PagadoComponent },
         ],
       },
     ],
