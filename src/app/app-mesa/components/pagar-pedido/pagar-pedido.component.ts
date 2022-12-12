@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PedidoCliente } from '../../interfaces/pedidoCliente';
 import { CartaMesaService } from '../../services/carta-mesa.service';
+import { Venta } from '../../interfaces/venta.interface';
 
 @Component({
   selector: 'app-pagar-pedido',
