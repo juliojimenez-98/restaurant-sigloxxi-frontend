@@ -72,7 +72,7 @@ export class CartaMesaService {
   }
 
   webPayPagar(monto: any, id: any): Observable<any> {
-    const urlWebPay = `http://localhost:8080/api/webpay/pagar`;
+    const urlWebPay = `${environment.apiUrl}webpay/pagar`;
 
     var headers = {
       'Content-Type': 'application/json',
