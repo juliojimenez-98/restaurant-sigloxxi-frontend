@@ -2,8 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Plato } from '../../dashboard/interfaces/plato.interface';
-import { PedidoCliente, PedioClienteActualizar } from '../interfaces/pedidoCliente';
+import {
+  PedidoCliente,
+  PedioClienteActualizar,
+} from '../interfaces/pedidoCliente';
 import { environment } from 'src/environments/environment';
+import { Venta } from '../interfaces/venta.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -41,6 +45,18 @@ export class CartaMesaService {
     );
   }
 
+  getPedidoById(id: any): Observable<PedidoCliente> {
+    const urlObtenerPedido = `${environment.apiUrl}pedidos-clientes/pedido/${id}`;
+    return this.http
+      .get(urlObtenerPedido)
+      .pipe(map((res: any) => res.findPedido as PedidoCliente));
+  }
+
+  actualizarEstadoPedido(id: any, estado: any): Observable<any> {
+    const urlActEstPedido = `${environment.apiUrl}pedidos-clientes/pedido/${id}/${estado}`;
+    return this.http.put(urlActEstPedido, {});
+  }
+
   obtenerPedidoMesa(id: any): Observable<any> {
     const urlObtenerPedido = `${environment.apiUrl}pedidos-clientes/${id}`;
     return this.http
@@ -55,8 +71,8 @@ export class CartaMesaService {
       .pipe(map((res: any) => res.pedidos as PedidoCliente));
   }
 
-  webPayPagar(monto: any,id:any): Observable<any> {
-    const urlWebPay = `http://localhost:8080/api/webpay/pagar`;
+  webPayPagar(monto: any, id: any): Observable<any> {
+    const urlWebPay = `${environment.apiUrl}webpay/pagar`;
 
     var headers = {
       'Content-Type': 'application/json',
@@ -72,5 +88,11 @@ export class CartaMesaService {
       return_url: `${environment.apiUrlFront}/app-mesa/pagado/${id}`,
     };
     return this.http.post(urlWebPay, body, { headers: headers });
+  }
+
+  registroVenta(venta: Venta): Observable<Venta> {
+    const urlVentaRegistro = `${environment.apiUrl}ventas/venta`;
+
+    return this.http.post<Venta>(urlVentaRegistro, venta);
   }
 }
