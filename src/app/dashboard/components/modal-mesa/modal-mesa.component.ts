@@ -4,6 +4,7 @@ import { Mesa } from '../../interfaces/mesa.interface';
 import { MesasService } from '../../services/mesas.service';
 import { Plato } from 'src/app/dashboard/interfaces/plato.interface';
 import { PedidoCliente } from 'src/app/app-mesa/interfaces/pedidoCliente';
+import { CartaMesaService } from 'src/app/app-mesa/services/carta-mesa.service';
 
 @Component({
   selector: 'app-modal-mesa',
@@ -13,27 +14,40 @@ import { PedidoCliente } from 'src/app/app-mesa/interfaces/pedidoCliente';
 export class ModalMesaComponent implements OnInit {
   mesas: Mesa[] = [];
   pedido!: PedidoCliente;
-  mesaSeleccionada: Mesa={
-    id_mesa:0,
-    cant_sillas:0,
-    disponibilidad:0
-  }
+  mesaSeleccionada: Mesa = {
+    id_mesa: 0,
+    cant_sillas: 0,
+    disponibilidad: 0,
+  };
   showModal = false;
   disponibilidad: Mesa[] = [];
 
-  constructor(private service: MesasService) {}
+  constructor(
+    private service: MesasService,
+    private service2: CartaMesaService
+  ) {}
 
   ngOnInit(): void {
     this.obtenerMesas();
   }
-  toggleModal(mesa:Mesa){
+  toggleModal(mesa: Mesa) {
     this.showModal = !this.showModal;
-    this.mesaSeleccionada=mesa
+    this.mesaSeleccionada = mesa;
+    this.obtenerPedidoPorMesa();
   }
   obtenerMesas() {
     this.service.obtenerMesas().subscribe((res: any) => {
       this.mesas = res;
     });
+  }
+
+  obtenerPedidoPorMesa() {
+    this.service2
+      .obtenerPedidoMesa(this.mesaSeleccionada.id_mesa)
+      .subscribe((res: any) => {
+        this.pedido = res;
+        console.log(this.pedido);
+      });
   }
 
   detalleMesa(id: number) {
@@ -43,5 +57,27 @@ export class ModalMesaComponent implements OnInit {
       text: 'Seleccionar detalle',
       showConfirmButton: false,
     });
+  }
+
+  habilitarMesa() {
+    this.service
+      .actualizarMesa(this.mesaSeleccionada.id_mesa, 1)
+      .subscribe((mesasRes) => {
+        console.log(mesasRes);
+        Swal.fire('Habilitar Mesa', 'Mesa habilitada para clientes', 'success');
+      });
+  }
+
+  finalizarPedido() {
+    this.service
+      .actualizarMesa(this.mesaSeleccionada.id_mesa, 0)
+      .subscribe((mesasRes) => {
+        console.log(mesasRes);
+        Swal.fire(
+          'Finalizar Pedido',
+          'Pedido finalizado, Mesa habilitada para ser reservada',
+          'success'
+        );
+      });
   }
 }

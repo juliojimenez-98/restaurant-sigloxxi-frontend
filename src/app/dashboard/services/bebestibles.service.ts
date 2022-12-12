@@ -51,4 +51,12 @@ export class BebestiblesService {
       .get(urlGetBebestibles)
       .pipe(map((res: any) => res.results as Bebestible[]));
   }
+
+  uploadImage(id: any, image: File): Observable<any> {
+    const formData = new FormData();
+
+    formData.append('archivo', image);
+
+    return this.http.put(`${environment.apiUrl}uploads/bebestibles/${id}`, formData);
+  }
 }

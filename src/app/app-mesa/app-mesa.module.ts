@@ -7,9 +7,11 @@ import { CartaMesaComponent } from './components/carta-mesa/carta-mesa.component
 import { PedidoMesaComponent } from './components/pedido-mesa/pedido-mesa.component';
 import { PagarPedidoComponent } from './components/pagar-pedido/pagar-pedido.component';
 import { MesasClientesComponent } from './components/mesas-clientes/mesas-clientes.component';
+import { PagadoComponent } from './components/pagado/pagado.component';
+import { EsperarPagoComponent } from './components/esperar-pago/esperar-pago.component';
 
 @NgModule({
-  declarations: [AppMesaPageComponent, CartaMesaComponent, PedidoMesaComponent, PagarPedidoComponent, MesasClientesComponent],
+  declarations: [AppMesaPageComponent, CartaMesaComponent, PedidoMesaComponent, PagarPedidoComponent, MesasClientesComponent, PagadoComponent, EsperarPagoComponent],
   imports: [CommonModule, AppMesaRoutingModule],
 })
 export class AppMesaModule {}

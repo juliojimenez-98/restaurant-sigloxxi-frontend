@@ -1,124 +1,309 @@
-<div class="mt-4">
-  <h1 class="font-bold text-3xl text-gray-900 text-center">
-    Registrar Pedido Ingredientes
-  </h1>
-  <p class="text-center">Ingresa los datos</p>
-</div>
+<div class="flex flex-wrap">
+  <div class="w-full">
+    <ul class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row">
+      <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+        <a
+          class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal"
+          (click)="toggleTabs(1)"
+          [ngClass]="{
+            'text-paleta4 bg-white hover:bg-paleta4 cursor-pointer hover:text-white':
+              openTab !== 1,
+            'text-white bg-paleta4': openTab === 1
+          }"
+        >
+          Registro Ingredientes
+        </a>
+      </li>
+      <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+        <a
+          class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal"
+          (click)="toggleTabs(2)"
+          [ngClass]="{
+            'text-paleta4 bg-white hover:bg-paleta4 cursor-pointer hover:text-white':
+              openTab !== 2,
+            'text-white bg-paleta4 ': openTab === 2
+          }"
+        >
+          Registro Bebestibles
+        </a>
+      </li>
+    </ul>
+    <div
+      class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
+    >
+      <div class="px-4 py-2 flex-auto">
+        <div class="tab-content tab-space">
+          <div [ngClass]="{ hidden: openTab !== 1, block: openTab === 1 }">
+            <ng-container *ngIf="!nextStep">
+              <main class="flex mt-2 flex-col justify-center bg-white p-6">
+                <h1 class="text-3xl mx-auto mt-4 font-bold text-gray-800">
+                  Registrar Pedido Ingredientes
+                </h1>
+                <p class="mb-8 mx-auto font-semibold text-gray-800">
+                  Ingresa los datos
+                </p>
+                <div class="flex items-center justify-center p-6">
+                  <div class="mx-auto w-full max-w-[550px]">
+                    <form autocomplete="on" [formGroup]="formRegistroPedidoIng">
+                      <div class="mb-4">
+                        <label
+                          for="nombre"
+                          class="mb-3 block text-base font-medium text-[#07074D]"
+                        >
+                          Fecha de Despacho
+                        </label>
+                        <input
+                          type="text"
+                          name="fecha_despacho"
+                          formControlName="fecha_despacho"
+                          id="fecha_despacho"
+                          placeholder="Fecha de Despacho"
+                          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        />
+                      </div>
+                      <div class="mb-4">
+                        <label
+                          for="cantidad"
+                          class="mb-3 block text-base font-medium text-[#07074D]"
+                        >
+                          Cantidad
+                        </label>
+                        <input
+                          type="number"
+                          min="0"
+                          name="cantidad"
+                          formControlName="cantidad"
+                          id="cantidad"
+                          placeholder="Ingresa la Cantidad del Pedido"
+                          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        />
+                      </div>
+                      <div class="mb-4">
+                        <label
+                          for="precio"
+                          class="mb-3 block text-base font-medium text-[#07074D]"
+                        >
+                          Precio
+                        </label>
+                        <input
+                          type="number"
+                          min="0"
+                          name="precio"
+                          formControlName="precio"
+                          id="precio"
+                          placeholder="Ingresa el Precio del Pedido"
+                          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        />
+                      </div>
+                      <div class="mb-4">
+                        <label
+                          for="id_ing"
+                          class="w-full mb-3 block text-base font-medium text-[#07074D]"
+                        >
+                          Seleccionar Ingrediente
+                        </label>
+                        <select
+                          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                          name="id_ing"
+                          formControlName="id_ing"
+                        >
+                          <option value="">Selecciona Ingrediente</option>
+                          <option
+                            *ngFor="let ingrediente of ingredientes"
+                            [value]="ingrediente.id_ing"
+                          >
+                            {{ ingrediente.nombre }}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="mb-4">
+                        <label
+                          for="id_proveedor"
+                          class="w-full mb-3 block text-base font-medium text-[#07074D]"
+                        >
+                          Seleccionar Proveedor
+                        </label>
+                        <select
+                          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                          name="id_proveedor"
+                          formControlName="id_proveedor"
+                        >
+                          <option value="">Selecciona Proveedor</option>
+                          <option
+                            *ngFor="let proveedor of proveedores"
+                            [value]="proveedor.id_proveedor"
+                          >
+                            {{ proveedor.nombre }}
+                          </option>
+                        </select>
+                      </div>
+                      <div>
+                        <button
+                          (click)="registrarPedidoIng()"
+                          *ngIf="
+                            !formRegistroPedidoIng.value.id_pedido;
+                            else elseBLock
+                          "
+                          type="submit"
+                          class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
+                        >
+                          Registrar
+                        </button>
+                        <ng-template #elseBLock> </ng-template>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </main>
+            </ng-container>
 
-<div class="flex items-center justify-center p-6">
-  <div class="mx-auto w-full max-w-[550px]">
-    <form autocomplete="on" [formGroup]="formRegistroPedidoIng">
-      <div class="mb-4">
-        <label
-          for="nombre"
-          class="mb-3 block text-base font-medium text-[#07074D]"
-        >
-          Fecha de Despacho
-        </label>
-        <input
-          type="text"
-          name="fecha_despacho"
-          formControlName="fecha_despacho"
-          id="fecha_despacho"
-          placeholder="Fecha de Despacho"
-          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-        />
+            <!-- <ng-container class="min-h-screen" *ngIf="nextStep">
+              <app-reserva-next-step></app-reserva-next-step>
+            </ng-container> -->
+          </div>
+          <!-- <div [ngClass]="{ hidden: openTab !== 2, block: openTab === 2 }">
+            <app-mis-reservas></app-mis-reservas>
+          </div> -->
+        </div>
       </div>
-      <div class="mb-4">
-        <label
-          for="cantidad"
-          class="mb-3 block text-base font-medium text-[#07074D]"
-        >
-          Cantidad
-        </label>
-        <input
-          type="number"
-          min="0"
-          name="cantidad"
-          formControlName="cantidad"
-          id="cantidad"
-          placeholder="Ingresa la Cantidad del Pedido"
-          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-        />
+      <div class="px-4 py-2 flex-auto">
+        <div class="tab-content tab-space">
+          <div [ngClass]="{ hidden: openTab !== 2, block: openTab === 2 }">
+            <ng-container *ngIf="!nextStep">
+              <main class="flex mt-2 flex-col justify-center bg-white p-6">
+                <h1 class="text-3xl mx-auto mt-4 font-bold text-gray-800">
+                  Registrar Pedido Bebestibles
+                </h1>
+                <p class="mb-8 mx-auto font-semibold text-gray-800">
+                  Ingresa los datos
+                </p>
+                <div class="flex items-center justify-center p-6">
+                  <div class="mx-auto w-full max-w-[550px]">
+                    <form
+                      autocomplete="on"
+                      [formGroup]="formRegistroBebestible"
+                    >
+                      <div class="mb-4">
+                        <label
+                          for="nombre"
+                          class="mb-3 block text-base font-medium text-[#07074D]"
+                        >
+                          Fecha de Despacho
+                        </label>
+                        <input
+                          type="text"
+                          name="fecha_despacho"
+                          formControlName="fecha_despacho"
+                          id="fecha_despacho"
+                          placeholder="Fecha de Despacho"
+                          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        />
+                      </div>
+                      <div class="mb-4">
+                        <label
+                          for="cantidad"
+                          class="mb-3 block text-base font-medium text-[#07074D]"
+                        >
+                          Cantidad
+                        </label>
+                        <input
+                          type="number"
+                          min="0"
+                          name="cantidad"
+                          formControlName="cantidad"
+                          id="cantidad"
+                          placeholder="Ingresa la Cantidad del Pedido"
+                          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        />
+                      </div>
+                      <div class="mb-4">
+                        <label
+                          for="precio"
+                          class="mb-3 block text-base font-medium text-[#07074D]"
+                        >
+                          Precio
+                        </label>
+                        <input
+                          type="number"
+                          min="0"
+                          name="precio"
+                          formControlName="precio"
+                          id="precio"
+                          placeholder="Ingresa el Precio del Pedido"
+                          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        />
+                      </div>
+                      <div class="mb-4">
+                        <label
+                          for="id_ing"
+                          class="w-full mb-3 block text-base font-medium text-[#07074D]"
+                        >
+                          Seleccionar Bebestible
+                        </label>
+                        <select
+                          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                          name="id_ing"
+                          formControlName="id_ing"
+                        >
+                          <option value="">Selecciona Bebestible></option>
+                          <option
+                            *ngFor="let bebestible of bebestibles"
+                            [value]="bebestible.id_bebida"
+                          >
+                            {{ bebestible.nombre }}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="mb-4">
+                        <label
+                          for="id_proveedor"
+                          class="w-full mb-3 block text-base font-medium text-[#07074D]"
+                        >
+                          Seleccionar Proveedor
+                        </label>
+                        <select
+                          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                          name="id_proveedor"
+                          formControlName="id_proveedor"
+                        >
+                          <option value="">Selecciona Proveedor</option>
+                          <option
+                            *ngFor="let proveedor of proveedores"
+                            [value]="proveedor.id_proveedor"
+                          >
+                            {{ proveedor.nombre }}
+                          </option>
+                        </select>
+                      </div>
+                      <!-- <div>
+                        <button
+                          (click)="registrarPedidoIng()"
+                          *ngIf="
+                            !formRegistroBebestible.value.id_pedido;
+                            else elseBLock
+                          "
+                          type="submit"
+                          class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
+                        >
+                          Registrar
+                        </button>
+                        <ng-template #elseBLock> </ng-template>
+                      </div> -->
+                    </form>
+                  </div>
+                </div>
+              </main>
+            </ng-container>
+
+            <!-- <ng-container class="min-h-screen" *ngIf="nextStep">
+              <app-reserva-next-step></app-reserva-next-step>
+            </ng-container> -->
+          </div>
+          <!-- <div [ngClass]="{ hidden: openTab !== 2, block: openTab === 2 }">
+            <app-mis-reservas></app-mis-reservas>
+          </div> -->
+        </div>
       </div>
-      <div class="mb-4">
-        <label
-          for="precio"
-          class="mb-3 block text-base font-medium text-[#07074D]"
-        >
-          Precio
-        </label>
-        <input
-          type="number"
-          min="0"
-          name="precio"
-          formControlName="precio"
-          id="precio"
-          placeholder="Ingresa el Precio del Pedido"
-          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-        />
-      </div>
-      <div class="mb-4">
-        <label
-          for="id_ing"
-          class="w-full mb-3 block text-base font-medium text-[#07074D]"
-        >
-          Seleccionar Ingrediente
-        </label>
-        <select
-          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-          name="id_ing"
-          formControlName="id_ing"
-        >
-          <option value="">Selecciona Ingrediente</option>
-          <option
-            *ngFor="let ingrediente of ingredientes"
-            [value]="ingrediente.id_ing"
-          >
-            {{ ingrediente.nombre }}
-          </option>
-        </select>
-      </div>
-      <div class="mb-4">
-        <label
-          for="id_proveedor"
-          class="w-full mb-3 block text-base font-medium text-[#07074D]"
-        >
-          Seleccionar Proveedor
-        </label>
-        <select
-          class="w-full rounded-md border border-paleta1 bg-white py-1 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-          name="id_proveedor"
-          formControlName="id_proveedor"
-        >
-          <option value="">Selecciona Proveedor</option>
-          <option
-            *ngFor="let proveedor of proveedores"
-            [value]="proveedor.id_proveedor"
-          >
-            {{ proveedor.nombre }}
-          </option>
-        </select>
-      </div>
-      <div>
-        <button
-          (click)="registrarPedidoIng()"
-          *ngIf="!formRegistroPedidoIng.value.id_pedido; else elseBLock"
-          type="submit"
-          class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
-        >
-          Registrar
-        </button>
-        <ng-template #elseBLock>
-          <!-- <button
-              (click)="actualizarIngrediente()"
-              type="submit"
-              class="block w-full max-w-xs mx-auto mt-4 bg-paleta4 hover:bg-paleta2 focus:bg-paleta6 text-white rounded-lg px-3 py-3 font-semibold"
-            >
-              ACTUALIZAR
-            </button> -->
-        </ng-template>
-      </div>
-    </form>
+    </div>
   </div>
 </div>

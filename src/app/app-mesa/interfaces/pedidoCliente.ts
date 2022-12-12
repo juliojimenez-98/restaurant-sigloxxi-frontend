@@ -7,6 +7,14 @@ export interface PedidoCliente {
   estado: number;
   platos: Array<Array<any>>;
   bebestibles: Array<Array<any>>;
-  total:number
+  total?:number
   id_mesa: number;
 }
+
+
+export interface PedioClienteActualizar {
+  id_orden?: number;
+  platos: any;
+  bebestibles: any;
+}
+
