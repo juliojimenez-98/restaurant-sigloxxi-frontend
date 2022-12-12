@@ -42,6 +42,7 @@ import { FinanzasPageComponent } from './pages/finanzas-page/finanzas-page.compo
 import { IngresosComponent } from './components/finanzas/ingresos/ingresos.component';
 import { EgresosComponent } from './components/finanzas/egresos/egresos.component';
 import { FinanzasInicioComponent } from './components/finanzas/finanzas-inicio/finanzas-inicio.component';
+import { ComandaComponent } from '../app-cocinero/pages/comanda/comanda.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,6 @@ import { FinanzasInicioComponent } from './components/finanzas/finanzas-inicio/f
     IngresosComponent,
     EgresosComponent,
     FinanzasInicioComponent,
-
   ],
   imports: [
     CommonModule,

@@ -5,7 +5,10 @@ import * as moment from 'moment';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { PedidoCliente, PedioClienteActualizar } from '../../interfaces/pedidoCliente';
+import {
+  PedidoCliente,
+  PedioClienteActualizar,
+} from '../../interfaces/pedidoCliente';
 import { BebestiblesService } from '../../../dashboard/services/bebestibles.service';
 import { Bebestible } from '../../../dashboard/interfaces/bebestible.interface';
 
@@ -124,32 +127,7 @@ export class CartaMesaComponent implements OnInit {
       }
       console.log(e);
       this.pedidoAct = e;
-
-      // var platosEst = this.pedidoActualizado.platos.map((e: any) => {
-      //    return e;
-      //  });
-      //  this.platosIt= platosEst
-
-      //  var bebestiblesEst  = this.pedidoActualizado.bebestibles.map((e: any) => {
-      //    return e;
-      //  });
-      //  this.bebestiblesIt = bebestiblesEst;
     });
-
-    //  this.bebestiblesIt = this.pedidoActualizado.map((e: any) => {
-    //    return e.bebestibles;
-    //  }),
-
-    //  this.platosIt = this.pedidoActualizado.map((e: any) => {
-    //    return e.platos;
-    //   })
-
-    //   console.log(this.platosIt)
-
-    // this.pedidoAct={
-    //   bebestibles:this.bebestiblesIt,
-    //   platos:this.platosIt
-    // }
 
     console.log('body', this.pedidoAct);
 
